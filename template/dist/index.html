@@ -3,8 +3,11 @@
 <head>
   <title>Template</title>
   <script src="modules.js"></script>
+  <link rel="stylesheet" href="css/style.css">
 </head>
-<body>
+<body ng-app="myApp" ng-controller="controller as ctrl">
   <h1>Template</h1>
+  <div class="measure-button" ng-click="ctrl.runCalculatorMeasurements(8, 5)"></div>
+  {{ ctrl.timeMeasure }}
 </body>
 </html>

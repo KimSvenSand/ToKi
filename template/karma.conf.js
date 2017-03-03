@@ -4,12 +4,12 @@ module.exports = function(config) {
     frameworks: ['mocha', 'browserify', 'chai' ],
 
     files: [
-      'js/functions.js',
+      'src/js/calculator.js',
       'test/*.js'
     ],
 
     preprocessors: {
-      'js/**/*.js': ['browserify'],
+      'src/js/**/*.js': ['browserify'],
       'test/**/*.js': ['browserify']
     },
 
