@@ -33184,7 +33184,6 @@ class Controller {
     var t1 = performance.now();
 
     this.timeMeasure = (t1 - t0).toFixed(8) + 'ms';
-    console.log((t1 - t0).toFixed(8) + 'ms');
   }
 }
 exports.default = Controller;
@@ -33208,4 +33207,4 @@ function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { de
 
 exports.default = _angular2.default.module("myApp", []).controller("controller", _controller2.default);
 
-},{"./controller":4,"angular":2}]},{},[3,4,5]);
+},{"./controller":4,"angular":2}]},{},[5]);
