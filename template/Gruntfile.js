@@ -1,4 +1,5 @@
 module.exports = function(grunt) {
+  require('load-grunt-tasks')(grunt);
   grunt.loadNpmTasks("grunt-contrib-clean");
   grunt.loadNpmTasks("grunt-contrib-copy");
   grunt.loadNpmTasks("grunt-browserify");
@@ -13,6 +14,24 @@ module.exports = function(grunt) {
         expand: true,
         src: ["**/*.html", "**/*.css"],
         dest: "dist"
+      }
+    },
+
+    babel: {
+      options: {
+        sourceMap: true,
+        plugins: [ "transform-es2015-modules-commonjs" ]
+      },
+      dist: {
+        files:
+        [
+          {
+            cwd: 'src',
+            expand: true,
+            src: ['js/*.js'],
+            dest: 'dist'
+          }
+        ]
       }
     },
 
@@ -33,5 +52,5 @@ module.exports = function(grunt) {
   });
 
   // Load the plugin that provides the "uglify" task.
-  grunt.registerTask("default", ["clean", "copy:src_to_dist", "browserify" ]);
+  grunt.registerTask("default", ["clean", "copy:src_to_dist", "babel" ]);
 };
