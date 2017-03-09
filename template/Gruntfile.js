@@ -38,7 +38,7 @@ module.exports = function(grunt) {
     browserify: {
       dist: {
         files: {
-          "dist/modules.js": [ "src/js/*.js" ]
+          "dist/js/modules.js": [ "src/js/modules.js" ]
         },
         options: {
           transform: [
@@ -52,5 +52,5 @@ module.exports = function(grunt) {
   });
 
   // Load the plugin that provides the "uglify" task.
-  grunt.registerTask("default", ["clean", "copy:src_to_dist", "babel" ]);
+  grunt.registerTask("default", ["clean", "copy:src_to_dist", "babel", "browserify" ]);
 };

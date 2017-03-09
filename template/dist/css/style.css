@@ -1,5 +1,18 @@
 .measure-button {
-  width: 50px;
-  height: 25px;
-  background-color: red;
+  width: 100px;
+  display: flex;
+  justify-content: center;
+  padding: 5px 10px 5px 10px;
+  background-color: #b4b7ba;
+  color: white;
+  font-family: monospace;
+}
+
+.row {
+  display: flex;
+  justify-content: center;
+}
+
+.monospace-text {
+  font-family: monospace;
 }
