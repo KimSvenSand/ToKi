@@ -6,7 +6,10 @@ module.exports = function(grunt) {
 
   // Project configuration.
   grunt.initConfig({
-    clean: ["dist"],
+    clean: {
+      dist: ["dist"],
+      test: ["test"]
+    },
 
     copy: {
       src_to_dist: {
@@ -32,6 +35,16 @@ module.exports = function(grunt) {
             dest: 'dist'
           }
         ]
+      },
+      test: {
+        files: [
+          {
+            cwd: 'es6-test',
+            expand: true,
+            src: ['*.js'],
+            dest: 'test'
+          }
+        ]
       }
     },
 
@@ -52,5 +65,6 @@ module.exports = function(grunt) {
   });
 
   // Load the plugin that provides the "uglify" task.
-  grunt.registerTask("default", ["clean", "copy:src_to_dist", "babel", "browserify" ]);
+  grunt.registerTask("default", ["clean:dist", "copy:src_to_dist", "babel:dist", "browserify" ]);
+  grunt.registerTask("test", ["clean", "babel"]);
 };

@@ -1,4 +1,5 @@
-import Calculator from '../src/js/calculator';
+import Calculator from '../dist/js/calculator';
+import { expect } from 'chai';
 
 describe('Calculator', function() {
   var calculator = new Calculator();
