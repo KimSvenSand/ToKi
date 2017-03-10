@@ -10,6 +10,8 @@ var _calculator2 = _interopRequireDefault(_calculator);
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
+'use strict';
+
 class Controller {
   constructor() {
     this.calculator = new _calculator2.default();

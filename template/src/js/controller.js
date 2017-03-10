@@ -1,4 +1,5 @@
 import Calculator from './calculator.js'
+'use strict';
 
 export default class Controller {
   constructor() {
