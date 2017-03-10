@@ -23,8 +23,5 @@
     "mocha": "^3.2.0",
     "watchify": "^3.9.0"
   },
-  "dependencies": {
-    "angular": "^1.6.2",
-    "rxjs": "^5.2.0"
-  }
+  "dependencies": {}
 }
