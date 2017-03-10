@@ -66,5 +66,5 @@ module.exports = function(grunt) {
 
   // Load the plugin that provides the "uglify" task.
   grunt.registerTask("default", ["clean:dist", "copy:src_to_dist", "babel:dist", "browserify" ]);
-  grunt.registerTask("test", ["clean:test", "babel:test"]);
+  grunt.registerTask("test", ["clean", "babel"]);
 };
