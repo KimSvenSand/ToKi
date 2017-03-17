@@ -5,7 +5,7 @@
   "main": "index.js",
   "scripts": {
     "test": "grunt test && mocha -R nyan",
-    "start": "grunt && chromium-browser dist/index.html"
+    "start": "grunt && node --expose-gc dist/index.js"
   },
   "keywords": [],
   "author": "",
@@ -23,8 +23,5 @@
     "mocha": "^3.2.0",
     "watchify": "^3.9.0"
   },
-  "dependencies": {
-    "angular": "^1.6.2",
-    "rxjs": "^5.2.0"
-  }
+  "dependencies": {}
 }
