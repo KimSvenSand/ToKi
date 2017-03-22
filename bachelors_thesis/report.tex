@@ -1,6 +1,7 @@
 \documentclass {article}
 \usepackage{enumitem}
 \usepackage{listings}
+\usepackage{float}
 \usepackage{mathtools}
 \usepackage{graphicx}
 \graphicspath{ {images/} }
@@ -52,8 +53,6 @@ return nr * 2;
 var word = "string";
 double(word); //Will return NaN but still continue running
 \end{lstlisting}
-
-\item [ ] With this code I successfully send a string in a function that can’t handle a string and prints the return value in the console of my browser. Written in my console is NaN, which means not a number. But if ‘“string”’ was changed to 2 for example, this would have worked fine.
 
 \item [ ] A similar program in golang, that is a statically type checked language:
 
@@ -206,8 +205,8 @@ An object is an capsule that contains the variables and functions established in
 \item [Inheritance] - When an object acquire all properties and functionality of another object [41], it is called inheritance. This provides code reusability. 
 
 \begin{lstlisting}[language=Java, breaklines=true]
-//Based upon the Animal class with an added propertie race
-//And also added so the new property is logged to the screen.
+//Based upon the Animal class with an added property race
+//The original logAnimal() is overidden so the new property is also logged to the screen.
 class Dog extends Animal {
   constructor(name, age, race) {
     super(name, age);
@@ -277,14 +276,16 @@ A binary tree is a tree consisting of nodes, where a node can have a maximum of 
 \item [insert(comparable, rootNode)] - Inserts number into the tree. Returns true or false depending on success. If comparable is already in the tree, false should be returned. Note that in the functional implementation this function will return the resulting tree instead of mutating the tree and returning true or false.
 \end{description}
 
-\begin{figure}[h]
+\begin{figure}[H]
 \includegraphics[width=\textwidth]{binary-tree-example}
 
-\caption {Binary tree example}
-\end{figure}
 
-{\bfseries Algorithm descriptions}
+\caption {Binary tree example}
+\end {figure}
+
 \begin{description}
+\item[Algorithm descriptions in psudocode]
+\item[]
 \item [findNode(comparable, root)]
 \item[]
 \begin{lstlisting}[language=Pascal]
@@ -386,7 +387,7 @@ return sortedArray
 \subsubsection{The Tower of Hanoi algorithm}
 The Tower of Hanoi is a game invented by mathematician Édouard Lucas in 1883 [14]. The game consists of three pegs and a number of disks stacked in decreasing order on one of the pegs. The goal is to move the tower from one peg to another by moving one disk at a the time to one of the other pegs. A disk can not be placed on a peg on top a smaller disk. 
 
-\begin{figure}[h]
+\begin{figure}[H]
 \includegraphics[width=\textwidth]{tower-of-hanoi-example}
 
 \caption{Tower of hanoi image}
@@ -425,12 +426,12 @@ The algorithm will then find the shortest path using the following steps:
 \item Repeat until all nodes have been visited or the end node has been visited.
 \end{enumerate}
 
-\begin{figure}[h]
+\begin{figure}[H]
 \includegraphics[width=\textwidth]{dijkstras-algorithm-example1}
 
 \caption{After initiation of Dijkstra’s algorithm}
 \end{figure}
-\begin{figure}[h]
+\begin{figure}[H]
 \includegraphics[width=\textwidth]{dijkstras-algorithm-example2}
 
 \caption{After three nodes have been visited with Dijkstra’s algorithm}
