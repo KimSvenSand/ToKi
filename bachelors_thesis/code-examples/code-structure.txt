@@ -1,0 +1,12 @@
+|---dist
+|   '---<Files generated from babel>
+|---src
+|   |---js
+|   |   '---<function and class files>
+|   '---index.js
+|---es6-test
+|   '---<Test files>
+|---test
+|   '---<Test files generated from babel>
+| Gruntfile.js
+| package.json
