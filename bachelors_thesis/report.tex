@@ -1,14 +1,21 @@
 \documentclass {article}
 \usepackage{enumitem}
 \usepackage{listings}
+\usepackage{color}
 \usepackage{float}
 \usepackage{mathtools}
 \usepackage{graphicx}
 \graphicspath{ {images/} }
 
+\definecolor{mGray}{rgb}{0.39, 0.39, 0.39}
+\definecolor{mBlue}{rgb}{0.04, 0.36, 0.67}
 \renewcommand*\rmdefault{cmr}
 
 \lstset{ %set options for lstlisting = codesnippets
+basicstyle=\small\ttfamily,
+commentstyle= \small\ttfamily\color{mGray},
+keywordstyle= \color{mBlue},
+numberstyle= \footnotesize\ttfamily\color{mGray},
 	breaklines=true, 
 	captionpos=b,
 	keepspaces=true,
@@ -16,16 +23,19 @@
 	tabsize=2
 }
 
+\setlength{\parindent}{0em}
+\setlength{\parskip}{1em}
+
 \title{A comparison between functional and object oriented programming approaches in JavaScript}
 \date{now}
 \author{
-Kim Svensson Sand
-Tord Eliasson
+Kim Svensson Sand \& Tord Eliasson
 }
 
 \begin{document}
 \maketitle
 \pagenumbering{gobble}
+\newpage
 \tableofcontents
 \newpage
 \pagenumbering{arabic}
@@ -36,14 +46,14 @@ Tord Eliasson
 \item [ ] Object-Oriented Programming = OOP
 \end{itemize}
 \section{Background and Related work}
-Object oriented or imperative languages are dominating with languages such as C, C++, Java and C\#, however functional languages seem to be gaining in popularity for handling big data and concurrency with languages such as Scala, Erlang or Haskell [1, 4, 9, 11]. Some are also arguing that a more functional approach will give you less code, more readable code, code that is easier to maintain and easier to test, and that learning it will give you better experience as a programmer [1, 2, 3, 9].
+Object oriented or imperative languages are dominating with languages such as C, C++, Java and C\#, however functional languages seem to be of interest in the industry for handling big data and concurrency with languages such as Scala, Erlang or Haskell [1, 4, 9, 11]. Some are also arguing that a more functional approach will give you less code, more readable code, code that is easier to maintain and easier to test, and that learning it will give you better experience as a programmer [1, 2, 3, 9].
 
 Here we will describe the functional programming paradigm, FP, and also the object oriented programming paradigm, OOP. 
 \subsection{Functional programming}
 Functional programming, FP, is a programming paradigm that at its core is based on lambda-calculus [35]. Programs are constructed using functions and by avoiding changing the state. By not modifying the state side effects are avoided. Computation is done by changing the environment, rewriting the functions, rather than changing variables. Multiple functions can be composed into larger and more complex functions, and should be reduced to its simplest state following mathematical rules. The following are concepts used in FP.
 \begin{description}
 \item [Lazy evaluation] - Lazy evaluation is when a value is not calculated until it is needed [5].
-\item [Static type checking] - Pure functional languages usually have static type checking [35]. This means that variables are of a certain type, for example int or char. In such languages it is not allowed to use functions with the wrong types. So if there is for example a function taking an int as parameter it is illegal to call that function with a String as its parameter. In dynamic type checked-languages this would be legal, since variables are not specified as types, and might cause an unexpected error. For example we can use JavaScript:
+\item [Static type checking] - Pure functional languages usually have static type checking [35]. This means that variables are of a certain type, for example int or char. In such languages it is not allowed to use functions with the wrong types. So if there is for example a function taking an int as parameter it is illegal to call that function with a String as its parameter. In dynamic type checked-languages this would be legal, since variables are not specified as types, and might cause an unexpected error. For example in JavaScript:
 
 \begin{lstlisting}[language=Java]
 //JavaScript has dynamic type checking
@@ -68,9 +78,10 @@ func double(nr int) int {
 }
 \end{lstlisting}
 
-\item [ ] will give an error when compiling.
+\item [ ] This will give an error when compiling.
+\item[] There are however pure functional languages with dynamic type checking, such as Clean. There are also languages that are mostly functional with dynamic type checking, such as Lisp or Scheme [52].
 \item [Side effects] - Side effects are for example changing a variable or any interaction outside the function [1]. This is avoided in functional programming since it may result in incorrect and unexpected behaviour. 
-\item [Pure functions] - A pure functions always returns the same result, given the same input, and does not have side effects [1]. See the following example. 
+\item [Pure functions] - A pure functions always returns the same result, given the same input, and does not have side effects [1]. See the following example: 
 
 \begin{lstlisting}[language=Java]
 var sum = 0;
@@ -178,9 +189,7 @@ These objects are created by the programmer to represent something with the help
 By building objects together like this, you can build programs by the object oriented paradigm.  
 
 \begin{description}
-\item [Class] - A class is a model for a set of objects [35]. It establishes what data and functions the object will contain and what names, signature and visibility everything will get in the class. The class also contains the implementation of the functions. Every object belongs to at least one class.
-
-\item [] A class is a model for a set of objects, which clearly the object oriented paradigm is built around[35]. The class establishes what the object will contain, for example variables and functions, and signatures and visibility of these. To create a object of any kind, a class must be present. 
+\item [Class] - A class is a model for a set of objects, which clearly the object oriented paradigm is built around[35]. The class establishes what the object will contain, for example variables and functions, and signatures and visibility of these. To create a object of any kind, a class must be present. 
 
 \begin{lstlisting}[language=Java]
 //Creates a class Animal with the properties name and age and a function for logging the properties to the screen
@@ -201,9 +210,9 @@ animal.logAnimal();
 //Age: 9
 \end{lstlisting}
 
-\item [Object] - An object is a capsule that contains both data and functions that manipulates the data [35]. The data and the functions are accessible from the outside through the object. 
-An object is an capsule that contains the variables and functions established in the class. All data and functions can be accessible from outside the object.
-\item [Inheritance] - When an object acquire all properties and functionality of another object [41], it is called inheritance. This provides code reusability. 
+\item [Object] - An object is a capsule that contains the variables and functions established in the class. All data and functions can be accessible from outside the object.
+
+\item [Inheritance] - When an object acquires all properties and functionality of another object [41], it is called inheritance. This provides code reusability. 
 
 \begin{lstlisting}[language=Java, breaklines=true]
 //Based upon the Animal class with an added property race
@@ -230,7 +239,7 @@ dog.logAnimal();
 \item [Encapsulation] - Encapsulation can be used to refer to two different things [35, 41]. A mechanism to restrict direct access to some object components and the language construct that facilitates the bundling of data with methods. The access part is done by making the different parts of an object public or private and the bundling is made with objects.
 \end{description}
 \subsection{JavaScript}
-But how does the support for the different paradigms in JavaScript look?
+The support for the different paradigms in JavaScript 
 \subsubsection{Functional programming}
 JavaScript is not a functional language, but it is possible to write functional code with it [1]. There are also libraries that makes functional programming in JavaScript easier, such as Underscore.js [5], however we will use ECMA 2015, ES6, that already provide many of the functions provided by Underscore.js. This is also to use similar environment for our different implementations in this experiment.
 
@@ -242,12 +251,12 @@ In JavaScript it is possible to treat functions as any other variable, pass them
 \item [reduce()] - Reduces a array to a single value.
 \end{description}
 
-However there is no automatic currying in JavaScript. If currying is needed, it has to be implemented manually.
+However there is no automatic currying or immutable data structures in JavaScript. JavaScript is also dynamically type checked. All of these can be added to JavaScript with libraries.
 \subsubsection{Object oriented programming}
 JavaScript has always had support for OOP. But 
-with the new version of JavaScript, called ECMAScript 2015 or ES6, OOP starts to look more like classical OOP languages like for example Java [30].
+with ES6, OOP starts to look more like classical OOP languages like for example Java [30].
 
-JavaScript supports all of the concepts mentioned above [30].
+JavaScript do not fully support encapsulation, since you can’t make variables and functions private,
 \subsection{Related work}
 In “Curse of the excluded middle” [3] Erik Meijer arguments with multiple examples that the industry should not focus on a combination between functional and objected oriented methods to counter handling big data with concurrency and parallelism. He concludes that it is not good enough avoid side effects in imperative or object oriented languages. It is also not good enough to try to ignore side effects in pure functional languages. Instead he thinks that people should either accept side effects or think more seriously about using the functional paradigm.
 
@@ -261,6 +270,8 @@ Alic, Omanovic and Giedrimas has made a comparative analysis of functional and o
 
 Dobre and Xhafa writes in “Parallel Programming Paradigms and Frameworks in Big Data Era” that we now are in a big data era[47]. They also review different frameworks, programming paradigms and more in a big data perspective. Around paradigms they state, “functional programming (FP) is actually considered today to be the most prominent Programming Paradigm, as it allows actually more flexibility in defining Big Data distributed processing workflows.”
 
+In “Comparing programming paradigms: an evaluation of functional and object-oriented programs” compares  R. Harrison, L.G. Samaraweera, M.R. Dobie and P.H. Lewis the quality of code in functional and object oriented programming[51]. To compare these, they use C++ and SML. While their discussion states that they would probably use OOP, since C++ is a better language, the standard list functions was of great help, the debugging was better and reusability was much higher in SML.
+
 Mention concurrency, scala osv? Argument why this subject might be relevant. Functional programming can give more experience, more popular in the industry blablabla. Find studies!
 \section{Method}
 What we are doin’.
@@ -270,7 +281,7 @@ We will implement a search tree, the shellsort algorithm, the tower of hanoi alg
 
 We chose algorithms that uses both recursion and iteration to not give advantage to any paradigm. When implementing these algorithms and data structures we can also make use of OOP methods, such as classes and objects. The algorithms purpose are also different to avoid for example implementing four different sorting algorithms. 
 \subsubsection{Tree search algorithms}
-A binary tree is a tree consisting of nodes, where a node can have a maximum of two ￼children [38]. These children can be described as the left and the right subtree and the parent is the root. The property that differs a binary search tree from a standard binary tree, is the order of the nodes. In a binary tree the order can be undecided, but in a search tree the nodes are stored in an order based on some property. For example in our binary search tree the left subtree of a root will contain smaller numbers than the root, and the right subtree will contain larger numbers. Using tree traversal it is possible to find certain nodes or get a list of sorted objects. Our binary tree will contain random numbers and the functions:
+A binary tree is a tree consisting of nodes, where a node can have a maximum of two ￼children [38]. These children can be described as the left and the right subtree and the parent is the root. The property that differs a binary search tree from a standard binary tree, is the order of the nodes. In a binary tree the order can be undecided, but in a search tree the nodes are stored in an order based on some property. For example in our binary search tree the left subtree of a root will contain smaller numbers than the root, and the right subtree will contain larger numbers, see example in figure~\ref{fig:binary-tree-example}. Using tree traversal it is possible to find certain nodes or get a list of sorted objects. Our binary tree will contain random numbers and the functions:
 \begin{description}
 \item [findNode(comparable, rootNode)] - Finds a specific key in the tree.
 \item [inOrderTraversal(root)] - Returns an array of all numbers in the tree, sorted smallest to biggest.
@@ -282,11 +293,11 @@ A binary tree is a tree consisting of nodes, where a node can have a maximum of 
 
 
 \caption {Binary tree example}
+\label{fig:binary-tree-example}
 \end {figure}
 
 \begin{description}
 \item[Algorithm descriptions:]
-\item[]
 \item [algorithm findNode(comparable, root)]
 \item[]
 \begin{lstlisting}[language=Pascal]
@@ -362,7 +373,6 @@ This algorithm will sort an array filled with randomized numbers. Our implementa
 \item[shellsort(array)] - Takes an unsorted array as an input and returns a sorted copy of the array.
 
 \item[Algorithm description:]
-\item[]
 \item[algorithm algorithm shellsort(array of size n)]
 \item []
 \begin{lstlisting}[language=Pascal]
@@ -388,12 +398,13 @@ return sortedArray
 \end{lstlisting}
 \end{description}
 \subsubsection{The Tower of Hanoi algorithm}
-The Tower of Hanoi is a game invented by mathematician Édouard Lucas in 1883 [14]. The game consists of three pegs and a number of disks stacked in decreasing order on one of the pegs. The goal is to move the tower from one peg to another by moving one disk at a the time to one of the other pegs. A disk can not be placed on a peg on top a smaller disk. 
+The Tower of Hanoi is a game invented by mathematician Édouard Lucas in 1883 [14]. The game consists of three pegs and a number of disks stacked in decreasing order on one of the pegs, see figure~\ref{fig:tower-of-hanoi-example}. The goal is to move the tower from one peg to another by moving one disk at a the time to one of the other pegs. A disk can not be placed on a peg on top a smaller disk. 
 
 \begin{figure}[H]
 \includegraphics[width=\textwidth]{tower-of-hanoi-example}
 
 \caption{Tower of hanoi image}
+\label{fig:tower-of-hanoi-example}
 \end{figure}
 
 This algorithm will move a tower from one peg to another in the function:
@@ -403,11 +414,10 @@ This algorithm will move a tower from one peg to another in the function:
 
 
 \item[Algorithm description:]
-\item []
 \item[algorithm hanoi(tower, start, dest, aux)]
 \item[] 
 \begin{lstlisting}[language=Pascal]
-//Pseudo code based on that tower is the number of the largest disk, where 0 is the smallest disk in the tower.
+(*Pseudo code based on that tower is the number of the largest disk, where 0 is the smallest disk in the tower.*)
 if tower is equal to 0
  	move tower from start to dest
 else
@@ -424,6 +434,7 @@ Dijkstra’s algorithm is an algorithm for finding the shortest path in a graph 
 \item setting the distance to all other nodes to infinity.
 \item mark all nodes as unvisited.
 \end{enumerate}
+See figure~\ref{fig:dijkstras-algorithm-example1}.
 The algorithm will then find the shortest path using the following steps:
 \begin{enumerate}
 \item Set current node to the node with the smallest distance that has not already been visited.
@@ -431,16 +442,19 @@ The algorithm will then find the shortest path using the following steps:
 \item Mark current node as visited.
 \item Repeat until all nodes have been visited or the end node has been visited.
 \end{enumerate}
+See figure~\ref{fig:dijkstras-algorithm-example2}.
 
 \begin{figure}[H]
 \includegraphics[width=\textwidth]{dijkstras-algorithm-example1}
 
 \caption{After initiation of Dijkstra’s algorithm}
+\label{fig:dijkstras-algorithm-example1}
 \end{figure}
 \begin{figure}[H]
 \includegraphics[width=\textwidth]{dijkstras-algorithm-example2}
 
 \caption{After three nodes have been visited with Dijkstra’s algorithm}
+\label{fig:dijkstras-algorithm-example2}
 \end{figure}
 
 This algorithm will be used in a function:
@@ -448,8 +462,8 @@ This algorithm will be used in a function:
 \item[dijkstras(graph, startNode, endNode)] - That takes graph, startNode and endNode and returns an array with the shortest path from startNode to destNode. 
 
 \item [Algorithm description:]
-\item[]
 \item[algorithm dijkstras(graph, startNode, endNode)]
+\item[]
 \begin{lstlisting}[language=Pascal]
 for each node in graph
  	set dist[node] to infinity 
@@ -480,7 +494,7 @@ Since node.js does not support ES6-modules we are using babel to transpile our E
 
 To measure memory and run time we are using node.js process, that is a global and therefore always available within node.js applications [50]. We are using the following functions:
 \begin{description}
-\item [process.hrtime([time])] - Returns the current high resolution time in a [seconds, nanoseconds] tuple Array. If the optional time-parameter, an earlier hrtime, is used, it will return the difference between that time and the current time. 
+\item [process.hrtime(time)] - Returns the current high resolution time in a [seconds, nanoseconds] tuple Array. If the optional time-parameter, an earlier hrtime, is used, it will return the difference between that time and the current time. 
 \item [process.memoryUsage()] - Returns an object describing the memory usage of the Node.js process measured in bytes.
 \end{description}
 \subsection{Testing}
@@ -490,22 +504,24 @@ We will review each other’s implementations and our implementations will also 
 \subsubsection{Unit testing}
 Unit testing will be done using the JavaScript libraries Mocha [45] for writing tests, Chai [46] for evaluating expressions, and Karma [44] for automated tests.
 
-Our implementations will have to pass the tests in AppendixA to be accepted as done.
+Our implementations will have to pass the tests in appendix~\ref{appendix:test-cases} to be accepted as done.
 \subsection{Implementation}
 We will proceed from a template with the following structure:
 
+\begin{lstlisting}[language=Pascal, deletekeywords={function, and}, numbers=none]
 |---dist
-|   ‘---<Files generated from babel>
+|   \---<Files generated from babel>
 |---src
-|    |---js
+|   |---js
 |        |---<function and class files>
-|   ‘---index.js
+|   \---index.js
 |---es6-test
-|   ‘---<Test files>
+|   \---<Test files>
 |---test
-|   ‘---<Test files generated from babel>
+|   \---<Test files generated from babel>
 | Gruntfile.js
 | package.json
+\end{lstlisting}
 
 \begin{description}
 \item[] To run tests use the command:
@@ -543,16 +559,164 @@ Object-Oriented Programming guidelines:
 \end{itemize}
 \appendix
 \section{Appendix A}
-Put test table here
+\label{appendix:test-cases}
+\subsection{Test cases}
+\begin{tabular}{ | l p{10cm} | }
+\hline
+ID & T1 \\
+Algorithm & Binary search tree algorithms \\
+Function & insert(comparable, rootNode) \\
+Description & Inserted items should be added at the correct place in the tree. If number already exists in the binary search tree, it should not be inserted. \\
+Preconditions & See figure~\ref{fig:input-tree} \\
+Input & 9, node(13) \\
+Expected values & FP: None, OOP: See figure~\ref{fig:input-tree} \\
+Expected output & FP: See figure~\ref{fig:input-tree}, OOP: false \\
+Input & 8, node(13) \\
+Expected values & FP: None, OOP: See figure~\ref{fig:output-tree-8} \\
+Expected output & FP: See figure~\ref{fig:output-tree-8}, OOP: true \\
+Input & 1, node(13) \\
+Expected values & FP: None, OOP: See figure~\ref{fig:output-tree-1} \\
+Expected output & FP: See figure~\ref{fig:output-tree-1}, OOP: true \\
+Input & 33, node(13) \\
+Expected values & FP: None, OOP: See figure~\ref{fig:output-tree-33} \\
+Expected output & FP: See figure~\ref{fig:output-tree-33}, OOP: true \\
+\hline
+\end{tabular}
 
-Input tree
+\begin{tabular}{ | l p{10cm} | }
+\hline
+ID & T2 \\
+Algorithm & Binary search tree algorithms \\
+Function & findNode(comparable, rootNode) \\
+Description & findNode should return the node containing comparable. If comparable is not in the tree undefined should be returned. \\
+Preconditions & See figure~\ref{fig:input-tree} \\
+Input & 5, node(13) \\
+Expected values & None \\
+Expected output & undefined \\
+Input & 13, node(13) \\
+Expected values & None \\
+Expected output & node(13) \\
+Input & 2, node(13) \\
+Expected values & None \\
+Expected output & node(2) \\
+Input & 32, node(13) \\
+Expected values & None \\
+Expected output & node(32) \\
+Input & 20, node(13) \\
+Expected values & None \\
+Expected output & node(20) \\
+\hline
+\end{tabular}
 
+\begin{tabular}{ | l p{10cm} | }
+\hline
+ID & T3 \\
+Algorithm & Binary search tree algorithms \\
+Function & inOrderTraversal() \\
+Description & Should return a sorted array of the elements in the tree. If the tree is it should return an empty array. \\
+Preconditions & See figure~\ref{fig:input-tree} \\
+Input & FP: node(13), OOP: none \\
+Expected values & None \\
+Expected output &  [2, 3, 6, 7, 9, 13, 16, 20, 24, 32] \\
+Preconditions & Empty tree \\
+Input & FP: none, OOP: none \\
+Expected values & None \\
+Expected output & [] \\
+\hline
+\end{tabular}
 
-Output tree
+\begin{tabular}{ | l p{10cm} | }
+\hline
+ID & T4 \\
+Algorithm & Shellsort \\
+Function & shellsort(array) \\
+Description & If an array of numbers is input a sorted array should be returned. If an empty array is input an empty array should be returned. \\
+Preconditions & None \\
+Input & [] \\
+Expected values & None \\
+Expected output &  [] \\
+Input & [ 9, 8, 1, 15, 3, 4, 11, 2, 7, 6] \\
+Expected values & None \\
+Expected output & [ 9, 8, 1, 15, 3, 4, 11, 2, 7, 6] \\
+\hline
+\end{tabular}
 
+\begin{tabular}{ | l p{10cm} | }
+\hline
+ID & T5 \\
+Algorithm & The Tower of Hanoi \\
+Function &  hanoi(tower, start, dest, aux) \\
+Description & Should return start, dest and aux pegs with moved tower. If tower has zero discs it should return empty start, dest and aux. The algorithm should take \(2^n - 1\) moves.\\
+Preconditions & None \\
+Input & tower size 8, peg1 with tower, peg3 empty, peg2 empty \\
+Expected values & FP: none, OOP: nrOfMoves=255 \\
+Expected output &  peg1 empty, peg2 empty, peg3 with tower \\
+Input & tower size 0, peg1 empty, peg3 empty, peg2 empty \\
+Expected values & FP: none, OOP: nrOfMoves=0 \\
+Expected output & peg1 empty, peg2 empty, peg3 empty \\
+\hline
+\end{tabular}
 
+\begin{tabular}{ | l p{10cm} | }
+\hline
+ID & T6 \\
+Algorithm & Dijksta's algorithm \\
+Function & dijkstras(graph, startNode, endNode) \\
+Description & Should return the shortest path from startNode to endNode. If startNode is same as endNode it should return empty path. If graph is empty it should return empy path.\\
+Preconditions & None \\
+Input & See figure~\ref{fig:input-graph}, node1, node6 \\
+Expected values & None \\
+Expected output &  See figure~\ref{fig:output-graph} \\
+Input & See figure~\ref{fig:input-graph}, node1, node1\\
+Expected values & None \\
+Expected output & empty path \\
+Input & nodes=[], edges[], noNode, noNode \\
+Expected values & None \\
+Expected output & empty path \\
+\hline
+\end{tabular}
+\subsection{Test case images}
+\begin{figure}[H]
+\includegraphics[width=\textwidth]{input-tree}
 
-Input graph
+\caption{Input tree}
+\label{fig:input-tree}
+\end{figure}
 
-Output graph
+\begin{figure}[H]
+\includegraphics[width=\textwidth]{output-tree-8}
+
+\caption{Output tree after inserting 8}
+\label{fig:output-tree-8}
+\end{figure}
+
+\begin{figure}[H]
+\includegraphics[width=\textwidth]{output-tree-1}
+
+\caption{Output tree after inserting 1}
+\label{fig:output-tree-1}
+\end{figure}
+
+\begin{figure}[H]
+\includegraphics[width=\textwidth]{output-tree-33}
+
+\caption{Output tree after inserting 33}
+\label{fig:output-tree-33}
+\end{figure}
+
+\begin{figure}[H]
+\includegraphics[width=\textwidth]{input-graph}
+
+\caption{Input graph}
+\label{fig:input-graph}
+\end{figure}
+
+\begin{figure}[H]
+\includegraphics[width=\textwidth]{output-graph}
+
+\caption{Output graph}
+\label{fig:output-graph}
+\end{figure}
+
 \end{document}
+
