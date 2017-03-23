@@ -26,6 +26,7 @@ Tord Eliasson
 \begin{document}
 \maketitle
 \pagenumbering{gobble}
+\tableofcontents
 \newpage
 \pagenumbering{arabic}
 \section{Abbreviations}
@@ -284,9 +285,9 @@ A binary tree is a tree consisting of nodes, where a node can have a maximum of 
 \end {figure}
 
 \begin{description}
-\item[Algorithm descriptions in psudocode]
+\item[Algorithm descriptions:]
 \item[]
-\item [findNode(comparable, root)]
+\item [algorithm findNode(comparable, root)]
 \item[]
 \begin{lstlisting}[language=Pascal]
 if comparable is equal to comparable in root then
@@ -314,7 +315,7 @@ end if
 
 \item[] Running this in the tree in Figure1 would return the array [8, 10, 15, 18, 24, 22, 31, 39, 48, 52, 56, 71, 84, 88, 90, 93].
 
-\item [insert(comparable, root)]
+\item [algorithm insert(comparable, root)]
 \item []
 \begin{lstlisting}[language=Pascal]
 if comparable is equal to comparable in root then
@@ -360,7 +361,9 @@ This algorithm will sort an array filled with randomized numbers. Our implementa
 \begin{description}
 \item[shellsort(array)] - Takes an unsorted array as an input and returns a sorted copy of the array.
 
-\item[algorithm shellsort(array of size n)]
+\item[Algorithm description:]
+\item[]
+\item[algorithm algorithm shellsort(array of size n)]
 \item []
 \begin{lstlisting}[language=Pascal]
 set sortedArray to array
@@ -400,8 +403,11 @@ This algorithm will move a tower from one peg to another in the function:
 
 
 \item[Algorithm description:]
-\item[] Pseudo code based on that tower is the number of the largest disk, where 0 is the smallest disk in the tower.
+\item []
+\item[algorithm hanoi(tower, start, dest, aux)]
+\item[] 
 \begin{lstlisting}[language=Pascal]
+//Pseudo code based on that tower is the number of the largest disk, where 0 is the smallest disk in the tower.
 if tower is equal to 0
  	move tower from start to dest
 else
@@ -443,6 +449,7 @@ This algorithm will be used in a function:
 
 \item [Algorithm description:]
 \item[]
+\item[algorithm dijkstras(graph, startNode, endNode)]
 \begin{lstlisting}[language=Pascal]
 for each node in graph
  	set dist[node] to infinity 
@@ -464,19 +471,78 @@ end while
 return path[endNode]
 \end{lstlisting}
 \end{description}
+\subsection{Environment}
+We will implement the algorithms using Atom, a text editor, and compile and run our tests and our code with Node.js. To manage our dependencies we are using npm. For automation we are using Grunt.
+
+(Add image describing the build of our files)
+
+Since node.js does not support ES6-modules we are using babel to transpile our ES6-modules to node-modules that are supported. We are doing this since we have prior experience with ES6 modules and not with node-modules. Since node.js support almost everything else in ES6 we will only be transpiling the modules, leaving our code in an ES6 standard.
+
+To measure memory and run time we are using node.js process, that is a global and therefore always available within node.js applications [50]. We are using the following functions:
+\begin{description}
+\item [process.hrtime([time])] - Returns the current high resolution time in a [seconds, nanoseconds] tuple Array. If the optional time-parameter, an earlier hrtime, is used, it will return the difference between that time and the current time. 
+\item [process.memoryUsage()] - Returns an object describing the memory usage of the Node.js process measured in bytes.
+\end{description}
 \subsection{Testing}
 Our code will be tested through code reviews and unit testing.
-\subsubsection {Code reviews}
+\subsubsection{Code reviews}
 We will review each other’s implementations and our implementations will also be reviewed by a third party. The reviews should help us to find bugs and also to confirm that we have used FP or OOP methods.
 \subsubsection{Unit testing}
 Unit testing will be done using the JavaScript libraries Mocha [45] for writing tests, Chai [46] for evaluating expressions, and Karma [44] for automated tests.
 
 Our implementations will have to pass the tests in AppendixA to be accepted as done.
-\subsubsection{Rules for paradigms}
 \subsection{Implementation}
-JavaScript does not have a strong or static type system, so we will use Flow, that is a static type checker for JavaScript [40]. It allows typing of variables, checks the code for bugs and translates into pure JavaScript.  
+We will proceed from a template with the following structure:
 
-\section{Appendices}
+|---dist
+|   ‘---<Files generated from babel>
+|---src
+|    |---js
+|        |---<function and class files>
+|   ‘---index.js
+|---es6-test
+|   ‘---<Test files>
+|---test
+|   ‘---<Test files generated from babel>
+| Gruntfile.js
+| package.json
+
+\begin{description}
+\item[] To run tests use the command:
+\item[npm test] - Will transpile the test files in the es6-test-folder, place the generated files in the test-folder and run the tests.
+\item[] To run the algorithm use the command:
+\item[npm start] - Will transpile the JavaScript-files in src-folder, place the generated files in the dist-folder and run index.js in the dist-folder.
+\end{description}
+
+For an implementation of an algorithm to be considered done the following has to be implemented and provided:
+\begin{itemize}
+\item Tests for the algorithm that are defined in AppendixA placed in <projectName>/es6-test
+\item A complete implementation of the algorithm that has passed the tests placed in <projectName>/src/js
+\item A measurement implementation that must run the algorithm and measure time and memory usage using node.js process. For the object-oriented implementation a UML diagram shall also be provided.
+\item A timelog describing how long the implementation took. 
+\end{itemize}
+
+\subsubsection{Guidelines for writing the different paradigm}
+Functional programming guidelines:
+\begin{itemize}
+\item Do not use classes
+\item Treat functions as variables
+\item Compose functions to build programs
+\item Use already provided pure functions when possible
+\item Write pure functions
+\item Do not change variables
+\item Simplify the code
+\end{itemize}
+
+Object-Oriented Programming guidelines:
+\begin{itemize}
+\item Use classes and objects to build programs
+\item Use inheritance when possible
+\item Use encapsulation
+\item Each class should have only one job
+\end{itemize}
+\appendix
+\section{Appendix A}
 Put test table here
 
 Input tree
