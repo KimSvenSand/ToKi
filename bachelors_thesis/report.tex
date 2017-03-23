@@ -27,9 +27,9 @@ numberstyle= \footnotesize\ttfamily\color{mGray},
 \setlength{\parskip}{1em}
 
 \title{A comparison between functional and object oriented programming approaches in JavaScript}
-\date{now}
+\date{\today}
 \author{
-Kim Svensson Sand \& Tord Eliasson
+Kim Svensson Sand \and Tord Eliasson
 }
 
 \begin{document}
@@ -239,7 +239,7 @@ dog.logAnimal();
 \item [Encapsulation] - Encapsulation can be used to refer to two different things [35, 41]. A mechanism to restrict direct access to some object components and the language construct that facilitates the bundling of data with methods. The access part is done by making the different parts of an object public or private and the bundling is made with objects.
 \end{description}
 \subsection{JavaScript}
-The support for the different paradigms in JavaScript 
+The support for the different paradigms in JavaScript.
 \subsubsection{Functional programming}
 JavaScript is not a functional language, but it is possible to write functional code with it [1]. There are also libraries that makes functional programming in JavaScript easier, such as Underscore.js [5], however we will use ECMA 2015, ES6, that already provide many of the functions provided by Underscore.js. This is also to use similar environment for our different implementations in this experiment.
 
@@ -268,16 +268,15 @@ In “Improving Testability and Reuse by Transitioning to Functional Programming
 
 Alic, Omanovic and Giedrimas has made a comparative analysis of functional and object-oriented programming languages[15]. They have compared four languages, C\#, F\#, Java and Haskell based on performance, runtime and memory usage. Their conclusion is that Java is the fastest while Haskell uses much less memory, and that programming paradigms should be combined to increase execution efficiency. 
 
-Dobre and Xhafa writes in “Parallel Programming Paradigms and Frameworks in Big Data Era” that we now are in a big data era[47]. They also review different frameworks, programming paradigms and more in a big data perspective. Around paradigms they state, “functional programming (FP) is actually considered today to be the most prominent Programming Paradigm, as it allows actually more flexibility in defining Big Data distributed processing workflows.”
+Dobre and Xhafa writes in “Parallel Programming Paradigms and Frameworks in Big Data Era” that we now are in a big data era [47]. They also review different frameworks, programming paradigms and more in a big data perspective. Around paradigms they state, “functional programming (FP) is actually considered today to be the most prominent Programming Paradigm, as it allows actually more flexibility in defining Big Data distributed processing workflows.”
 
-In “Comparing programming paradigms: an evaluation of functional and object-oriented programs” compares  R. Harrison, L.G. Samaraweera, M.R. Dobie and P.H. Lewis the quality of code in functional and object oriented programming[51]. To compare these, they use C++ and SML. While their discussion states that they would probably use OOP, since C++ is a better language, the standard list functions was of great help, the debugging was better and reusability was much higher in SML.
+In “Comparing programming paradigms: an evaluation of functional and object-oriented programs” R. Harrison, L.G. Samaraweera, M.R. Dobie and P.H. Lewis  compares the quality of code in functional and object oriented programming [51]. To compare these, they use C++ and SML. While their discussion states that they would probably use OOP, since C++ is a better language, the standard list functions were of great help, the debugging was better and reusability was much higher in SML.
 
 Mention concurrency, scala osv? Argument why this subject might be relevant. Functional programming can give more experience, more popular in the industry blablabla. Find studies!
 \section{Method}
-What we are doin’.
-\subsection{Algorithms}
 In this experiment we will implement four different algorithms. We have chosen algorithms that are well known, so that our focus will be on the different implementations, rather than on how the algorithms work. 
-We will implement a search tree, the shellsort algorithm, the tower of hanoi algorithm and Dijkstra’s algorithm. In the search tree we will implement tree traversal,  which is a recursive algorithm, as is the tower of hanoi algorithm. These algorithms fit well for FP since it uses recursion. The implementation of the binary tree structure can however be implemented by using classes and objects, that is used in OOP. Shellsort uses state and iteration which is used in OOP and avoided in FP. Dijkstra’s algorithm also uses state and iteration, and the graph can also be implemented using classes and objects.
+\subsection{Algorithms}
+We will implement a search tree, the shellsort algorithm, the tower of hanoi algorithm and Dijkstra’s algorithm. In the search tree we will implement tree traversal, which is a recursive algorithm, as is the tower of hanoi algorithm. These algorithms fit well for FP since it uses recursion. The implementation of the binary tree structure can however be implemented by using classes and objects, that is used in OOP. Shellsort uses state and iteration which is used in OOP and avoided in FP. Dijkstra’s algorithm also uses state and iteration, and the graph can also be implemented using classes and objects.
 
 We chose algorithms that uses both recursion and iteration to not give advantage to any paradigm. When implementing these algorithms and data structures we can also make use of OOP methods, such as classes and objects. The algorithms purpose are also different to avoid for example implementing four different sorting algorithms. 
 \subsubsection{Tree search algorithms}
