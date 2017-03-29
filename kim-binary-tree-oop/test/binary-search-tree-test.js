@@ -51,6 +51,7 @@ describe('BinarySearchTree', function () {
     it('Should insert the correct values and return true or false', function () {
       var mTree = new _BinarySearchTree2.default(13);
       initiateTree(mTree);
+      (0, _chai.expect)(mTree.getSize()).to.equal(10);
       (0, _chai.expect)(mTree.insert(9)).to.equal(false);
 
       mTree.insert(8);

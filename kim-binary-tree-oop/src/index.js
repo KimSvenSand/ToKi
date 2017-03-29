@@ -2,17 +2,32 @@ import util from 'util';
 import BinarySearchTree from './js/BinarySearchTree'
 'use strict';
 
-var mTree = new BinarySearchTree(13);
-mTree.insert(6);
-mTree.insert(20);
-mTree.insert(2);
-mTree.insert(9);
-mTree.insert(16);
-mTree.insert(24);
-mTree.insert(32);
-mTree.insert(3);
-mTree.insert(7);
+var size = 100;
 
-console.log(mTree.inOrderTraversal());
-console.log(mTree.findNode(5));
-console.log(mTree.findNode(6).getComparable());
+var hrStart = process.hrtime();
+console.info('start:\n' + util.inspect(process.memoryUsage()));
+runMeasurements(5, 8);
+console.info('end:\n' + util.inspect(process.memoryUsage()));
+let hrEnd = process.hrtime(hrStart);
+console.info(hrEnd[1] / 1000000 + 'ms');
+
+function runMeasurements(size) {
+  var mTree = initiateTree(size);
+
+  console.info('after insert:\n' + util.inspect(process.memoryUsage()));
+  mTree.inOrderTraversal();
+  console.info('after traversal:\n' + util.inspect(process.memoryUsage()));
+}
+
+function initiateTree(nrOfElements) {
+  var mRandom = function() {
+    return Math.floor((Math.random() * nrOfElements * 2) + 1);
+  }
+  var tree = new BinarySearchTree(mRandom());
+
+  while (tree.getSize() < nrOfElements) {
+    tree.insert(mRandom());
+  }
+
+  return tree;
+}

@@ -13,10 +13,15 @@ function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { de
 class BinarySearchTree {
   constructor(rootComparable) {
     this._root = new _Node2.default(rootComparable, null);
+    this._size = 1;
   }
 
   getRoot() {
     return this._root;
+  }
+
+  getSize() {
+    return this._size;
   }
 
   insert(comparable) {
@@ -43,40 +48,44 @@ class BinarySearchTree {
       }
     }
 
+    this._size++;
     return true;
   }
 
   inOrderTraversal() {
     var array = [];
     var visited = [];
-    var rootVisits = 1;
     var currentNode = this.getRoot();
 
     if (currentNode.getComparable() === null) {
       return array;
     }
 
-    while (rootVisits <= 3) {
-      if (currentNode === this.getRoot()) {
-        rootVisits++;
-      }
-
+    //While all nodes have not been visited
+    while (visited.length < this.getSize()) {
+      //While current node is not visited
       while (!visited.includes(currentNode)) {
+        //Go to most left node from currentNode
         while (currentNode.getLeftTree() != null && !visited.includes(currentNode.getLeftTree())) {
           currentNode = currentNode.getLeftTree();
         }
+
+        //Put currentNode in array and mark currentNode as visited
         array.push(currentNode.getComparable());
         visited.push(currentNode);
 
+        //Go to right node if there is one
         if (currentNode.getRightTree() != null && !visited.includes(currentNode.getRightTree())) {
           currentNode = currentNode.getRightTree();
         }
       }
 
+      //Go back to firstNode with an unvisited parent
       while (currentNode.getParent() != null && visited.includes(currentNode.getParent())) {
         currentNode = currentNode.getParent();
       }
 
+      //If not rootNode go to the unvisited parent
       if (currentNode.getParent() != null) {
         currentNode = currentNode.getParent();
       }

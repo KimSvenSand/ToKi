@@ -44,6 +44,7 @@ describe('BinarySearchTree', function() {
     it('Should insert the correct values and return true or false', function() {
       var mTree = new BinarySearchTree(13);
       initiateTree(mTree);
+      expect(mTree.getSize()).to.equal(10);
       expect(mTree.insert(9)).to.equal(false);
 
       mTree.insert(8);
