@@ -65,10 +65,10 @@ describe('BinarySearchTree', function() {
       initiateTree(mTree);
 
       expect(mTree.findNode(5)).to.equal(null);
-      expect(mTree.findNode(13).getComparable()).to.equal(13);
-      expect(mTree.findNode(2).getComparable()).to.equal(2);
-      expect(mTree.findNode(32).getComparable()).to.equal(32);
-      expect(mTree.findNode(20).getComparable()).to.equal(20);
+      expect(mTree.findNode(13)).to.equal(mTree.getRoot());
+      expect(mTree.findNode(2)).to.equal(mTree.getRoot().getLeftTree().getLeftTree());
+      expect(mTree.findNode(32)).to.equal(mTree.getRoot().getRightTree().getRightTree().getRightTree());
+      expect(mTree.findNode(20)).to.equal(mTree.getRoot().getRightTree());
     });
   });
 

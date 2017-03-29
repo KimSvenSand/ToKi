@@ -72,10 +72,10 @@ describe('BinarySearchTree', function () {
       initiateTree(mTree);
 
       (0, _chai.expect)(mTree.findNode(5)).to.equal(null);
-      (0, _chai.expect)(mTree.findNode(13).getComparable()).to.equal(13);
-      (0, _chai.expect)(mTree.findNode(2).getComparable()).to.equal(2);
-      (0, _chai.expect)(mTree.findNode(32).getComparable()).to.equal(32);
-      (0, _chai.expect)(mTree.findNode(20).getComparable()).to.equal(20);
+      (0, _chai.expect)(mTree.findNode(13)).to.equal(mTree.getRoot());
+      (0, _chai.expect)(mTree.findNode(2)).to.equal(mTree.getRoot().getLeftTree().getLeftTree());
+      (0, _chai.expect)(mTree.findNode(32)).to.equal(mTree.getRoot().getRightTree().getRightTree().getRightTree());
+      (0, _chai.expect)(mTree.findNode(20)).to.equal(mTree.getRoot().getRightTree());
     });
   });
 
