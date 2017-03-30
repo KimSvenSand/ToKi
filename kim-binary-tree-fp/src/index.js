@@ -4,18 +4,17 @@ import { insert, findNode, inOrderTraversal } from './js/tree-functions'
 
 var size = 100;
 
-var hrStart = process.hrtime();
-console.info('start:\n' + util.inspect(process.memoryUsage()));
 runMeasurements(size);
-console.info('end:\n' + util.inspect(process.memoryUsage()));
-let hrEnd = process.hrtime(hrStart);
-console.info(hrEnd[0] + 's and ' + hrEnd[1] / 1000000 + 'ms');
 
 function runMeasurements(size) {
+  var hrStart = process.hrtime();
+  console.info('start:\n' + util.inspect(process.memoryUsage()));
   var tree = createRandomTree(size);
   console.info('after insert:\n' + util.inspect(process.memoryUsage()));
   inOrderTraversal(tree);
-  console.info('after traversal:\n' + util.inspect(process.memoryUsage()));
+  console.info('end:\n' + util.inspect(process.memoryUsage()));
+  let hrEnd = process.hrtime(hrStart);
+  console.info(hrEnd[0] + 's and ' + hrEnd[1] / 1000000 + 'ms');
 }
 
 function createRandomTree(size, tree) {
