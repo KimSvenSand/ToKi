@@ -1,4 +1,6 @@
-import BinarySearchTree from './js/BinarySearchTree.js';
+import {createTree} from './js/BinarySearchTree.js';
+import {insert} from './js/BinarySearchTree.js';
+import {inOrderTraversal} from './js/BinarySearchTree.js';
 import util from 'util';
 'use strict';
 
@@ -10,17 +12,15 @@ global.gc();
 console.log(util.inspect(process.memoryUsage()))
 
 function runBinarySearchTree() {
-  let treeArray = [];
-  let BST = new BinarySearchTree(treeArray);
-  var inserted = 0;
-  while(inserted < 10){
-    if(BST.insert(Math.floor((Math.random()*100)+1))){
-      inserted++;
-    }
-
+  var tree = [];
+  let inputArray = [];
+  var treelength = 0;
+  while(treelength < 10){
+    var tree = insert(Math.floor((Math.random()*100)+1),tree);
+    iterations++
   }
-  //console.log(BST);
-  console.log(BST.inOrderTraversal());
+  console.log("Unsorted: "+tree);
+  console.log("Sorted: "+inOrderTraversal(tree,0,[]));
 
   let t0 = new Date();
   let hrStart = process.hrtime();
