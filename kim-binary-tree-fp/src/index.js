@@ -9,7 +9,7 @@ console.info('start:\n' + util.inspect(process.memoryUsage()));
 runMeasurements(size);
 console.info('end:\n' + util.inspect(process.memoryUsage()));
 let hrEnd = process.hrtime(hrStart);
-console.info(hrEnd[1] / 1000000 + 'ms');
+console.info(hrEnd[0] + 's and ' + hrEnd[1] / 1000000 + 'ms');
 
 function runMeasurements(size) {
   var tree = createRandomTree(size);
