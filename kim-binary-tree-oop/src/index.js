@@ -6,14 +6,14 @@ var size = 100;
 
 var hrStart = process.hrtime();
 console.info('start:\n' + util.inspect(process.memoryUsage()));
-runMeasurements(5, 8);
+runMeasurements(size);
 console.info('end:\n' + util.inspect(process.memoryUsage()));
 let hrEnd = process.hrtime(hrStart);
 console.info(hrEnd[1] / 1000000 + 'ms');
 
 function runMeasurements(size) {
   var mTree = initiateTree(size);
-
+  
   console.info('after insert:\n' + util.inspect(process.memoryUsage()));
   mTree.inOrderTraversal();
   console.info('after traversal:\n' + util.inspect(process.memoryUsage()));

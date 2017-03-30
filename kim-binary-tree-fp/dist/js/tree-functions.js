@@ -1,32 +1,33 @@
-"use strict";
+'use strict';
 
 Object.defineProperty(exports, "__esModule", {
   value: true
 });
-function insert(comparable, root) {
+exports.findNode = exports.inOrderTraversal = exports.createNode = exports.insert = undefined;
+
+var _generalFunctions = require('./general-functions');
+
+function insertOne(comparable, root) {
   if (!root) {
     return createNode(comparable);
   }
 
   var copyRoot = Object.assign({}, root); //Copy root
 
-  if (comparable === copyRoot.comparable) {
-    return copyRoot;
-  } else if (comparable > copyRoot.comparable) {
+  if (comparable > copyRoot.comparable) {
     if (!copyRoot.rightTree) {
       copyRoot.rightTree = createNode(comparable);
-      return copyRoot;
     } else {
-      return insert(comparable, copyRoot.rightTree);
+      copyRoot.rightTree = insert(comparable, copyRoot.rightTree);
     }
-  } else {
+  } else if (comparable < copyRoot.comparable) {
     if (!copyRoot.leftTree) {
       copyRoot.leftTree = createNode(comparable);
-      return copyRoot;
     } else {
-      return insert(comparable, copyRoot.leftTree);
+      copyRoot.leftTree = insert(comparable, copyRoot.leftTree);
     }
   }
+  return copyRoot;
 }
 
 function createNode(comparable) {
@@ -43,7 +44,7 @@ function inOrderTraversal(root) {
     return [];
   }
 
-  if (root.comparable === null) {
+  if (!root.comparable) {
     return array;
   } else {
     array = array.concat(inOrderTraversal(root.leftTree));
@@ -53,7 +54,32 @@ function inOrderTraversal(root) {
   }
 }
 
+function findNode(comparable, root) {
+  if (!root || !comparable) {
+    return null;
+  }
+
+  if (comparable === root.comparable) {
+    return root;
+  } else if (comparable > root.comparable) {
+    return findNode(comparable, root.rightTree);
+  } else {
+    return findNode(comparable, root.leftTree);
+  }
+}
+
+function insert(comparables, root) {
+  if (Number.isInteger(comparables)) {
+    return insertOne(comparables, root);
+  } else if (comparables.length === 1) {
+    return insertOne(comparables[0], root);
+  } else {
+    return insert(comparables.slice(1), insertOne(comparables[0], root));
+  }
+}
+
 exports.insert = insert;
 exports.createNode = createNode;
 exports.inOrderTraversal = inOrderTraversal;
+exports.findNode = findNode;
 //# sourceMappingURL=tree-functions.js.map

@@ -1,33 +1,31 @@
-import Calculator from './js/calculator.js';
-import { insert, inOrderTraversal } from './js/tree-functions'
 import util from 'util';
+import { insert, findNode, inOrderTraversal } from './js/tree-functions'
 'use strict';
 
-var tree = insert(6, insert(20, insert(13)));
+var size = 100;
 
-console.log(tree);
-console.log(inOrderTraversal(tree));
+var hrStart = process.hrtime();
+console.info('start:\n' + util.inspect(process.memoryUsage()));
+runMeasurements(size);
+console.info('end:\n' + util.inspect(process.memoryUsage()));
+let hrEnd = process.hrtime(hrStart);
+console.info(hrEnd[1] / 1000000 + 'ms');
 
-// console.info('start' + util.inspect(process.memoryUsage()));
-// runCalculatorMeasurements(5, 8);
-// console.info(util.inspect(process.memoryUsage()));
-//
-// global.gc();
-// console.log(util.inspect(process.memoryUsage()))
-//
-// function runCalculatorMeasurements(a, b) {
-//   let calculator = new Calculator();
-//   let result = [];
-//   let t0 = new Date();
-//   let hrStart = process.hrtime();
-//
-//   for (var i = 0; i < 10000000; i++) {
-//     result[i] = calculator.add(i, i + 1);
-//   }
-//
-//   let hrEnd = process.hrtime(hrStart);
-//   let t1 = new Date();
-//
-//   console.info(t1 - t0 + 'ms');
-//   console.info(hrEnd[1] / 1000000 + 'ms');
-//}
+function runMeasurements(size) {
+  var tree = createRandomTree(size);
+  console.info('after insert:\n' + util.inspect(process.memoryUsage()));
+  inOrderTraversal(tree);
+  console.info('after traversal:\n' + util.inspect(process.memoryUsage()));
+}
+
+function createRandomTree(size, tree) {
+  var mRandom = function() {
+    return Math.floor((Math.random() * size * 2) + 1);
+  }
+
+  if (inOrderTraversal(tree).length >= size) {
+    return tree;
+  } else {
+    return createRandomTree(size, insert(mRandom(), tree));
+  }
+}
