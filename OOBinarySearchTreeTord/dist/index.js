@@ -20,12 +20,21 @@ global.gc();
 console.log(_util2.default.inspect(process.memoryUsage()));
 
 function runBinarySearchTree() {
-  let treeArray = [3, 2, 5, 1, 4];
+  let treeArray = [];
   let BST = new _BinarySearchTree2.default(treeArray);
+  var rnd = 0;
+  var inserted = 0;
+  while (inserted < 10) {
+    rnd = Math.floor(Math.random() * 100 + 1);
+    if (BST.insert(rnd)) {
+      inserted++;
+    }
+  }
+  //console.log(BST);
+  console.log(BST.inOrderTraversal());
+
   let t0 = new Date();
   let hrStart = process.hrtime();
-
-  console.log(BST);
 
   let hrEnd = process.hrtime(hrStart);
   let t1 = new Date();
