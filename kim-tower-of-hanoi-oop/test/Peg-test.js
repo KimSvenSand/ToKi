@@ -70,5 +70,28 @@ describe('Disc', function () {
       (0, _chai.expect)(peg.getDiscs()).to.eql(createDiscArray());
     });
   });
+
+  describe('getConsecutiveNrOfDiscs', function () {
+    it('should return the number of consecutive discs', function () {
+      var peg = new _Peg2.default(5);
+      (0, _chai.expect)(peg.getNrOfConsecutiveDiscs()).to.equal(5);
+
+      peg = new _Peg2.default(0);
+      (0, _chai.expect)(peg.getNrOfConsecutiveDiscs()).to.equal(0);
+
+      peg.pushDisc(new _Disc2.default(5));
+      peg.pushDisc(new _Disc2.default(4));
+      peg.pushDisc(new _Disc2.default(1));
+
+      (0, _chai.expect)(peg.getNrOfConsecutiveDiscs()).to.equal(1);
+
+      peg.popDisc();
+      peg.popDisc();
+      peg.pushDisc(new _Disc2.default(2));
+      peg.pushDisc(new _Disc2.default(1));
+
+      (0, _chai.expect)(peg.getNrOfConsecutiveDiscs()).to.equal(2);
+    });
+  });
 });
 //# sourceMappingURL=Peg-test.js.map

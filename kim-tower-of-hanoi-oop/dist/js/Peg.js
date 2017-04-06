@@ -39,6 +39,11 @@ class Peg {
 
   pushDisc(disc) {
     if (disc) {
+      if (this.peak() === null) {
+        this._nrOfDiscs++;
+        this._discs.push(disc);
+        return true;
+      }
       if (disc.getSize() >= this.peak().getSize()) {
         return false;
       } else {
@@ -65,6 +70,24 @@ class Peg {
 
   getNrOfDiscs() {
     return this._nrOfDiscs;
+  }
+
+  getNrOfConsecutiveDiscs() {
+    if (this._nrOfDiscs <= 1) {
+      return this._nrOfDiscs;
+    }
+
+    var currentDisc = this._discs[this._nrOfDiscs - 1];
+    var nextDisc = this._discs[this._nrOfDiscs - 2];
+    var nrOfConsecutiveDiscs = 1;
+
+    while (nrOfConsecutiveDiscs <= this._nrOfDiscs - 1 && nextDisc.getSize() === currentDisc.getSize() + 1) {
+      nrOfConsecutiveDiscs++;
+      currentDisc = this._discs[this._nrOfDiscs - nrOfConsecutiveDiscs];
+      nextDisc = this._discs[this._nrOfDiscs - nrOfConsecutiveDiscs - 1];
+    }
+
+    return nrOfConsecutiveDiscs;
   }
 }
 exports.default = Peg;

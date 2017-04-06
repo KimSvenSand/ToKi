@@ -59,4 +59,27 @@ describe('Disc', function() {
       expect(peg.getDiscs()).to.eql(createDiscArray());
     });
   });
+
+  describe('getConsecutiveNrOfDiscs', function() {
+    it('should return the number of consecutive discs', function() {
+      var peg = new Peg(5);
+      expect(peg.getNrOfConsecutiveDiscs()).to.equal(5);
+
+      peg = new Peg(0);
+      expect(peg.getNrOfConsecutiveDiscs()).to.equal(0);
+
+      peg.pushDisc(new Disc(5));
+      peg.pushDisc(new Disc(4));
+      peg.pushDisc(new Disc(1));
+
+      expect(peg.getNrOfConsecutiveDiscs()).to.equal(1);
+
+      peg.popDisc();
+      peg.popDisc();
+      peg.pushDisc(new Disc(2));
+      peg.pushDisc(new Disc(1));
+
+      expect(peg.getNrOfConsecutiveDiscs()).to.equal(2);
+    });
+  });
 })

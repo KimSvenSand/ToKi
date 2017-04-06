@@ -15,20 +15,52 @@ function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { de
 'use strict';
 
 describe('TowerOfHanoi', function () {
-  function createTestTower() {
+  function createTestTower(towerIndex) {
     var array = [];
 
-    array[0] = new _Peg2.default(5);
-    array[1] = new _Peg2.default(0);
-    array[2] = new _Peg2.default(0);
+    for (var i = 0; i < 3; i++) {
+      if (i === towerIndex) {
+        array[i] = new _Peg2.default(8);
+      } else {
+        array[i] = new _Peg2.default(0);
+      }
+    }
 
     return array;
   }
 
   describe('new TowerOfHanoi(nrOfPegs, nrOfDiscs)', function () {
     it('should create new tower with discs on first peg', function () {
-      var hanoi = new _TowerOfHanoi2.default(5);
-      (0, _chai.expect)(hanoi.getPegs()).to.eql(createTestTower());
+      var hanoi = new _TowerOfHanoi2.default(8);
+      (0, _chai.expect)(hanoi.getPegs()).to.eql(createTestTower(0));
+    });
+  });
+
+  describe('isLegalMove(start, dest)', function () {
+    it('should return correct bool', function () {
+      var hanoi = new _TowerOfHanoi2.default(3);
+      (0, _chai.expect)(hanoi.isLegalMove(hanoi._pegs[0], hanoi._pegs[2])).to.equal(true);
+      (0, _chai.expect)(hanoi.isLegalMove(hanoi._pegs[1], hanoi._pegs[0])).to.equal(false);
+      hanoi._pegs[2].pushDisc(hanoi._pegs[0].popDisc());
+      (0, _chai.expect)(hanoi.isLegalMove(hanoi._pegs[0], hanoi._pegs[2])).to.equal(false);
+      (0, _chai.expect)(hanoi.isLegalMove(hanoi._pegs[2], hanoi._pegs[0])).to.equal(true);
+    });
+  });
+
+  describe('playHanoi(destIndex)', function () {
+    it('Should move the tower from current peg to dest following tower of hanou rules', function () {
+      var hanoi = new _TowerOfHanoi2.default(0);
+      hanoi.playHanoi(2);
+      (0, _chai.expect)(hanoi.getCurrentPeg()).to.equal(2);
+
+      hanoi = new _TowerOfHanoi2.default(8);
+      hanoi.playHanoi(0);
+      (0, _chai.expect)(hanoi.getPegs()).to.eql(createTestTower(0));
+      (0, _chai.expect)(hanoi.getCurrentPeg()).to.equal(0);
+      hanoi.playHanoi(2);
+      (0, _chai.expect)(hanoi.getPegs()).to.eql(createTestTower(2));
+      hanoi.playHanoi(1);
+      (0, _chai.expect)(hanoi.getPegs()).to.eql(createTestTower(1));
     });
   });
 });

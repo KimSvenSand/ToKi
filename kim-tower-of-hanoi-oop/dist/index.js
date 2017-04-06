@@ -1,8 +1,8 @@
 'use strict';
 
-var _calculator = require('./js/calculator.js');
+var _TowerOfHanoi = require('./js/TowerOfHanoi');
 
-var _calculator2 = _interopRequireDefault(_calculator);
+var _TowerOfHanoi2 = _interopRequireDefault(_TowerOfHanoi);
 
 var _util = require('util');
 
@@ -12,27 +12,18 @@ function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { de
 
 'use strict';
 
-console.info('start' + _util2.default.inspect(process.memoryUsage()));
-runCalculatorMeasurements(5, 8);
-console.info(_util2.default.inspect(process.memoryUsage()));
+var size = 22;
+var hanoi = new _TowerOfHanoi2.default(size);
+runMeasurements(hanoi);
 
-global.gc();
-console.log(_util2.default.inspect(process.memoryUsage()));
+function runMeasurements(towerOfHanoi) {
+  var hrStart = process.hrtime();
+  console.info('start:\n' + _util2.default.inspect(process.memoryUsage()));
 
-function runCalculatorMeasurements(a, b) {
-  let calculator = new _calculator2.default();
-  let result = [];
-  let t0 = new Date();
-  let hrStart = process.hrtime();
+  hanoi.playHanoi(2);
 
-  for (var i = 0; i < 10000000; i++) {
-    result[i] = calculator.add(i, i + 1);
-  }
-
+  console.info('end:\n' + _util2.default.inspect(process.memoryUsage()));
   let hrEnd = process.hrtime(hrStart);
-  let t1 = new Date();
-
-  console.info(t1 - t0 + 'ms');
-  console.info(hrEnd[1] / 1000000 + 'ms');
+  console.info(hrEnd[0] + 's and ' + hrEnd[1] / 1000000 + 'ms');
 }
 //# sourceMappingURL=index.js.map
