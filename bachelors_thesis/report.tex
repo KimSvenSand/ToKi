@@ -45,6 +45,9 @@ Kim Svensson Sand \and Tord Eliasson
 \item [ ] Functional Programming = FP
 \item [ ] Object-Oriented Programming = OOP
 \end{itemize}
+
+\section{Introduction}
+We will compare two different programming paradigms, Functional programming and Object oriented programming, both written in JavaScript. We will compare these by writing four different algorithms in each paradigm and then compare runtime, memory usage, time of development and lines of code. The algorithms we will implement is a binary tree, shellsort, tower of hanoi and dijkstra's algorithm.
 \section{Background and Related work}
 Object oriented or imperative languages are dominating with languages such as C, C++, Java and C\#, however functional languages seem to be of interest in the industry for handling big data and concurrency with languages such as Scala, Erlang or Haskell [1, 4, 9, 11]. Some are also arguing that a more functional approach will give you less code, more readable code, code that is easier to maintain and easier to test, and that learning it will give you better experience as a programmer [1, 2, 3, 9].
 
@@ -272,6 +275,10 @@ Dobre and Xhafa writes in “Parallel Programming Paradigms and Frameworks in Bi
 
 In “Comparing programming paradigms: an evaluation of functional and object-oriented programs” R. Harrison, L.G. Samaraweera, M.R. Dobie and P.H. Lewis  compares the quality of code in functional and object oriented programming [51]. To compare these, they use C++ and SML. While their discussion states that they would probably use OOP, since C++ is a better language, the standard list functions were of great help, the debugging was better and reusability was much higher in SML.
 
+Guido Salvaneschi, Sebastian Proksch, Sven Amann, Sarah Nadi and Mira Mezini have conducted an empirical evaluation of the impact of Reactive Programming (RP), with functional programming concepts, on program comprehension [48]. Their experiment involved 127 subjects and the results suggests that RP is better for program comprehension when compared with OOP. They conclude that with RP the subjects produced more correct code without the need of more time, and also that the comprehension of RP programs is less tied to programming skills. 
+
+In “Using Functional Programming within an Industrial Product Group: Perspectives and Perceptions” [49] David Scott, Richard Sharp, Thomas Gazagnaire and Anil Madhavapeddy presents a case-study of using FP in the multiparadigm language OCaml in a large product development team. They found that the team’s project was a success even though there were some drawbacks to using OCaml, such as lack of tool support. The engineers believed that OCaml enabled them to be more productive than if they would have used one of the mainstream languages, such as C++ or Python.
+
 Mention concurrency, scala osv? Argument why this subject might be relevant. Functional programming can give more experience, more popular in the industry blablabla. Find studies!
 \section{Method}
 In this experiment we will implement four different algorithms. We have chosen algorithms that are well known, so that our focus will be on the different implementations, rather than on how the algorithms work. 
@@ -474,7 +481,7 @@ while unvisitedNodes is not empty or endNode is not in unvisitedNodes do
  	set current to node where dist[node] is smallest and node is in unvisitedNodes
  	remove current from unvisitedNodes
   	for each neighbor of current where neighbor is in unvisited do
-    		set temp to dist[current] + weight of edge in graph, where edge is from current to neighbor distance between current and neighbor node
+    		set temp to dist[current] + weight of edge in graph, where edge is from current to neighbor
  		if temp is smaller than dist[neighbor] then
  			set dist[neighbor] to temp
  			set path[neighbor] to path[current] + current
@@ -533,7 +540,7 @@ For an implementation of an algorithm to be considered done the following has to
 \begin{itemize}
 \item Tests for the algorithm that are defined in appendix~\ref{appendix:test-cases} placed in (projectName)/es6-test
 \item A complete implementation of the algorithm that has passed the tests placed in (projectName)/src/js
-\item A measurement implementation that must run the algorithm and measure time and memory usage using node.js process. For the object-oriented implementation a UML diagram shall also be provided.
+\item A measurement implementation that must run the algorithm and measure time and memory usage using node.js process. 
 \item A timelog describing how long the implementation took. 
 \end{itemize}
 
@@ -546,7 +553,7 @@ Functional programming guidelines:
 \item Use already provided pure functions when possible
 \item Write pure functions
 \item Do not change variables
-\item Simplify the code
+\item Use recursion instead of iteration
 \end{itemize}
 
 Object-Oriented Programming guidelines:
@@ -555,6 +562,7 @@ Object-Oriented Programming guidelines:
 \item Use inheritance when possible
 \item Use encapsulation
 \item Each class should have only one job
+\item Prefer iteration over recursion
 \end{itemize}
 \appendix
 \section{Appendix A}
