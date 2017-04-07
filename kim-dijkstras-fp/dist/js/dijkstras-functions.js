@@ -3,27 +3,70 @@
 Object.defineProperty(exports, "__esModule", {
   value: true
 });
-function dijkstras(nodes, edges, startNode, endNode, path, dist) {
-  if (!path && !dist) {
-    var path = [];
-    var dist = fillArrayWithElement(nodes.length, Infinity);
-    dist[indexOf(startNode)] = 0;
-    return dijkstras(graph, startNode, endNode, path, dist);
+function dijkstras(nodes, edges, startNode, endNode, neighborNodes) {
+  if (!neighborNodes) {
+    return dijkstras(nodes, edges, startNode, endNode, getNeighborNodes(startNode, edges));
   }
-  var distCopy = dist.slice();
-  var pathCopy = path.slice();
 
-  if (nodes.length <= 1 || nodes.includes(endNode)) {
+  if (nodes.length <= 1 || startNode === endNode || neighborNodes.length <= 0) {
+    //Return empty path and dist 0
     return {
       'path': [],
       'dist': 0
     };
+    //Else
   } else {
-    var pathPart = dijkstras(nodes.slice(1), edges, nodes.slice(1)[indexOfSmallest(dist.slice(1))], endNode);
-    // return {
-    //   'path': pathPart.path.concat(startNode),
-    //   'dist': pathPart.dist +
-    // }
+    var newNodes = nodes.filter(function (node) {
+      return node !== startNode;
+    });
+
+    var paths = neighborNodes.map(function (neighbor) {
+      var newNeighborNodes = getNeighborNodes(neighbor, edges).filter(function (node) {
+        return node !== startNode && nodes.includes(node);
+      });
+
+      return dijkstras(newNodes, edges, neighbor, endNode, newNeighborNodes);
+    });
+
+    var pathsDists = paths.map(function (path) {
+      if (path.path.length <= 0) {
+        return path.dist + getEdgeWeight(startNode + '-' + endNode, edges);
+      } else {
+        return path.dist + getEdgeWeight(startNode + '-' + path.path[0], edges);
+      }
+    });
+    var shortestPath = paths[indexOfSmallest(pathsDists)];
+
+    return {
+      'path': [startNode].concat(shortestPath.path),
+      'dist': pathsDists[indexOfSmallest(pathsDists)] + shortestPath.dist
+    };
+  }
+}
+
+function getNeighborNodes(node, edges) {
+  var keys = getNeighborEdges(node, edges);
+
+  return keys.map(function (key) {
+    return key.replace(node, '').replace('-', '');
+  });
+}
+
+function getNeighborEdges(node, edges) {
+  if (!Array.isArray(edges)) {
+    var keys = Object.keys(edges);
+  } else {
+    keys = edges.slice();
+  }
+
+  if (keys.length <= 0) {
+    return [];
+  } else {
+    if (keys[0].includes(node)) {
+      return getNeighborEdges(node, keys.slice(1)).concat(keys[0]);
+    } else {
+      return getNeighborEdges(node, keys.slice(1));
+    }
   }
 }
 
@@ -31,9 +74,9 @@ function getEdgeWeight(name, edges) {
   if (edges[name]) {
     return edges[name];
   } else {
-    var reversedName = name;
-    return edges[reversedName.replace(/(\w*)-(\w*)/, '$2-$1')];
+    return edges[name.replace(/(\w*)-(\w*)/, '$2-$1')];
   }
+  return 0;
 }
 
 //Returns index of smallest element in array
@@ -62,4 +105,7 @@ function fillArrayWithElement(size, element) {
 
 exports.fillArrayWithElement = fillArrayWithElement;
 exports.indexOfSmallest = indexOfSmallest;
+exports.getNeighborEdges = getNeighborEdges;
+exports.getNeighborNodes = getNeighborNodes;
+exports.dijkstras = dijkstras;
 //# sourceMappingURL=dijkstras-functions.js.map
