@@ -36,7 +36,7 @@ function dijkstras(nodes, edges, startNode, endNode, neighborNodes) {
 
     return {
       'path': [ startNode ].concat(shortestPath.path),
-      'dist': pathsDists[indexOfSmallest(pathsDists)] + shortestPath.dist
+      'dist': pathsDists[indexOfSmallest(pathsDists)]
     }
   }
 }

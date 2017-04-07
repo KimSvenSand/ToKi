@@ -24,5 +24,5 @@ var edges = {
 };
 
 //console.log(getNeighborNodes('node4', edges));
-console.log((0, _dijkstrasFunctions.dijkstras)(nodes, edges, 'node1', 'node4'));
+console.log((0, _dijkstrasFunctions.dijkstras)(nodes, edges, 'node1', 'node6'));
 //# sourceMappingURL=index.js.map

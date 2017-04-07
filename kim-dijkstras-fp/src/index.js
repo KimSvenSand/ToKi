@@ -16,4 +16,4 @@ var edges = {
 }
 
 //console.log(getNeighborNodes('node4', edges));
-console.log(dijkstras(nodes, edges, 'node1', 'node4'));
+console.log(dijkstras(nodes, edges, 'node1', 'node6'));
