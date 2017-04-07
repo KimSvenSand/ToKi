@@ -10,6 +10,10 @@ export default class Graph {
     }
   }
 
+  getNrOfNodes() {
+    return this._nodes.length;
+  }
+
   findNode(name) {
     var node = null;
     if (this._nodes[0].getName() === name) {

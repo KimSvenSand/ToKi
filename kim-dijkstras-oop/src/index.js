@@ -2,22 +2,45 @@ import Graph from './js/Graph'
 import util from 'util'
 'use strict'
 
-var graph = new Graph();
-graph.addNode('1');
-graph.addNode('2')
-  .createEdge(7, graph.findNode('1'));
-graph.addNode('3')
-  .createEdge(2, graph.findNode('1'));
-graph.addNode('4')
-  .createEdge(8, graph.findNode('1'))
-  .createEdge(6, graph.findNode('2'))
-  .createEdge(3, graph.findNode('3'));
-graph.addNode('5')
-  .createEdge(4, graph.findNode('3'))
-  .createEdge(5, graph.findNode('4'));
-graph.addNode('6')
-  .createEdge(1, graph.findNode('4'))
-  .createEdge(2, graph.findNode('5'));
+var size = 1000;
+var graph = createGraph(size);
+runMeasurements(graph);
 
-var result = graph.dijkstras(graph.findNode('1'), graph.findNode('6'));
-console.log(result);
+function runMeasurements(graph) {
+  var hrStart = process.hrtime();
+  console.info('start:\n' + util.inspect(process.memoryUsage()));
+
+  var result = graph.dijkstras(graph.findNode('node' + 1), graph.findNode('node' + graph.getNrOfNodes()));
+
+  console.info('end:\n' + util.inspect(process.memoryUsage()));
+  let hrEnd = process.hrtime(hrStart);
+  console.info(hrEnd[0] + 's and ' + hrEnd[1] / 1000000 + 'ms');
+}
+
+function createGraph(size) {
+  var getRandom = function() {
+    return Math.floor((Math.random() * 100) + 1);
+  }
+
+  var graph = new Graph();
+  if (size <= 0) {
+    return graph;
+  }
+  graph.addNode('node' + 1);
+  if (size <= 1) {
+    return graph;
+  }
+  graph.addNode('node' + 2)
+    .createEdge(getRandom(), graph.findNode('node' + 1));
+  if (size <= 2) {
+    return graph;
+  }
+
+  for (var i = 3; i <= size; i++) {
+    graph.addNode('node' + i)
+      .createEdge(getRandom(), graph.findNode('node' + (i - 1)))
+      .createEdge(getRandom(), graph.findNode('node' + (i - 2)));
+  }
+
+  return graph;
+}
