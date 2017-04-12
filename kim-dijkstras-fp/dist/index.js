@@ -10,19 +10,52 @@ function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { de
 
 'use strict';
 
-var nodes = ['node1', 'node2', 'node3', 'node4', 'node5', 'node6'];
-var edges = {
-  'node1-node2': 7,
-  'node1-node3': 2,
-  'node1-node4': 8,
-  'node2-node4': 6,
-  'node3-node4': 3,
-  'node3-node5': 4,
-  'node4-node5': 5,
-  'node4-node6': 1,
-  'node5-node6': 2
-};
+var size = 15;
+var graph = createGraph(size);
+runMeasurements(graph);
 
-//console.log(getNeighborNodes('node4', edges));
-console.log((0, _dijkstrasFunctions.dijkstras)(nodes, edges, 'node1', 'node6'));
+function runMeasurements(graph) {
+  var hrStart = process.hrtime();
+  console.info('start:\n' + _util2.default.inspect(process.memoryUsage()));
+
+  var result = (0, _dijkstrasFunctions.dijkstras)(graph.nodes, graph.edges, 'node1', 'node' + size);
+
+  console.info('end:\n' + _util2.default.inspect(process.memoryUsage()));
+  let hrEnd = process.hrtime(hrStart);
+  console.info(hrEnd[0] + 's and ' + hrEnd[1] / 1000000 + 'ms');
+}
+
+function createGraph(size) {
+  if (size === 0) {
+    return {
+      'nodes': [],
+      'edges': {}
+    };
+  } else if (size === 1) {
+    return {
+      'nodes': ['node' + size],
+      'edges': {}
+    };
+  } else if (size === 2) {
+    return {
+      'nodes': ['node1', 'node2'],
+      'edges': {
+        'node1-node2': getRandom()
+      }
+    };
+  } else {
+    var graph = createGraph(size - 1);
+    var edges = Object.assign({}, graph.edges);
+    edges['node' + size + '-node' + (size - 1)] = getRandom();
+    edges['node' + size + '-node' + (size - 2)] = getRandom();
+    return {
+      'nodes': graph.nodes.concat(['node' + size]),
+      'edges': edges
+    };
+  }
+}
+
+function getRandom() {
+  return Math.floor(Math.random() * 100 + 1);
+}
 //# sourceMappingURL=index.js.map

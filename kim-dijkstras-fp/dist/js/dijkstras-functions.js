@@ -14,7 +14,6 @@ function dijkstras(nodes, edges, startNode, endNode, neighborNodes) {
       'path': [],
       'dist': 0
     };
-    //Else
   } else {
     var newNodes = nodes.filter(function (node) {
       return node !== startNode;
@@ -32,7 +31,11 @@ function dijkstras(nodes, edges, startNode, endNode, neighborNodes) {
       if (path.path.length <= 0) {
         return path.dist + getEdgeWeight(startNode + '-' + endNode, edges);
       } else {
-        return path.dist + getEdgeWeight(startNode + '-' + path.path[0], edges);
+        if (path.dist >= 0) {
+          return path.dist + getEdgeWeight(startNode + '-' + path.path[0], edges);
+        } else {
+          return -1;
+        }
       }
     });
     var shortestPath = paths[indexOfSmallest(pathsDists)];
@@ -62,7 +65,7 @@ function getNeighborEdges(node, edges) {
   if (keys.length <= 0) {
     return [];
   } else {
-    if (keys[0].includes(node)) {
+    if (keys[0].replace(/(\w*)-(\w*)/, '$1') === node || keys[0].replace(/(\w*)-(\w*)/, '$2') === node) {
       return getNeighborEdges(node, keys.slice(1)).concat(keys[0]);
     } else {
       return getNeighborEdges(node, keys.slice(1));
@@ -74,20 +77,22 @@ function getEdgeWeight(name, edges) {
   if (edges[name]) {
     return edges[name];
   } else {
-    return edges[name.replace(/(\w*)-(\w*)/, '$2-$1')];
+    var reversedName = name.replace(/(\w*)-(\w*)/, '$2-$1');
+    if (edges[reversedName]) {
+      return edges[reversedName];
+    } else {
+      return -1;
+    }
   }
-  return 0;
 }
 
 //Returns index of smallest element in array
 function indexOfSmallest(array) {
-  var arrayCopy = array.slice();
-
   if (array.length <= 1) {
     return 0;
   } else {
     var tmpIndex = indexOfSmallest(array.slice(1)) + 1;
-    if (array[0] < array[tmpIndex]) {
+    if (array[0] < array[tmpIndex] || array[tmpIndex] < 0) {
       return 0;
     } else {
       return tmpIndex;
@@ -95,16 +100,8 @@ function indexOfSmallest(array) {
   }
 }
 
-function fillArrayWithElement(size, element) {
-  if (size <= 1) {
-    return [element];
-  } else {
-    return fillArrayWithElement(size - 1, element).concat([element]);
-  }
-}
-
-exports.fillArrayWithElement = fillArrayWithElement;
 exports.indexOfSmallest = indexOfSmallest;
+exports.getEdgeWeight = getEdgeWeight;
 exports.getNeighborEdges = getNeighborEdges;
 exports.getNeighborNodes = getNeighborNodes;
 exports.dijkstras = dijkstras;
