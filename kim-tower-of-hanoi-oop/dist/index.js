@@ -12,7 +12,7 @@ function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { de
 
 'use strict';
 
-var size = 22;
+var size = 20;
 var hanoi = new _TowerOfHanoi2.default(size);
 runMeasurements(hanoi);
 

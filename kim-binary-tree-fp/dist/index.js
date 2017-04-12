@@ -12,18 +12,17 @@ function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { de
 
 var size = 100;
 
-var hrStart = process.hrtime();
-console.info('start:\n' + _util2.default.inspect(process.memoryUsage()));
 runMeasurements(size);
-console.info('end:\n' + _util2.default.inspect(process.memoryUsage()));
-let hrEnd = process.hrtime(hrStart);
-console.info(hrEnd[1] / 1000000 + 'ms');
 
 function runMeasurements(size) {
+  var hrStart = process.hrtime();
+  console.info('start:\n' + _util2.default.inspect(process.memoryUsage()));
   var tree = createRandomTree(size);
   console.info('after insert:\n' + _util2.default.inspect(process.memoryUsage()));
   (0, _treeFunctions.inOrderTraversal)(tree);
-  console.info('after traversal:\n' + _util2.default.inspect(process.memoryUsage()));
+  console.info('end:\n' + _util2.default.inspect(process.memoryUsage()));
+  let hrEnd = process.hrtime(hrStart);
+  console.info(hrEnd[0] + 's and ' + hrEnd[1] / 1000000 + 'ms');
 }
 
 function createRandomTree(size, tree) {
