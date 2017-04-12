@@ -14,19 +14,17 @@ function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { de
 
 var size = 100;
 
-var hrStart = process.hrtime();
-console.info('start:\n' + _util2.default.inspect(process.memoryUsage()));
-runMeasurements(5, 8);
-console.info('end:\n' + _util2.default.inspect(process.memoryUsage()));
-let hrEnd = process.hrtime(hrStart);
-console.info(hrEnd[1] / 1000000 + 'ms');
+runMeasurements(size);
 
 function runMeasurements(size) {
+  var hrStart = process.hrtime();
+  console.info('start:\n' + _util2.default.inspect(process.memoryUsage()));
   var mTree = initiateTree(size);
-
   console.info('after insert:\n' + _util2.default.inspect(process.memoryUsage()));
   mTree.inOrderTraversal();
-  console.info('after traversal:\n' + _util2.default.inspect(process.memoryUsage()));
+  console.info('end:\n' + _util2.default.inspect(process.memoryUsage()));
+  let hrEnd = process.hrtime(hrStart);
+  console.info(hrEnd[0] + 's and ' + hrEnd[1] / 1000000 + 'ms');
 }
 
 function initiateTree(nrOfElements) {
