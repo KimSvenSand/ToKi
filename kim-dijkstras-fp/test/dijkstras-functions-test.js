@@ -41,7 +41,7 @@ describe('getEdgeWeight(name, edges)', function () {
 
     (0, _chai.expect)((0, _dijkstrasFunctions.getEdgeWeight)('node4-node6', graph.edges)).to.equal(1);
     (0, _chai.expect)((0, _dijkstrasFunctions.getEdgeWeight)('node6-node4', graph.edges)).to.equal(1);
-    (0, _chai.expect)((0, _dijkstrasFunctions.getEdgeWeight)('node1-node1', graph.edges)).to.equal(0);
+    (0, _chai.expect)((0, _dijkstrasFunctions.getEdgeWeight)('node1-node1', graph.edges)).to.equal(-1);
   });
 });
 

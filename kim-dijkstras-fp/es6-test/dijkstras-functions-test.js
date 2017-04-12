@@ -37,7 +37,7 @@ describe('getEdgeWeight(name, edges)', function() {
 
     expect(getEdgeWeight('node4-node6', graph.edges)).to.equal(1);
     expect(getEdgeWeight('node6-node4', graph.edges)).to.equal(1);
-    expect(getEdgeWeight('node1-node1', graph.edges)).to.equal(0);
+    expect(getEdgeWeight('node1-node1', graph.edges)).to.equal(-1);
   });
 });
 
