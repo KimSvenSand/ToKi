@@ -15,12 +15,12 @@ describe('BinarySearchTree', function() {
     });
   });
 
-  describe('shellsort-gapSequence', function() {
-    it("should return 20 steps in Segwicks gapsequence including 0", function() {
-      expectedResult = [0,1,5,19,41,109,209,505,929,2161,3905,8929,16001,36289,64769,146305,260609,587521,1045505,2354689,4188161];
+  describe('shellsort with empty array', function() {
+    it("should return an empty array", function() {
+      expectedResult = [];
 
 
-      expect(shellsort.getGapSequence()).to.eql(expectedResult);
+      expect(shellsort.shellsort([],gapSequence)).to.eql(expectedResult);
     });
   });
 });
