@@ -2,7 +2,7 @@ import {getGapSequence} from '../dist/js/Shellsort';
 import {shellsort} from '../dist/js/Shellsort';
 import { expect } from 'chai';
 
-describe('BinarySearchTree', function() {
+describe('Shellsort', function() {
   var gapSequence = getGapSequence(2,[]);
   var array = [10,5,20,15,30,25];
   var expectedResult = 0;
@@ -15,8 +15,8 @@ describe('BinarySearchTree', function() {
     });
   });
 
-  describe('shellsort-gapSequence', function() {
-    it("should return 7 steps in Segwicks gapsequence including 0", function() {
+  describe('shellsort with empty array', function() {
+    it("should return an empty array", function() {
       expectedResult = [];
 
 

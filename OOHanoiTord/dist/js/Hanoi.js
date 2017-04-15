@@ -47,7 +47,8 @@ class Hanoi {
       }
       moveSmallest = !moveSmallest;
     }
-    console.log("Number of moves: " + numberOfMoves);
+    //console.log("Number of moves: "+numberOfMoves);
+    this.pegs.push(numberOfMoves);
     return this.pegs;
   }
 

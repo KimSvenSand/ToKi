@@ -9,6 +9,7 @@ exports.shellsort = shellsort;
 exports.findBiggestGap = findBiggestGap;
 exports.countCurrentGap = countCurrentGap;
 exports.placeGap = placeGap;
+exports.replaceValues = replaceValues;
 function getGapSequence(length, gapSequence) {
   if (length >= 0) {
     if (length == 0) {
@@ -58,15 +59,24 @@ function countCurrentGap(currentGapIndex, gapSequence, currentValue, currentInde
 function placeGap(currentGap, currentValue, currentIndex, array) {
   if (currentIndex < array.length) {
     currentValue = array[currentIndex];
-    while (currentIndex - currentGap >= 0 && array[currentIndex - currentGap] > currentValue) {
-      array[currentIndex] = array[currentIndex - currentGap];
-      currentIndex = currentIndex - currentGap;
-    }
-    //console.log("Value: "+currentValue);
+    var arr = replaceValues(array, currentIndex, currentGap, currentValue);
+    array = arr[0];
+    currentIndex = arr[1];
     array[currentIndex] = currentValue;
 
     array = placeGap(currentGap, currentValue, currentIndex + 1, array);
   }
   return array;
+}
+
+function replaceValues(array, currentIndex, currentGap, currentValue) {
+  if (currentIndex - currentGap >= 0 && array[currentIndex - currentGap] > currentValue) {
+    array[currentIndex] = array[currentIndex - currentGap];
+    currentIndex = currentIndex - currentGap;
+    var arr = replaceValues(array, currentIndex, currentGap, currentValue);
+    array = arr[0];
+    currentIndex = arr[1];
+  }
+  return [array, currentIndex];
 }
 //# sourceMappingURL=Shellsort.js.map

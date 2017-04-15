@@ -1,7 +1,7 @@
 import Shellsort from '../dist/js/Shellsort';
 import { expect } from 'chai';
 
-describe('BinarySearchTree', function() {
+describe('Shellsort', function() {
   var shellsort = new Shellsort();
   var gapSequence = shellsort.getGapSequence();
   var array = [10,5,20,15,30,25];

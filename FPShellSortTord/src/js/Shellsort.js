@@ -49,14 +49,23 @@ export function countCurrentGap(currentGapIndex,gapSequence,currentValue,current
 export function placeGap(currentGap,currentValue,currentIndex,array){
   if(currentIndex < array.length){
     currentValue = array[currentIndex];
-    while((currentIndex - currentGap) >= 0 && array[currentIndex - currentGap] > currentValue){
-      array[currentIndex] = array[currentIndex - currentGap];
-      currentIndex = currentIndex - currentGap;
-    }
-    //console.log("Value: "+currentValue);
+    var arr = replaceValues(array,currentIndex,currentGap,currentValue);
+    array = arr[0];
+    currentIndex = arr[1];
     array[currentIndex] = currentValue;
 
     array = placeGap(currentGap,currentValue,currentIndex+1,array);
   }
   return array;
+}
+
+export function replaceValues(array,currentIndex,currentGap,currentValue){
+  if((currentIndex - currentGap) >= 0 && array[currentIndex - currentGap] > currentValue){
+    array[currentIndex] = array[currentIndex -currentGap];
+    currentIndex = currentIndex - currentGap;
+    var arr = replaceValues(array,currentIndex,currentGap,currentValue);
+    array = arr[0];
+    currentIndex = arr[1];
+  }
+  return [array,currentIndex];
 }

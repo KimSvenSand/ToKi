@@ -8,7 +8,7 @@ var _chai = require('chai');
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
-describe('BinarySearchTree', function () {
+describe('Shellsort', function () {
   var shellsort = new _Shellsort2.default();
   var gapSequence = shellsort.getGapSequence();
   var array = [10, 5, 20, 15, 30, 25];
@@ -30,4 +30,4 @@ describe('BinarySearchTree', function () {
     });
   });
 });
-//# sourceMappingURL=bst_test.js.map
+//# sourceMappingURL=shellsort_test.js.map

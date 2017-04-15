@@ -4,7 +4,7 @@ var _Shellsort = require('../dist/js/Shellsort');
 
 var _chai = require('chai');
 
-describe('BinarySearchTree', function () {
+describe('Shellsort', function () {
   var gapSequence = (0, _Shellsort.getGapSequence)(2, []);
   var array = [10, 5, 20, 15, 30, 25];
   var expectedResult = 0;
@@ -25,4 +25,4 @@ describe('BinarySearchTree', function () {
     });
   });
 });
-//# sourceMappingURL=bst_test.js.map
+//# sourceMappingURL=shellsort_test.js.map
