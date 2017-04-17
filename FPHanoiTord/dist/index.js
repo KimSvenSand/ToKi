@@ -2,8 +2,6 @@
 
 var _Hanoi = require('./js/Hanoi.js');
 
-var _Hanoi2 = _interopRequireDefault(_Hanoi);
-
 var _util = require('util');
 
 var _util2 = _interopRequireDefault(_util);
@@ -20,9 +18,12 @@ global.gc();
 console.log(_util2.default.inspect(process.memoryUsage()));
 
 function runTowerOfHanoi() {
-  var hanoi = new _Hanoi2.default();
-  var nrOfPegs = 3;
-  console.log(hanoi.towerOfHanoi(nrOfPegs));
+  var nrOfDisks = 3;
+  var startPeg = (0, _Hanoi.createStartPeg)(nrOfDisks, []);
+  var beforeHanoi = [startPeg, [], []];
+  console.log(beforeHanoi);
+  var afterHanoi = (0, _Hanoi.hanoi)(nrOfDisks, startPeg, [], [], 0);
+  console.log(afterHanoi);
 
   let t0 = new Date();
   let hrStart = process.hrtime();
