@@ -1,8 +1,8 @@
 'use strict';
 
-var _Dijkstras = require('./js/Dijkstras.js');
+var _Hanoi = require('./js/Hanoi.js');
 
-var _Dijkstras2 = _interopRequireDefault(_Dijkstras);
+var _Hanoi2 = _interopRequireDefault(_Hanoi);
 
 var _util = require('util');
 
@@ -13,22 +13,19 @@ function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { de
 'use strict';
 
 console.info('start' + _util2.default.inspect(process.memoryUsage()));
-runDijkstrasAlgorithm();
+runTowerOfHanoi();
 console.info(_util2.default.inspect(process.memoryUsage()));
 
 global.gc();
 console.log(_util2.default.inspect(process.memoryUsage()));
 
-function runDijkstrasAlgorithm() {
+function runTowerOfHanoi() {
+  var hanoi = new _Hanoi2.default();
+  var nrOfPegs = 3;
+  console.log(hanoi.towerOfHanoi(nrOfPegs));
+
   let t0 = new Date();
   let hrStart = process.hrtime();
-  var dijk = new _Dijkstras2.default();
-
-  var nodes = ["node1", "node2", "node3", "node4", "node5", "node6"];
-  var edges = ["node1-node2=7", "node1-node4=8", "node1-node3=2", "node2-node4=6", "node3-node4=3", "node3-node5=4", "node4-node6=1", "node4-node5=5", "node5-node6=2"];
-  var startNode = "node1";
-  var endNode = "node4";
-  console.log(dijk.dijkstras(nodes, edges, startNode, endNode));
 
   let hrEnd = process.hrtime(hrStart);
   let t1 = new Date();
