@@ -32,6 +32,8 @@ numberstyle= \footnotesize\ttfamily\color{mGray},
 Kim Svensson Sand \and Tord Eliasson
 }
 
+
+
 \begin{document}
 \maketitle
 \pagenumbering{gobble}
@@ -39,24 +41,29 @@ Kim Svensson Sand \and Tord Eliasson
 \tableofcontents
 \newpage
 \pagenumbering{arabic}
+\section{Abstract}
+\subsection{Keywords}
+\section{List of figures}
+\section{List of tables}
+\section{List of symbols}
 \section{Abbreviations}
 \begin{itemize}[leftmargin=*]
-\item [ ] ECMAScript 2015 = ES6
-\item [ ] Functional Programming = FP
-\item [ ] Object-Oriented Programming = OOP
+\item [ ] ES6 = ECMAScript 2015
+\item [ ] FP = Functional Programming
+\item [ ] OOP = Object-Oriented Programming
 \end{itemize}
 
 \section{Introduction}
 We will compare two different programming paradigms, Functional programming and Object oriented programming, both written in JavaScript. We will compare these by writing four different algorithms in each paradigm and then compare runtime, memory usage, time of development and lines of code. The algorithms we will implement is a binary tree, shellsort, tower of hanoi and dijkstra's algorithm.
 \section{Background and Related work}
-Object oriented or imperative languages are dominating with languages such as C, C++, Java and C\#, however functional languages seem to be of interest in the industry for handling big data and concurrency with languages such as Scala, Erlang or Haskell [1, 4, 9, 11]. Some are also arguing that a more functional approach will give you less code, more readable code, code that is easier to maintain and easier to test, and that learning it will give you better experience as a programmer [1, 2, 3, 9].
+Object-oriented or imperative languages are dominating with languages such as C, C++, Java and C\#. However, functional languages seem to be of interest in the industry for handling big data and concurrency with languages such as Scala, Erlang or Haskell \cite{drboolean, eriksen, erikarl}. Some are also arguing that a more functional approach will give you less code, more readable code, code that is easier to maintain and easier to test, and that learning it will give you better experience as a programmer \cite{drboolean, meijer}.
 
 Here we will describe the functional programming paradigm, FP, and also the object oriented programming paradigm, OOP. 
 \subsection{Functional programming}
-Functional programming, FP, is a programming paradigm that at its core is based on lambda-calculus [35]. Programs are constructed using functions and by avoiding changing the state. By not modifying the state side effects are avoided. Computation is done by changing the environment, rewriting the functions, rather than changing variables. Multiple functions can be composed into larger and more complex functions, and should be reduced to its simplest state following mathematical rules. The following are concepts used in FP.
+Functional programming, FP, is a programming paradigm that at its core is based on lambda-calculus \cite{gabmar}. Programs are constructed using functions and by avoiding changing the state. By not modifying the state side effects are avoided. Computation is done by changing the environment, rewriting the functions, rather than changing variables. Multiple functions can be composed into larger and more complex functions, and should be reduced to its simplest state following mathematical rules. The following are concepts used in FP.
 \begin{description}
-\item [Lazy evaluation] - Lazy evaluation is when a value is not calculated until it is needed [5].
-\item [Static type checking] - Pure functional languages usually have static type checking [35]. This means that variables are of a certain type, for example int or char. In such languages it is not allowed to use functions with the wrong types. So if there is for example a function taking an int as parameter it is illegal to call that function with a String as its parameter. In dynamic type checked-languages this would be legal, since variables are not specified as types, and might cause an unexpected error. For example in JavaScript:
+\item [Lazy evaluation] - Lazy evaluation is when a value is not calculated until it is needed \cite{fogus}.
+\item [Static type checking] - Pure functional languages usually have static type checking \cite{gabmar}. This means that variables are of a certain type, for example int or char. In such languages it is not allowed to use functions with the wrong types. So if there is for example a function taking an int as parameter it is illegal to call that function with a String as its parameter. In dynamic type checked-languages this would be legal, since variables are not specified as types, and might cause an unexpected error. For example in JavaScript:
 
 \begin{lstlisting}[language=Java]
 //JavaScript has dynamic type checking
@@ -68,7 +75,7 @@ var word = "string";
 double(word); //Will return NaN but still continue running
 \end{lstlisting}
 
-\item [ ] A similar program in golang, that is a statically type checked language:
+\item [ ] A similar program in golang \cite{golang}, that is a statically type checked language:
 
 \begin{lstlisting}[language=Java]
 func main() {
@@ -82,9 +89,9 @@ func double(nr int) int {
 \end{lstlisting}
 
 \item [ ] This will give an error when compiling.
-\item[] There are however pure functional languages with dynamic type checking, such as Clean. There are also languages that are mostly functional with dynamic type checking, such as Lisp or Scheme [52].
-\item [Side effects] - Side effects are for example changing a variable or any interaction outside the function [1]. This is avoided in functional programming since it may result in incorrect and unexpected behaviour. 
-\item [Pure functions] - A pure functions always returns the same result, given the same input, and does not have side effects [1]. See the following example: 
+\item[] There are however pure functional languages with dynamic type checking, such as Clean \cite{clean}. There are also languages that are mostly functional with dynamic type checking, such as Common Lisp \cite{commonLisp} or Scheme \cite{scheme} \cite{langTable}.
+\item [Side effects] - Side effects are for example changing a variable or any interaction outside the function \cite{drboolean}. This is avoided in functional programming since it may result in incorrect and unexpected behaviour. 
+\item [Pure functions] - A pure functions always returns the same result, given the same input, and does not have side effects \cite{drboolean}. See the following example: 
 
 \begin{lstlisting}[language=Java]
 var sum = 0;
@@ -101,7 +108,7 @@ function add(a, b) {
 }
 \end{lstlisting}
 
-\item [Higher order functions] - Higher order functions are an important concept in functional programming [5]. First class functions mean that functions are treated as values, which means that they can be stored in variables, stored in arrays or created if needed. A higher order function is a first class function that either takes a function as a parameter, returns a function as a result or both. This makes it possible to compose larger and more complex functions.
+\item [Higher order functions] - Higher order functions are an important concept in functional programming \cite{fogus}. First class functions mean that functions are treated as values, which means that they can be stored in variables, stored in arrays or created if needed. A higher order function is a first class function that either takes a function as a parameter, returns a function as a result or both. This makes it possible to compose larger and more complex functions.
 
 \begin{lstlisting}[language=Java, breaklines=true]
 function add(a, b) {
@@ -132,10 +139,10 @@ function getStringCreator(category, unit) {
 }
 
 var weightStringCreator = getStringCreator('Weight', 'kg');
-weightStringCreator(5); //Outputs “Weight: 5kg”
+weightStringCreator(5); //Outputs "Weight: 5kg"
 \end{lstlisting}
 
-\item [Recursion] - Recursive functions are functions that call themselves and are used as loops [5]. It is important in functional programming since it can hide mutable state and also implement laziness. In functional programming recursion is used rather than loops.
+\item [Recursion] - Recursive functions are functions that call themselves and are used as loops \cite{fogus}. It is important in functional programming since it can hide mutable state and also implement laziness. In functional programming recursion is used rather than loops.
 
 \begin{lstlisting}[language=Java]
 //Adds all numbers from start to end with a loop
@@ -162,7 +169,7 @@ iterativeAdd(1, 6); //Outputs 21
 recursiveAdd(1, 6); //Also outputs 21
 \end{lstlisting}
 
-\item [Currying] - Currying means a function can be called with fewer arguments than it expects and it will return a function that takes the remaining arguments [1]. 
+\item [Currying] - Currying means a function can be called with fewer arguments than it expects and it will return a function that takes the remaining arguments \cite{drboolean}. 
 
 \begin{lstlisting}[language=Java, breaklines=true]
 //Returns a new function that takes the remaining argument or the sum of a and b if both are provided.
@@ -182,17 +189,17 @@ curryAdd(6); //Outputs 10
 addWithCurrying(4, 6); //Also outputs 10
 \end{lstlisting}
 
-\item [Immutable data structures] - In functional programming mutations, that are side effects, are avoided [5]. Hidden side effects can result in a chains of unpredicted behaviour in large systems. Instead of mutating the data itself a local copy is mutated and returned as a result, as seen in the pure functions example.
+\item [Immutable data structures] - In functional programming mutations, that are side effects, are avoided \cite{fogus}. Hidden side effects can result in a chains of unpredicted behaviour in large systems. Instead of mutating the data itself a local copy is mutated and returned as a result, as seen in the pure functions example.
 \end{description}
-\subsection{Object oriented programming}
-Object oriented programming is a programming paradigm which is built around “objects”. These objects may contain data, in form of fields, often referred as attributes and code in form of procedures, often referred to as methods [26].
+\subsection{Object-oriented programming}
+Object-oriented programming is a programming paradigm which is built around "objects". These objects may contain data, in form of fields, often referred as attributes and code in form of procedures, often referred to as methods [26].
 
-These objects are created by the programmer to represent something with the help of its attributes and methods. For example, a class can represent an employee. An employee has the attributes assignment and salary. The employee also has a method for doing work. Then the employee has to work somewhere, so we create another object for a company where our employee can work. The company has the attributes income and number of employees. It also has methods to hire employees and fire employees. Since there are more employees who works at this company, we can add more employees by creating new objects of the information in employee class.
+These objects are created by the programmer to represent something with the help of its attributes and methods. What kind of variables and functions an object should contain is defined in a class, which works like a blueprint for the object. For example, a class can represent an employee. An employee has the attributes assignment and salary. The employee also has a method for doing work. Then the employee has to work somewhere, so we create another object for a company where our employee can work. The company has the attributes income and number of employees. It also has methods to hire employees and fire employees. Since there are more employees who works at this company, we can add more employees by creating new objects of the information in employee class.
 
 By building objects together like this, you can build programs by the object oriented paradigm.  
 
 \begin{description}
-\item [Class] - A class is a model for a set of objects, which clearly the object oriented paradigm is built around[35]. The class establishes what the object will contain, for example variables and functions, and signatures and visibility of these. To create a object of any kind, a class must be present. 
+\item [Class] - A class is a model for a set of objects, which the object oriented paradigm is built around[35]. The class establishes what the object will contain, for example variables and functions, and signatures and visibility of these. To create a object of any kind, a class must be present. 
 
 \begin{lstlisting}[language=Java]
 //Creates a class Animal with the properties name and age and a function for logging the properties to the screen
@@ -213,9 +220,9 @@ animal.logAnimal();
 //Age: 9
 \end{lstlisting}
 
-\item [Object] - An object is a capsule that contains the variables and functions established in the class. All data and functions can be accessible from outside the object.
+\item [Object] - An object is a capsule that contains the variables and functions established in the class. While objects created from the same class contains the same variables and functions, since the information it contains is handled specifically for every object, the information in the class can vary much. All data and functions can be accessible from outside the object. 
 
-\item [Inheritance] - When an object acquires all properties and functionality of another object [41], it is called inheritance. This provides code reusability. 
+\item [Inheritance] - When an object acquires all properties and functionality of another object. [57] it is called inheritance. This provides code reusability. 
 
 \begin{lstlisting}[language=Java, breaklines=true]
 //Based upon the Animal class with an added property race
@@ -239,17 +246,23 @@ dog.logAnimal();
 //Race: Shitzu
 \end{lstlisting}
 
-\item [Encapsulation] - Encapsulation can be used to refer to two different things [35, 41]. A mechanism to restrict direct access to some object components and the language construct that facilitates the bundling of data with methods. The access part is done by making the different parts of an object public or private and the bundling is made with objects.
+\item [Encapsulation] - Encapsulation can be used to refer to two different things [35, 57]. A mechanism to restrict direct access to some object components and the language construct that facilitates the bundling of data with methods. The access part is done by making the different parts of an object public or private and the bundling is made with objects.
+
+\item [Polymorphism] - When a task is used in different ways it is called polymorphism. [35, 57]This is achieved with the help of overloading and overriding.
+
+\item[Overloading] - Refers to creating a function with the same name as another function, often very similar, with either different types of variables in the parameters or different number of parameters[57].
+
+\item[Overriding] - Refers to overwrite a function written in a superclass to make it do something else than first intended, without changing the superclass. [57]
 \end{description}
 \subsection{JavaScript}
-The support for the different paradigms in JavaScript.
+JavaScript is a prototype based with first class functions. This makes it a multi-paradigm language with support for Object-oriented, imperative and functional paradigms. Since we are comparing FP and OOP we will ignore the imperative paradigm.  How does the support of FP and OOP look in JavaScript, how many of the listed concepts above is supported?
 \subsubsection{Functional programming}
-JavaScript is not a functional language, but it is possible to write functional code with it [1]. There are also libraries that makes functional programming in JavaScript easier, such as Underscore.js [5], however we will use ECMA 2015, ES6, that already provide many of the functions provided by Underscore.js. This is also to use similar environment for our different implementations in this experiment.
+JavaScript is not a functional language, but it is possible to write functional code with it [1]. There are also libraries that makes functional programming in JavaScript easier, such as Underscore.js [5]. However, we will use ECMA 2015, ES6, that already provide many of the functions provided by Underscore.js. This is also to use the same environment for our different implementations in this experiment.
 
 In JavaScript it is possible to treat functions as any other variable, pass them as function parameters or store them in arrays, so called first class functions [1]. There are also higher order functions such as map(), filter() and reduce() that might replace loops [2]:
 
 \begin{description}
-\item [map()] - Takes calls a provided function on every element in an array and returns an array with the outputs [27].
+\item [map()] - Calls a provided function on every element in an array and returns an array with the outputs [27].
 \item [filter()] - Returns a new array with all the elements that passes a test in a provided function. 
 \item [reduce()] - Reduces a array to a single value.
 \end{description}
@@ -259,33 +272,33 @@ However there is no automatic currying or immutable data structures in JavaScrip
 JavaScript has always had support for OOP. But 
 with ES6, OOP starts to look more like classical OOP languages like for example Java [30].
 
-JavaScript do not fully support encapsulation, since you can’t make variables and functions private,
+JavaScript do not fully support encapsulation, since you can't make variables and functions private or public. Otherwise there is full support for OOP in JavaScript.
+
+As a  workaround to this, many programmers add an underscore to the variable or function before the name of it. This underscore symbolizes that it should be handled as a private instead of a public.
 \subsection{Related work}
-In “Curse of the excluded middle” [3] Erik Meijer arguments with multiple examples that the industry should not focus on a combination between functional and objected oriented methods to counter handling big data with concurrency and parallelism. He concludes that it is not good enough avoid side effects in imperative or object oriented languages. It is also not good enough to try to ignore side effects in pure functional languages. Instead he thinks that people should either accept side effects or think more seriously about using the functional paradigm.
+In "Curse of the excluded middle" [3] Erik Meijer argues with multiple examples that the industry should not focus on a combination between functional and objected oriented methods to counter handling big data with concurrency and parallelism. He concludes that it is not good enough to avoid side effects in imperative or object oriented languages. It is also not good enough to try to ignore side effects in pure functional languages. Instead he thinks that people should either accept side effects or think more seriously about using the functional paradigm.
 
-In “Functional at scale” [4] by Marius Eriksen he is explaining why Twitter uses methods from functional programming to handle concurrent events that arises in large distributed systems in cloud environments. In functional programming it is possible build complex parts out of simple building blocks, thus making systems more modular. He concludes that the functional paradigm has multiple tools for handling the complexity present in modern software.
+In "Functional at scale" [4] by Marius Eriksen he is explaining why Twitter uses methods from functional programming to handle concurrent events that arises in large distributed systems in cloud environments. In functional programming it is possible build complex parts out of simple building blocks, thus making systems more modular. He concludes that the functional paradigm has multiple tools for handling the complexity present in modern software.
 
-Eriksson and Ärleryd are looking at how to use functional practises when developing front end applications by taking inspiration from Elm in their master's thesis [11]. They have researched each practise in Elm to see if it is possible to use these practises in JavaScript together with tools and libraries. Their conclusion was that it is possible to replicate functional practises from Elm in JavaScript, but that they prefer working with Elm. In JavaScript multiple libraries would have to be used to use the same practises. They also concluded that even though functional programming is not widely used within the industry, functional practises can still be used in all projects.
+Eriksson and \"{A}rleryd are looking at how to use functional practises when developing front end applications by taking inspiration from Elm in their master's thesis [11]. They have researched each practise in Elm to see if it is possible to use these practises in JavaScript together with tools and libraries. Their conclusion was that it is possible to replicate functional practises from Elm in JavaScript, but that they prefer working with Elm. In JavaScript multiple libraries had to be used to use the same practises. They also concluded that even though functional programming is not widely used within the industry, functional practises can still be used in all projects.
 
-In “Improving Testability and Reuse by Transitioning to Functional Programming” [12], Benton and Radziwill state that functional programming is better suited for test driven development (TDD) and concludes that a shift toward the functional paradigm benefits reuse and testability of cloud-based applications.
+In "Improving Testability and Reuse by Transitioning to Functional Programming" [12], Benton and Radziwill state that functional programming is better suited for test driven development (TDD) and concludes that a shift toward the functional paradigm benefits reuse and testability of cloud-based applications.
 
 Alic, Omanovic and Giedrimas has made a comparative analysis of functional and object-oriented programming languages[15]. They have compared four languages, C\#, F\#, Java and Haskell based on performance, runtime and memory usage. Their conclusion is that Java is the fastest while Haskell uses much less memory, and that programming paradigms should be combined to increase execution efficiency. 
 
-Dobre and Xhafa writes in “Parallel Programming Paradigms and Frameworks in Big Data Era” that we now are in a big data era [47]. They also review different frameworks, programming paradigms and more in a big data perspective. Around paradigms they state, “functional programming (FP) is actually considered today to be the most prominent Programming Paradigm, as it allows actually more flexibility in defining Big Data distributed processing workflows.”
+Dobre and Xhafa writes in "Parallel Programming Paradigms and Frameworks in Big Data Era" that we now are in a big data era [47]. They also review different frameworks, programming paradigms and more in a big data perspective. Around paradigms they state, "functional programming is actually considered today to be the most prominent programming paradigm, as it allows actually more flexibility in defining big data distributed processing workflows."
 
-In “Comparing programming paradigms: an evaluation of functional and object-oriented programs” R. Harrison, L.G. Samaraweera, M.R. Dobie and P.H. Lewis  compares the quality of code in functional and object oriented programming [51]. To compare these, they use C++ and SML. While their discussion states that they would probably use OOP, since C++ is a better language, the standard list functions were of great help, the debugging was better and reusability was much higher in SML.
+In "Comparing programming paradigms: an evaluation of functional and object-oriented programs" R. Harrison, et al. compares the quality of code in functional and object oriented programming [51]. To compare these, they use C++ and SML. While their discussion states that they would probably use OOP, since C++ is a better language, the standard list functions were of great help, the debugging was better and reusability was much higher in SML.
 
-Guido Salvaneschi, Sebastian Proksch, Sven Amann, Sarah Nadi and Mira Mezini have conducted an empirical evaluation of the impact of Reactive Programming (RP), with functional programming concepts, on program comprehension [48]. Their experiment involved 127 subjects and the results suggests that RP is better for program comprehension when compared with OOP. They conclude that with RP the subjects produced more correct code without the need of more time, and also that the comprehension of RP programs is less tied to programming skills. 
+Guido Salvaneschi, et al. have conducted an empirical evaluation of the impact of Reactive Programming (RP), with functional programming concepts, on program comprehension [48]. Their experiment involved 127 subjects and the results suggests that RP is better for program comprehension when compared with OOP. They conclude that with RP the subjects produced more correct code without the need of more time, and also that the comprehension of RP programs is less tied to programming skills. 
 
-In “Using Functional Programming within an Industrial Product Group: Perspectives and Perceptions” [49] David Scott, Richard Sharp, Thomas Gazagnaire and Anil Madhavapeddy presents a case-study of using FP in the multiparadigm language OCaml in a large product development team. They found that the team’s project was a success even though there were some drawbacks to using OCaml, such as lack of tool support. The engineers believed that OCaml enabled them to be more productive than if they would have used one of the mainstream languages, such as C++ or Python.
-
-Mention concurrency, scala osv? Argument why this subject might be relevant. Functional programming can give more experience, more popular in the industry blablabla. Find studies!
+In "Using Functional Programming within an Industrial Product Group: Perspectives and Perceptions" [49] David Scott et al. presents a case-study of using FP in the multiparadigm language OCaml in a large product development team. They found that the team's project was a success even though there were some drawbacks to using OCaml, such as lack of tool support. The engineers believed that OCaml enabled them to be more productive than if they would have used one of the mainstream languages, such as C++ or Python.
 \section{Method}
 In this experiment we will implement four different algorithms. We have chosen algorithms that are well known, so that our focus will be on the different implementations, rather than on how the algorithms work. 
 \subsection{Algorithms}
-We will implement a search tree, the shellsort algorithm, the tower of hanoi algorithm and Dijkstra’s algorithm. In the search tree we will implement tree traversal, which is a recursive algorithm, as is the tower of hanoi algorithm. These algorithms fit well for FP since it uses recursion. The implementation of the binary tree structure can however be implemented by using classes and objects, that is used in OOP. Shellsort uses state and iteration which is used in OOP and avoided in FP. Dijkstra’s algorithm also uses state and iteration, and the graph can also be implemented using classes and objects.
+We will implement tree search algorithms, the shellsort algorithm, the tower of hanoi-algorithm and Dijkstra's algorithm. In the search tree we will implement tree traversal, which is a recursive algorithm, as is the tower of hanoi algorithm. These algorithms fit well for FP since it uses recursion. The implementation of the binary tree structure can however be implemented by using classes and objects, that is used in OOP. Shellsort uses state and iteration which is used in OOP and avoided in FP. Dijkstra's algorithm also uses state and iteration, and the graph can also be implemented using classes and objects.
 
-We chose algorithms that uses both recursion and iteration to not give advantage to any paradigm. When implementing these algorithms and data structures we can also make use of OOP methods, such as classes and objects. The algorithms purpose are also different to avoid for example implementing four different sorting algorithms. 
+We chose algorithms that use both recursion and iteration to not give advantage to any paradigm. When implementing these algorithms and data structures we can also make use of OOP methods, such as classes and objects. The algorithms' purpose are also different to avoid for example implementing four different sorting algorithms. 
 \subsubsection{Tree search algorithms}
 A binary tree is a tree consisting of nodes, where a node can have a maximum of two ￼children [38]. These children can be described as the left and the right subtree and the parent is the root. The property that differs a binary search tree from a standard binary tree, is the order of the nodes. In a binary tree the order can be undecided, but in a search tree the nodes are stored in an order based on some property. For example in our binary search tree the left subtree of a root will contain smaller numbers than the root, and the right subtree will contain larger numbers, see example in figure~\ref{fig:binary-tree-example}. Using tree traversal it is possible to find certain nodes or get a list of sorted objects. Our binary tree will contain random numbers and the functions:
 \begin{description}
@@ -307,11 +320,13 @@ A binary tree is a tree consisting of nodes, where a node can have a maximum of 
 \item [algorithm findNode(comparable, root)]
 \item[]
 \begin{lstlisting}[language=Pascal]
-if comparable is equal to comparable in root then
+if root is undefined then
+	return null
+else if comparable is equal to comparable in root then
  	return root
 else if comparable is larger than comparable in root then
  	return findNode(comparable, rightSubtree in root)
-else if comparable is smaller than comparable in root then
+else if comparable is smaller than comparable in root then then
  	return findNode(comparable, leftSubtree in root)
 end if
 \end{lstlisting}
@@ -322,7 +337,7 @@ end if
 set array to empty array
 if comparable in root is undefined then
  	return array
-else if comparable in root is not undefined then
+else then
  	add inOrderTraversal(leftSubtree in root) to end of array
  	add comparable in root at end of array
  	add inOrderTraversal(rightSubtree in root) at end of array
@@ -343,7 +358,7 @@ else if comparable is larger than comparable in root then
 		set comparable in newNode to comparable
 		set rightSubtree of root to newNode
 		return true
-	else if rightSubtree in root is not undefined then
+	else then
   		return insert(comparable, rightSubtree in root)
  	end if
 else if comparable is smaller than comparable in root then 
@@ -352,16 +367,16 @@ create newNode
  		set comparable in newNode to comparable
  		set leftSubtree in root to newNode
  		return true
- 	else if leftSubtree in root is not undefined then
+ 	else then
  		return insert(comparable, leftSubtree in root)
  	end if
 end if
 \end{lstlisting}
 \end{description}
 \subsubsection{Shellsort algorithm}
-The shellsort algorithm is named after its creator Donald Shell [13]. It was one of the first algorithms to break the quadratic time barrier. The algorithm sorts by sorting items using insertion sort with a gap. For each run the gap is decreased until the gap is 1 and the items are sorted. How the gap is decreased is decided with a gap sequence. Different gap sequences gives shellsort a different worst-case running time.
+The shellsort algorithm is named after its creator Donald Shell [30]. It was one of the first algorithms to break the quadratic time barrier. The algorithm sorts by sorting items using insertion sort with a gap. For each run the gap is decreased until the gap is 1 and the items are sorted. How the gap is decreased is decided with a gap sequence. Different gap sequences gives shellsort a different worst-case running time.
  
-We will use one of Sedgewick’s gap sequences that has one of the fastest worst-case running times \(O(n^3/4)\). 
+We will use one of Sedgewick's gap sequences that has one of the fastest worst-case running times \(O(n^3/4)\). 
 
 The sequence is 
 
@@ -383,7 +398,7 @@ This algorithm will sort an array filled with randomized numbers. Our implementa
 \item []
 \begin{lstlisting}[language=Pascal]
 set sortedArray to array
-set gapSequence to Sedgewick’s gap sequence.
+set gapSequence to Sedgewick's gap sequence.
 set currentGapIndex to 0
 set currentGap to the largest gap i gapSequence where gap is smaller than n divided by 2
 set currentGapIndex to the index of currentGap in gapSequence
@@ -404,7 +419,7 @@ return sortedArray
 \end{lstlisting}
 \end{description}
 \subsubsection{The Tower of Hanoi algorithm}
-The Tower of Hanoi is a game invented by mathematician Édouard Lucas in 1883 [14]. The game consists of three pegs and a number of disks stacked in decreasing order on one of the pegs, see figure~\ref{fig:tower-of-hanoi-example}. The goal is to move the tower from one peg to another by moving one disk at a the time to one of the other pegs. A disk can not be placed on a peg on top a smaller disk. 
+The Tower of Hanoi is a game invented by mathematician Édouard Lucas in 1883 [39]. The game consists of three pegs and a number of disks stacked in decreasing order on one of the pegs, see figure~\ref{fig:tower-of-hanoi-example}. The goal is to move the tower from one peg to another by moving one disk at a the time to one of the other pegs. A disk can not be placed on a peg on top a smaller disk. 
 
 \begin{figure}[H]
 \includegraphics[width=\textwidth]{tower-of-hanoi-example}
@@ -423,8 +438,8 @@ This algorithm will move a tower from one peg to another in the function:
 \item[algorithm hanoi(tower, start, dest, aux)]
 \item[] 
 \begin{lstlisting}[language=Pascal]
-(*Pseudo code based on that tower is the number of the largest disk, where 0 is the smallest disk in the tower.*)
-if tower is equal to 0
+(*Pseudo code based on that tower is the number of the largest disk, where 1 is the smallest disk in the tower.*)
+if tower is equal to 1
  	move tower from start to dest
 else
  	hanoi(tower - 1, start, aux, dest)
@@ -433,14 +448,13 @@ else
 end if
 \end{lstlisting}
 \end{description}
-\subsubsection{Dijkstra’s algorithm}
-Dijkstra’s algorithm is an algorithm for finding the shortest path in a graph consisting of a number of nodes connected by edges [18], where the weight of the edges is known. The algorithm will find the shortest path from the start node to the end node in a graph. It is initiated by:
+\subsubsection{Dijkstra's algorithm}
+Dijkstra's algorithm is an algorithm for finding the shortest path in a graph consisting of a number of nodes connected by edges [30], where the weight of the edges is known, see figure~\ref{fig:dijkstras-algorithm-example1}. The algorithm will find the shortest path from the start node to the end node in a graph. It is initiated by:
 \begin{enumerate}
 \item setting the distance to the start node to 0.
 \item setting the distance to all other nodes to infinity.
 \item mark all nodes as unvisited.
 \end{enumerate}
-See figure~\ref{fig:dijkstras-algorithm-example1}.
 The algorithm will then find the shortest path using the following steps:
 \begin{enumerate}
 \item Set current node to the node with the smallest distance that has not already been visited.
@@ -448,18 +462,19 @@ The algorithm will then find the shortest path using the following steps:
 \item Mark current node as visited.
 \item Repeat until all nodes have been visited or the end node has been visited.
 \end{enumerate}
-See figure~\ref{fig:dijkstras-algorithm-example2}.
+See the result in figure~\ref{fig:dijkstras-algorithm-example2}.
 
 \begin{figure}[H]
 \includegraphics[width=\textwidth]{dijkstras-algorithm-example1}
 
-\caption{After initiation of Dijkstra’s algorithm}
+
+\caption{After initiation of Dijkstra's algorithm}
 \label{fig:dijkstras-algorithm-example1}
 \end{figure}
 \begin{figure}[H]
 \includegraphics[width=\textwidth]{dijkstras-algorithm-example2}
 
-\caption{After three nodes have been visited with Dijkstra’s algorithm}
+\caption{After three nodes have been visited with Dijkstra's algorithm}
 \label{fig:dijkstras-algorithm-example2}
 \end{figure}
 
@@ -484,7 +499,7 @@ while unvisitedNodes is not empty or endNode is not in unvisitedNodes do
     		set temp to dist[current] + weight of edge in graph, where edge is from current to neighbor
  		if temp is smaller than dist[neighbor] then
  			set dist[neighbor] to temp
- 			set path[neighbor] to path[current] + current
+ 			set path[neighbor] to path[current] + current)
  		end if
  	end for
 end while
@@ -492,7 +507,7 @@ return path[endNode]
 \end{lstlisting}
 \end{description}
 \subsection{Environment}
-We will implement the algorithms using Atom, a text editor, and compile and run our tests and our code with Node.js. To manage our dependencies we are using npm. For automation we are using Grunt.
+We will implement the algorithms using Atom, a text editor, and compile and run our tests an1d our code with Node.js. To manage our dependencies we are using npm. For automation we are using Grunt.
 
 (Add image describing the build of our files)
 
@@ -506,7 +521,7 @@ To measure memory and run time we are using node.js process, that is a global an
 \subsection{Testing}
 Our code will be tested through code reviews and unit testing.
 \subsubsection{Code reviews}
-We will review each other’s implementations and our implementations will also be reviewed by a third party. The reviews should help us to find bugs and also to confirm that we have used FP or OOP methods.
+We will review each other's implementations and our implementations will also be reviewed by a third party. The reviews should help us to find bugs and also to confirm that we have used FP or OOP methods.
 \subsubsection{Unit testing}
 Unit testing will be done using the JavaScript libraries Mocha [45] for writing tests, Chai [46] for evaluating expressions, and Karma [44] for automated tests.
 
@@ -564,8 +579,11 @@ Object-Oriented Programming guidelines:
 \item Each class should have only one job
 \item Prefer iteration over recursion
 \end{itemize}
+
+\bibliographystyle{ieeetr}
+\bibliography{references}
 \appendix
-\section{Appendix A}
+\section{Appendix}
 \label{appendix:test-cases}
 \subsection{Test cases}
 \begin{tabular}{ | l p{10cm} | }
@@ -575,15 +593,23 @@ Algorithm & Binary search tree algorithms \\
 Function & insert(comparable, rootNode) \\
 Description & Inserted items should be added at the correct place in the tree. If number already exists in the binary search tree, it should not be inserted. \\
 Preconditions & See figure~\ref{fig:input-tree} \\
+\hline
+ID & T1.1 \\
 Input & 9, node(13) \\
 Expected values & FP: None, OOP: See figure~\ref{fig:input-tree} \\
 Expected output & FP: See figure~\ref{fig:input-tree}, OOP: false \\
+\hline
+ID & T1.2 \\
 Input & 8, node(13) \\
 Expected values & FP: None, OOP: See figure~\ref{fig:output-tree-8} \\
 Expected output & FP: See figure~\ref{fig:output-tree-8}, OOP: true \\
+\hline
+ID & T1.3 \\
 Input & 1, node(13) \\
 Expected values & FP: None, OOP: See figure~\ref{fig:output-tree-1} \\
 Expected output & FP: See figure~\ref{fig:output-tree-1}, OOP: true \\
+\hline
+ID & T1.2 \\
 Input & 33, node(13) \\
 Expected values & FP: None, OOP: See figure~\ref{fig:output-tree-33} \\
 Expected output & FP: See figure~\ref{fig:output-tree-33}, OOP: true \\
@@ -597,18 +623,28 @@ Algorithm & Binary search tree algorithms \\
 Function & findNode(comparable, rootNode) \\
 Description & findNode should return the node containing comparable. If comparable is not in the tree undefined should be returned. \\
 Preconditions & See figure~\ref{fig:input-tree} \\
+\hline
+ID & T2.1 \\
 Input & 5, node(13) \\
 Expected values & None \\
 Expected output & undefined \\
+\hline
+ID & T2.2 \\
 Input & 13, node(13) \\
 Expected values & None \\
 Expected output & node(13) \\
+\hline
+ID & T2.3 \\
 Input & 2, node(13) \\
 Expected values & None \\
 Expected output & node(2) \\
+\hline
+ID & T2.4 \\
 Input & 32, node(13) \\
 Expected values & None \\
 Expected output & node(32) \\
+\hline
+ID & T2.5 \\
 Input & 20, node(13) \\
 Expected values & None \\
 Expected output & node(20) \\
@@ -621,10 +657,14 @@ ID & T3 \\
 Algorithm & Binary search tree algorithms \\
 Function & inOrderTraversal() \\
 Description & Should return a sorted array of the elements in the tree. If the tree is it should return an empty array. \\
+\hline
+ID & T3.1 \\
 Preconditions & See figure~\ref{fig:input-tree} \\
 Input & FP: node(13), OOP: none \\
 Expected values & None \\
 Expected output &  [2, 3, 6, 7, 9, 13, 16, 20, 24, 32] \\
+\hline
+ID & T3.2 \\
 Preconditions & Empty tree \\
 Input & FP: none, OOP: none \\
 Expected values & None \\
@@ -639,9 +679,13 @@ Algorithm & Shellsort \\
 Function & shellsort(array) \\
 Description & If an array of numbers is input a sorted array should be returned. If an empty array is input an empty array should be returned. \\
 Preconditions & None \\
+\hline
+ID & T4.1 \\
 Input & [] \\
 Expected values & None \\
 Expected output &  [] \\
+\hline
+ID & T4.2 \\
 Input & [ 9, 8, 1, 15, 3, 4, 11, 2, 7, 6] \\
 Expected values & None \\
 Expected output & [ 9, 8, 1, 15, 3, 4, 11, 2, 7, 6] \\
@@ -655,9 +699,13 @@ Algorithm & The Tower of Hanoi \\
 Function &  hanoi(tower, start, dest, aux) \\
 Description & Should return start, dest and aux pegs with moved tower. If tower has zero discs it should return empty start, dest and aux. The algorithm should take \(2^n - 1\) moves.\\
 Preconditions & None \\
+\hline
+ID & T5.1 \\
 Input & tower size 8, peg1 with tower, peg3 empty, peg2 empty \\
 Expected values & FP: none, OOP: nrOfMoves=255 \\
 Expected output &  peg1 empty, peg2 empty, peg3 with tower \\
+\hline
+ID & T5.2 \\
 Input & tower size 0, peg1 empty, peg3 empty, peg2 empty \\
 Expected values & FP: none, OOP: nrOfMoves=0 \\
 Expected output & peg1 empty, peg2 empty, peg3 empty \\
@@ -671,12 +719,28 @@ Algorithm & Dijksta's algorithm \\
 Function & dijkstras(graph, startNode, endNode) \\
 Description & Should return the shortest path from startNode to endNode. If startNode is same as endNode it should return empty path. If graph is empty it should return empy path.\\
 Preconditions & None \\
+\hline
+ID & T6.1 \\
 Input & See figure~\ref{fig:input-graph}, node1, node6 \\
 Expected values & None \\
 Expected output &  See figure~\ref{fig:output-graph} \\
+\hline
+ID & T6.2 \\
+Input & See figure~\ref{fig:input-graph}, node1, node4 \\
+Expected values & None \\
+Expected output &  See figure~\ref{fig:output-graph2} \\
+\hline
+ID & T6.3 \\
+Input & See figure~\ref{fig:input-graph}, node2, node5 \\
+Expected values & None \\
+Expected output &  See figure~\ref{fig:output-graph3} \\
+\hline
+ID & T6.4 \\
 Input & See figure~\ref{fig:input-graph}, node1, node1\\
 Expected values & None \\
 Expected output & empty path \\
+\hline
+ID & T6.5 \\
 Input & nodes=[], edges[], noNode, noNode \\
 Expected values & None \\
 Expected output & empty path \\
@@ -721,8 +785,22 @@ Expected output & empty path \\
 \begin{figure}[H]
 \includegraphics[width=\textwidth]{output-graph}
 
-\caption{Output graph}
+\caption{Output graph 1}
 \label{fig:output-graph}
+\end{figure}
+
+\begin{figure}[H]
+\includegraphics[width=\textwidth]{output-graph2}
+
+\caption{Output graph 2}
+\label{fig:output-graph2}
+\end{figure}
+
+\begin{figure}[H]
+\includegraphics[width=\textwidth]{output-graph3}
+
+\caption{Output graph 3}
+\label{fig:output-graph3}
 \end{figure}
 
 \end{document}
