@@ -28,8 +28,8 @@ function runMeasurements(size) {
   mTree.findNode(Math.random() * size * 2 + 1);
   mTree.findNode(Math.random() * size * 2 + 1);
   var endMem = process.memoryUsage().heapUsed;
-
   console.info('after 3x random findNode:\n' + _util2.default.inspect(process.memoryUsage()));
+
   let hrEnd = process.hrtime(hrStart);
   console.info(hrEnd[0] + 's and ' + hrEnd[1] / 1000000 + 'ms');
   console.info('Initial memory usage: ' + startMem);
