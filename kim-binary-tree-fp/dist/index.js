@@ -10,7 +10,7 @@ function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { de
 
 'use strict';
 
-var size = 100;
+var size = 1000;
 
 runMeasurements(size);
 
@@ -20,20 +20,29 @@ function runMeasurements(size) {
   var tree = createRandomTree(size);
   console.info('after insert:\n' + _util2.default.inspect(process.memoryUsage()));
   (0, _treeFunctions.inOrderTraversal)(tree);
-  console.info('end:\n' + _util2.default.inspect(process.memoryUsage()));
+  console.info('after inOrderTraversal:\n' + _util2.default.inspect(process.memoryUsage()));
+  (0, _treeFunctions.findNode)(getRandom(), tree);
+  (0, _treeFunctions.findNode)(getRandom(), tree);
+  (0, _treeFunctions.findNode)(getRandom(), tree);
+  console.info('after 3x random findNode:\n' + _util2.default.inspect(process.memoryUsage()));
   let hrEnd = process.hrtime(hrStart);
   console.info(hrEnd[0] + 's and ' + hrEnd[1] / 1000000 + 'ms');
 }
 
 function createRandomTree(size, tree) {
-  var mRandom = function () {
-    return Math.floor(Math.random() * size * 2 + 1);
-  };
-
-  if ((0, _treeFunctions.inOrderTraversal)(tree).length >= size) {
+  if (size <= 0) {
     return tree;
   } else {
-    return createRandomTree(size, (0, _treeFunctions.insert)(mRandom(), tree));
+    let random = getRandom();
+    if ((0, _treeFunctions.findNode)(random, tree)) {
+      return createRandomTree(size, (0, _treeFunctions.insert)(random, tree));
+    } else {
+      return createRandomTree(size - 1, (0, _treeFunctions.insert)(random, tree));
+    }
   }
+}
+
+function getRandom() {
+  return Math.floor(Math.random() * size * 10 + 1);
 }
 //# sourceMappingURL=index.js.map
