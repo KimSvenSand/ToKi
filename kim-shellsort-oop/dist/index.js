@@ -22,7 +22,7 @@ function runMeasurements(array) {
   console.info('start:\n' + _util2.default.inspect(process.memoryUsage()));
 
   var shellsort = new _Shellsort2.default();
-  shellsort.shellsort(array);
+  shellsort.sort(array);
 
   console.info('end:\n' + _util2.default.inspect(process.memoryUsage()));
   let hrEnd = process.hrtime(hrStart);

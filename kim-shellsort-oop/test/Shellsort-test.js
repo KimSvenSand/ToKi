@@ -24,8 +24,8 @@ describe('Shellsort', function () {
   describe('shellsort()', function () {
     it('Should return a sorted array. If array is empty an emtpy array should be returned', function () {
       var expectedArray = [1, 2, 3, 4, 6, 7, 8, 9, 11, 15];
-      (0, _chai.expect)(shellsort.shellsort(input)).to.eql(expectedArray);
-      (0, _chai.expect)(shellsort.shellsort([])).to.eql([]);
+      (0, _chai.expect)(shellsort.sort(input)).to.eql(expectedArray);
+      (0, _chai.expect)(shellsort.sort([])).to.eql([]);
     });
   });
 });
