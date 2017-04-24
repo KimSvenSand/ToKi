@@ -1,4 +1,3 @@
-import { compose } from './general-functions'
 'use strict'
 
 function shellsort(array, gapIndex) {
