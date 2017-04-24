@@ -1,5 +1,3 @@
-import { compose } from './general-functions'
-
 function insertOne(comparable, root) {
     if (!root) {
       return createNode(comparable);
