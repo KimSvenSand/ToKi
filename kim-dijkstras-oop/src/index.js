@@ -1,16 +1,18 @@
 import Graph from './js/Graph'
+import Dijkstras from './js/Dijkstras'
 import util from 'util'
 'use strict'
 
 var size = 1000;
+var dijkstras = new Dijkstras();
 var graph = createGraph(size);
-runMeasurements(graph);
+runMeasurements(graph, dijkstras);
 
-function runMeasurements(graph) {
+function runMeasurements(graph, dijkstras) {
   var hrStart = process.hrtime();
   console.info('start:\n' + util.inspect(process.memoryUsage()));
 
-  var result = graph.dijkstras(graph.findNode('node' + 1), graph.findNode('node' + graph.getNrOfNodes()));
+  var result = dijkstras.getShortestPath(graph.findNode('node' + 1), graph.findNode('node' + graph.getNrOfNodes()), graph);
 
   console.info('end:\n' + util.inspect(process.memoryUsage()));
   let hrEnd = process.hrtime(hrStart);

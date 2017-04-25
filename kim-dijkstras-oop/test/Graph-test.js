@@ -12,6 +12,10 @@ var _Edge = require('../dist/js/Edge');
 
 var _Edge2 = _interopRequireDefault(_Edge);
 
+var _Dijkstras = require('../dist/js/Dijkstras');
+
+var _Dijkstras2 = _interopRequireDefault(_Dijkstras);
+
 var _chai = require('chai');
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
@@ -53,37 +57,38 @@ describe('Graph', function () {
 
   describe('dijkstras(startNode, endNode)', function () {
     it('should return shortest path from startNode to endNode', function () {
+      var dijkstras = new _Dijkstras2.default();
       var graph = createTestGraph();
       var expectedPath = {
         'path': [graph.findNode('1'), graph.findNode('3'), graph.findNode('4')],
         'dist': 6
       };
-      var result = graph.dijkstras(graph.findNode('1'), graph.findNode('6'));
+      var result = dijkstras.getShortestPath(graph.findNode('1'), graph.findNode('6'), graph);
       (0, _chai.expect)(result).to.eql(expectedPath);
 
       expectedPath = {
         'path': [graph.findNode('1'), graph.findNode('3')],
         'dist': 5
       };
-      result = graph.dijkstras(graph.findNode('1'), graph.findNode('4'));
+      result = dijkstras.getShortestPath(graph.findNode('1'), graph.findNode('4'), graph);
       (0, _chai.expect)(result).to.eql(expectedPath);
 
       expectedPath = {
         'path': [graph.findNode('2'), graph.findNode('4'), graph.findNode('6')],
         'dist': 9
       };
-      result = graph.dijkstras(graph.findNode('2'), graph.findNode('5'));
+      result = dijkstras.getShortestPath(graph.findNode('2'), graph.findNode('5'), graph);
       (0, _chai.expect)(result).to.eql(expectedPath);
 
       expectedPath = {
         'path': [],
         'dist': 0
       };
-      result = graph.dijkstras(graph.findNode('1'), graph.findNode('1'));
+      result = dijkstras.getShortestPath(graph.findNode('1'), graph.findNode('1'), graph);
       (0, _chai.expect)(result).to.eql(expectedPath);
 
       graph = new _Graph2.default();
-      result = graph.dijkstras();
+      result = dijkstras.getShortestPath();
       (0, _chai.expect)(result).to.eql(expectedPath);
     });
   });

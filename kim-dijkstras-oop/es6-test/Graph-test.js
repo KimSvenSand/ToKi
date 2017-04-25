@@ -1,6 +1,7 @@
 import Graph from '../dist/js/Graph'
 import Node from '../dist/js/Node'
 import Edge from '../dist/js/Edge'
+import Dijkstras from '../dist/js/Dijkstras'
 import { expect } from 'chai'
 'use strict'
 
@@ -48,37 +49,38 @@ describe('Graph', function() {
 
   describe('dijkstras(startNode, endNode)', function() {
     it('should return shortest path from startNode to endNode', function() {
+      var dijkstras = new Dijkstras();
       var graph = createTestGraph();
       var expectedPath = {
         'path': [ graph.findNode('1'), graph.findNode('3'), graph.findNode('4') ],
         'dist': 6
       };
-      var result = graph.dijkstras(graph.findNode('1'), graph.findNode('6'));
+      var result = dijkstras.getShortestPath(graph.findNode('1'), graph.findNode('6'), graph);
       expect(result).to.eql(expectedPath);
 
       expectedPath = {
         'path': [ graph.findNode('1'), graph.findNode('3') ],
         'dist': 5
       }
-      result = graph.dijkstras(graph.findNode('1'), graph.findNode('4'));
+      result = dijkstras.getShortestPath(graph.findNode('1'), graph.findNode('4'), graph);
       expect(result).to.eql(expectedPath);
 
       expectedPath = {
         'path': [ graph.findNode('2'), graph.findNode('4'), graph.findNode('6') ],
         'dist': 9
       }
-      result = graph.dijkstras(graph.findNode('2'), graph.findNode('5'));
+      result = dijkstras.getShortestPath(graph.findNode('2'), graph.findNode('5'), graph);
       expect(result).to.eql(expectedPath);
 
       expectedPath = {
         'path': [],
         'dist': 0
       }
-      result = graph.dijkstras(graph.findNode('1'), graph.findNode('1'));
+      result = dijkstras.getShortestPath(graph.findNode('1'), graph.findNode('1'), graph);
       expect(result).to.eql(expectedPath);
 
       graph = new Graph();
-      result = graph.dijkstras();
+      result = dijkstras.getShortestPath();
       expect(result).to.eql(expectedPath);
     });
   });
