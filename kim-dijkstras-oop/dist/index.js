@@ -4,6 +4,10 @@ var _Graph = require('./js/Graph');
 
 var _Graph2 = _interopRequireDefault(_Graph);
 
+var _Dijkstras = require('./js/Dijkstras');
+
+var _Dijkstras2 = _interopRequireDefault(_Dijkstras);
+
 var _util = require('util');
 
 var _util2 = _interopRequireDefault(_util);
@@ -12,15 +16,16 @@ function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { de
 
 'use strict';
 
-var size = 10000;
+var size = 1000;
+var dijkstras = new _Dijkstras2.default();
 var graph = createGraph(size);
-runMeasurements(graph);
+runMeasurements(graph, dijkstras);
 
-function runMeasurements(graph) {
+function runMeasurements(graph, dijkstras) {
   var hrStart = process.hrtime();
   console.info('start:\n' + _util2.default.inspect(process.memoryUsage()));
 
-  var result = graph.dijkstras(graph.findNode('node' + 1), graph.findNode('node' + graph.getNrOfNodes()));
+  var result = dijkstras.getShortestPath(graph.findNode('node' + 1), graph.findNode('node' + graph.getNrOfNodes()), graph);
 
   console.info('end:\n' + _util2.default.inspect(process.memoryUsage()));
   let hrEnd = process.hrtime(hrStart);
