@@ -16,7 +16,6 @@ class BinarySearchTree {
     this._size = 1;
   }
 
-<<<<<<< HEAD
   initiateRandomTree(nrOfElements) {
     var mRandom = function () {
       return Math.floor(Math.random() * nrOfElements * 10 + 1);
@@ -28,8 +27,6 @@ class BinarySearchTree {
     }
   }
 
-=======
->>>>>>> 20aabe29a3a388a8f13f6f679d624c15ff35c5e1
   getRoot() {
     return this._root;
   }
