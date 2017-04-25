@@ -1,4 +1,4 @@
-import { hanoi, getTopTower, buildTower } from './js/tower-of-hanoi-functions'
+import { hanoi, buildTower } from './js/tower-of-hanoi-functions'
 import util from 'util';
 'use strict';
 
