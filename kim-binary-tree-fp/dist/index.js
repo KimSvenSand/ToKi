@@ -16,6 +16,7 @@ runMeasurements(size);
 
 function runMeasurements(size) {
   var hrStart = process.hrtime();
+  var startMem = process.memoryUsage().rss;
   console.info('start:\n' + _util2.default.inspect(process.memoryUsage()));
   var tree = createRandomTree(size);
   console.info('after insert:\n' + _util2.default.inspect(process.memoryUsage()));
@@ -24,16 +25,22 @@ function runMeasurements(size) {
   (0, _treeFunctions.findNode)(getRandom(), tree);
   (0, _treeFunctions.findNode)(getRandom(), tree);
   (0, _treeFunctions.findNode)(getRandom(), tree);
+  var endMem = process.memoryUsage().rss;
   console.info('after 3x random findNode:\n' + _util2.default.inspect(process.memoryUsage()));
+
   let hrEnd = process.hrtime(hrStart);
   console.info(hrEnd[0] + 's and ' + hrEnd[1] / 1000000 + 'ms');
+  console.info('Initial memory usage: ' + startMem);
+  console.info('Final memory usage: ' + endMem);
+  console.info(hrEnd[0] * 1000 + hrEnd[1] / 1000000);
+  console.info(endMem - startMem);
 }
 
 function createRandomTree(size, tree) {
   if (size <= 0) {
     return tree;
   } else {
-    let random = getRandom();
+    var random = getRandom();
     if ((0, _treeFunctions.findNode)(random, tree)) {
       return createRandomTree(size, (0, _treeFunctions.insert)(random, tree));
     } else {
