@@ -39,6 +39,7 @@ describe('shellsort(array, gapIndex)', function () {
     var expectedArray = [1, 2, 3, 4, 6, 7, 8, 9, 11, 15];
 
     (0, _chai.expect)((0, _shellsortFunctions.shellsort)(input)).to.eql(expectedArray);
+    (0, _chai.expect)((0, _shellsortFunctions.shellsort)([])).to.eql([]);
   });
 });
 //# sourceMappingURL=shellsort-functions-test.js.map

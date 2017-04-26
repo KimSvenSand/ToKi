@@ -4,7 +4,7 @@ Object.defineProperty(exports, "__esModule", {
   value: true
 });
 class InsertionSort {
-  insertionSort(array, gap) {
+  sort(array, gap) {
     var sortedArray = array;
     var currentValue = 0;
     var currentIndex = 0;

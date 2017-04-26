@@ -17,7 +17,7 @@ describe('InsertionSort', function () {
   describe('insertionSort(array, gap)', function () {
     it('Should return a sortedArray given that gap is 1', function () {
       var expectedArray = [1, 2, 3, 4, 6, 7, 8, 9, 11, 15];
-      (0, _chai.expect)(insertionSort.insertionSort(input, 1)).to.eql(expectedArray);
+      (0, _chai.expect)(insertionSort.sort(input, 1)).to.eql(expectedArray);
     });
   });
 });

@@ -10,15 +10,15 @@ function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { de
 
 'use strict';
 
-var size = 15;
-var graph = createGraph(size);
+let size = 15;
+let graph = createGraph(size);
 runMeasurements(graph);
 
-function runMeasurements(graph) {
-  var hrStart = process.hrtime();
+function runMeasurements(graph, size) {
+  let hrStart = process.hrtime();
   console.info('start:\n' + _util2.default.inspect(process.memoryUsage()));
 
-  var result = (0, _dijkstrasFunctions.dijkstras)(graph.nodes, graph.edges, 'node1', 'node' + size);
+  let result = (0, _dijkstrasFunctions.dijkstras)(graph.nodes, graph.edges, 'node1', 'node' + size);
 
   console.info('end:\n' + _util2.default.inspect(process.memoryUsage()));
   let hrEnd = process.hrtime(hrStart);
@@ -44,8 +44,8 @@ function createGraph(size) {
       }
     };
   } else {
-    var graph = createGraph(size - 1);
-    var edges = Object.assign({}, graph.edges);
+    let graph = createGraph(size - 1);
+    let edges = Object.assign({}, graph.edges);
     edges['node' + size + '-node' + (size - 1)] = getRandom();
     edges['node' + size + '-node' + (size - 2)] = getRandom();
     return {

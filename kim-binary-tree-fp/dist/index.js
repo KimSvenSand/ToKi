@@ -10,7 +10,7 @@ function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { de
 
 'use strict';
 
-var size = 10000;
+var size = 1000;
 
 runMeasurements(size);
 

@@ -16,6 +16,17 @@ class BinarySearchTree {
     this._size = 1;
   }
 
+  initiateRandomTree(nrOfElements) {
+    var mRandom = function () {
+      return Math.floor(Math.random() * nrOfElements * 10 + 1);
+    };
+    var tree = new BinarySearchTree(mRandom());
+
+    while (this.getSize() < nrOfElements) {
+      this.insert(mRandom());
+    }
+  }
+
   getRoot() {
     return this._root;
   }

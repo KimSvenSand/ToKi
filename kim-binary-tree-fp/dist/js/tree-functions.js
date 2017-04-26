@@ -1,12 +1,8 @@
-'use strict';
+"use strict";
 
 Object.defineProperty(exports, "__esModule", {
   value: true
 });
-exports.findNode = exports.inOrderTraversal = exports.createNode = exports.insert = undefined;
-
-var _generalFunctions = require('./general-functions');
-
 function insertOne(comparable, root) {
   if (!root) {
     return createNode(comparable);

@@ -20,7 +20,8 @@ function runMeasurements(size) {
   var hrStart = process.hrtime();
   var startMem = process.memoryUsage().heapUsed;
   console.info('start:\n' + _util2.default.inspect(process.memoryUsage()));
-  var mTree = initiateTree(size);
+  var mTree = new _BinarySearchTree2.default(Math.floor(Math.random() * size * 10 + 1));
+  mTree.initiateRandomTree(size);
   console.info('after insert:\n' + _util2.default.inspect(process.memoryUsage()));
   mTree.inOrderTraversal();
   console.info('after inOrderTraversal:\n' + _util2.default.inspect(process.memoryUsage()));
@@ -36,18 +37,5 @@ function runMeasurements(size) {
   console.info('Final memory usage: ' + endMem);
   console.info(hrEnd[0] * 1000 + hrEnd[1] / 1000000);
   console.info(endMem - startMem);
-}
-
-function initiateTree(nrOfElements) {
-  var mRandom = function () {
-    return Math.floor(Math.random() * nrOfElements * 10 + 1);
-  };
-  var tree = new _BinarySearchTree2.default(mRandom());
-
-  while (tree.getSize() < nrOfElements) {
-    tree.insert(mRandom());
-  }
-
-  return tree;
 }
 //# sourceMappingURL=index.js.map

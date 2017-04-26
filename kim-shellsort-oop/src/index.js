@@ -12,7 +12,7 @@ function runMeasurements(array) {
   console.info('start:\n' + util.inspect(process.memoryUsage()));
 
   var shellsort = new Shellsort();
-  shellsort.shellsort(array);
+  shellsort.sort(array);
 
   console.info('end:\n' + util.inspect(process.memoryUsage()));
   let hrEnd = process.hrtime(hrStart);

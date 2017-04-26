@@ -35,5 +35,6 @@ describe('shellsort(array, gapIndex)', function() {
     var expectedArray = [1, 2, 3, 4, 6, 7, 8, 9, 11, 15];
 
     expect(shellsort(input)).to.eql(expectedArray);
+    expect(shellsort([])).to.eql([]);
   });
 });

@@ -1,1 +1,0 @@
-{"version":3,"sources":["../../src/js/general-functions.js"],"names":["compose","f","g","x"],"mappings":"AAAA;;;;;AAEA,SAASA,OAAT,CAAiBC,CAAjB,EAAoBC,CAApB,EAAuB;AACrB,SAAOD,EAAEC,EAAEC,CAAF,CAAF,CAAP;AACD;;QAGCH,O,GAAAA,O","file":"general-functions.js","sourcesContent":["'use strict'\n\nfunction compose(f, g) {\n  return f(g(x));\n}\n\nexport {\n  compose\n}\n"]}

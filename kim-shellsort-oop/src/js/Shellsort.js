@@ -6,7 +6,7 @@ export default class Shellsort {
     this.insertionSort = new InsertionSort();
   }
 
-  shellsort(array) {
+  sort (array) {
     if (!array) {
       return [];
     }
@@ -16,7 +16,7 @@ export default class Shellsort {
     var currentGapIndex = 0;
 
     while (gapSequence[currentGapIndex] >= 1) {
-      sortedArray = this.insertionSort.insertionSort(sortedArray, gapSequence[currentGapIndex]);
+      sortedArray = this.insertionSort.sort(sortedArray, gapSequence[currentGapIndex]);
       currentGapIndex++;
     }
 

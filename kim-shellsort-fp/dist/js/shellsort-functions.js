@@ -3,12 +3,6 @@
 Object.defineProperty(exports, "__esModule", {
   value: true
 });
-exports.switchElements = exports.sortSection = exports.insertionSort = exports.createGapSequence = exports.shellsort = undefined;
-
-var _generalFunctions = require('./general-functions');
-
-'use strict';
-
 function shellsort(array, gapIndex) {
   var gapSequence = createGapSequence(array.length);
   var copyArray = array.slice();
