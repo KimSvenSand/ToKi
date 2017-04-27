@@ -12,7 +12,7 @@ describe('Shellsort', function() {
     it("should return the array sorted", function() {
       expectedResult = [1,2,3,4,6,7,8,9,11,15];
 
-      expect(shellsort.shellsort(array,gapSequence)).to.eql(expectedResult);
+      expect(shellsort.runShellsort(array,gapSequence)).to.eql(expectedResult);
     });
   });
 
@@ -21,7 +21,7 @@ describe('Shellsort', function() {
       expectedResult = [];
 
 
-      expect(shellsort.shellsort(emptyArray,gapSequence)).to.eql(expectedResult);
+      expect(shellsort.runShellsort(emptyArray,gapSequence)).to.eql(expectedResult);
     });
   });
 });

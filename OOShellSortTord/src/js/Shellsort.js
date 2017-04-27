@@ -2,7 +2,7 @@
 
 export default class Shellsort {
 
-  shellsort(array,gapSequence){
+  runShellsort(array,gapSequence){
     var sortedArray = array;
     var currentGap = 1;
     var currentGapIndex = 0;
@@ -36,6 +36,14 @@ export default class Shellsort {
       gapSequence.push(Math.pow(2,i+2)*(Math.pow(2,i+2)-3)+1);
     }
     return gapSequence;
+  }
+
+  insertRandomValues(nrOfElements){
+    var array = [];
+    for(var i = 0; i < nrOfElements; i++){
+      array.push(Math.floor((Math.random() * nrOfElements * 10) + 1));
+    }
+    return array;
   }
 
 }

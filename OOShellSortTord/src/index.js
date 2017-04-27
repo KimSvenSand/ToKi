@@ -2,31 +2,25 @@ import Shellsort from './js/Shellsort.js';
 import util from 'util';
 'use strict';
 
-console.info('start' + util.inspect(process.memoryUsage()));
-runShellsort();
-console.info(util.inspect(process.memoryUsage()));
+console.log("OOP Shellsort algorithm:");
+var nrOfElements = 100;
+runShellsort(nrOfElements);
 
 global.gc();
-console.log(util.inspect(process.memoryUsage()))
 
-function runShellsort() {
-  let t0 = new Date();
-  let hrStart = process.hrtime();
+function runShellsort(nrOfElements) {
+  var hrStart = process.hrtime();
+  var memStart = process.memoryUsage().rss;
+  console.info('start:\n' + util.inspect(process.memoryUsage()));
 
   var shellsort = new Shellsort();
   var gapSequence = shellsort.getGapSequence();
-  console.log(gapSequence);
-  var array = [];
-  var nrInArray = 10;
-  for(var i = 0; i < nrInArray; i++){
-    array.push(Math.floor((Math.random()*100)+1));
-  }
-  console.log(array);
-  console.log(shellsort.shellsort(array,gapSequence));
+  var array = shellsort.insertRandomValues(nrOfElements);
+  shellsort.runShellsort(array,gapSequence);
 
+  console.info('end:\n' + util.inspect(process.memoryUsage()));
+  var memEnd = process.memoryUsage().rss;
   let hrEnd = process.hrtime(hrStart);
-  let t1 = new Date();
-
-  console.info(t1 - t0 + 'ms');
-  console.info(hrEnd[1] / 1000000 + 'ms');
+  console.info(hrEnd[0] + 's and ' + hrEnd[1] / 1000000 + 'ms');
+  console.log("Memory: " + (memEnd - memStart));
 }
