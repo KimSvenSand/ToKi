@@ -5,31 +5,7 @@ Object.defineProperty(exports, "__esModule", {
 });
 class BinarySearchTree {
   constructor(tree) {
-    if (tree.length > 0) {
-      this.root = new _BinaryNode(tree[0]);
-      for (var i = 1; i < tree.length; i++) {
-        var node = this.root;
-        while (node != null) {
-          if (tree[i] < node.key) {
-            if (node.leftNode == undefined) {
-              node.leftNode = new _BinaryNode(tree[i]);
-              node.leftNode.parentNode = node;
-              node = null;
-            } else {
-              node = node.leftNode;
-            }
-          } else {
-            if (node.rightNode == undefined) {
-              node.rightNode = new _BinaryNode(tree[i]);
-              node.rightNode.parentNode = node;
-              node = null;
-            } else {
-              node = node.rightNode;
-            }
-          }
-        }
-      }
-    }
+    this.root = null;
   }
 
   findNode(key) {
@@ -97,6 +73,22 @@ class BinarySearchTree {
     }
 
     return returnValue;
+  }
+
+  insertRandomValues(nrOfElements) {
+    var resultCheck = false;
+    for (var i = 0; i < nrOfElements; i++) {
+      resultCheck = this.insert(Math.floor(Math.random() * nrOfElements * 10 + 1));
+      if (resultCheck == false) {
+        i--;
+      }
+    }
+  }
+
+  insertMany(arr) {
+    for (var i = 0; i < arr.length; i++) {
+      this.insert(arr[i]);
+    }
   }
 }
 

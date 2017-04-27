@@ -10,10 +10,9 @@ function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { de
 
 describe('BinarySearchTree', function () {
   var treeArray = [13, 6, 24, 2, 3, 7, 9, 16, 20, 32];
-  var emptyTree = [];
-  var BST = new _BinarySearchTree2.default(treeArray);
-  var BST = new _BinarySearchTree2.default(treeArray);
-  var BST2 = new _BinarySearchTree2.default(emptyTree);
+  var BST = new _BinarySearchTree2.default();
+  BST.insertMany(treeArray);
+  var BST2 = new _BinarySearchTree2.default();
   var expectedResult = 0;
   var input = 0;
 
@@ -53,7 +52,6 @@ describe('BinarySearchTree', function () {
     it('should return empty node since the node isnt in the tree', function () {
       input = 5;
       expectedResult = "Key:null\nParentNode:null\nLeftNode:null\nRightNode:null";
-
       (0, _chai.expect)(BST.findNode(input).toString()).to.equal(expectedResult);
     });
   });

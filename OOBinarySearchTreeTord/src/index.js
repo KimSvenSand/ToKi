@@ -3,31 +3,30 @@ import _BinaryNode from './js/BinarySearchTree.js';
 import util from 'util';
 'use strict';
 
-console.info('start' + util.inspect(process.memoryUsage()));
-runBinarySearchTree();
-console.info(util.inspect(process.memoryUsage()));
+console.log("OOP Tree search algorithms:");
+var nrOfElements = 10000;
+console.log("Number of elements: " + nrOfElements);
+runBinarySearchTree(nrOfElements);
 
 global.gc();
-console.log(util.inspect(process.memoryUsage()))
 
 function runBinarySearchTree() {
-  let t0 = new Date();
-  let hrStart = process.hrtime();
+  var hrStart = process.hrtime();
+  var startMem = process.memoryUsage().rss;
+  console.info('start:\n' + util.inspect(process.memoryUsage()));
 
-  let treeArray = [13,6,24,2,3,7,9,16,20,32,1];
-  let BST = new BinarySearchTree(treeArray);
-  /*var inserted = 0;
-  while(inserted < 10){
-    if(BST.insert(Math.floor((Math.random()*100)+1))){
-      inserted++;
-    }
-
-  }*/
-  console.log(BST.findNode(1).toString());
+  let BST = new BinarySearchTree();
+  BST.insertRandomValues(nrOfElements);
+  console.info('after insert:\n' + util.inspect(process.memoryUsage()));
+  BST.inOrderTraversal();
+  console.info('after inOrderTraversal:\n' + util.inspect(process.memoryUsage()));
+  BST.findNode(Math.floor((Math.random() * nrOfElements * 10) + 1));
+  BST.findNode(Math.floor((Math.random() * nrOfElements * 10) + 1));
+  BST.findNode(Math.floor((Math.random() * nrOfElements * 10) + 1));
+  var endMem = process.memoryUsage().rss;
+  console.info('after 3x random findNode:\n' + util.inspect(process.memoryUsage()));
 
   let hrEnd = process.hrtime(hrStart);
-  let t1 = new Date();
-
-  console.info(t1 - t0 + 'ms');
-  console.info(hrEnd[1] / 1000000 + 'ms');
+  console.info('Runtime: ' + hrEnd[0] + ' s and ' + hrEnd[1] / 1000000 + ' ms');
+  console.info('Memory: ' + (endMem - startMem));
 }

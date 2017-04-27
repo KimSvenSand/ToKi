@@ -4,10 +4,9 @@ import { expect } from 'chai';
 
 describe('BinarySearchTree', function() {
   var treeArray = [13,6,24,2,3,7,9,16,20,32];
-  var emptyTree = [];
-  var BST = new BinarySearchTree(treeArray);
-  var BST = new BinarySearchTree(treeArray);
-  var BST2 = new BinarySearchTree(emptyTree);
+  var BST = new BinarySearchTree();
+  BST.insertMany(treeArray);
+  var BST2 = new BinarySearchTree();
   var expectedResult = 0;
   var input = 0;
 
@@ -47,7 +46,6 @@ describe('BinarySearchTree', function() {
     it('should return empty node since the node isnt in the tree', function() {
       input = 5;
       expectedResult = "Key:null\nParentNode:null\nLeftNode:null\nRightNode:null";
-
       expect(BST.findNode(input).toString()).to.equal(expectedResult);
     });
   });
