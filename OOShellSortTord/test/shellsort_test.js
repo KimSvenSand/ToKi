@@ -11,12 +11,13 @@ function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { de
 describe('Shellsort', function () {
   var shellsort = new _Shellsort2.default();
   var gapSequence = shellsort.getGapSequence();
-  var array = [10, 5, 20, 15, 30, 25];
+  var array = [9, 8, 1, 15, 3, 4, 11, 2, 7, 6];
+  var emptyArray = [];
   var expectedResult = 0;
 
   describe('shellsort', function () {
     it("should return the array sorted", function () {
-      expectedResult = [5, 10, 15, 20, 25, 30];
+      expectedResult = [1, 2, 3, 4, 6, 7, 8, 9, 11, 15];
 
       (0, _chai.expect)(shellsort.shellsort(array, gapSequence)).to.eql(expectedResult);
     });
@@ -26,7 +27,7 @@ describe('Shellsort', function () {
     it("should return an empty array", function () {
       expectedResult = [];
 
-      (0, _chai.expect)(shellsort.shellsort([], gapSequence)).to.eql(expectedResult);
+      (0, _chai.expect)(shellsort.shellsort(emptyArray, gapSequence)).to.eql(expectedResult);
     });
   });
 });

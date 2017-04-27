@@ -20,12 +20,12 @@ global.gc();
 console.log(_util2.default.inspect(process.memoryUsage()));
 
 function runTowerOfHanoi() {
+  let t0 = new Date();
+  let hrStart = process.hrtime();
+
   var hanoi = new _Hanoi2.default();
   var nrOfPegs = 3;
   console.log(hanoi.towerOfHanoi(nrOfPegs));
-
-  let t0 = new Date();
-  let hrStart = process.hrtime();
 
   let hrEnd = process.hrtime(hrStart);
   let t1 = new Date();

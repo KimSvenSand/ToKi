@@ -12,6 +12,9 @@ global.gc();
 console.log(util.inspect(process.memoryUsage()))
 
 function runBinarySearchTree() {
+  let t0 = new Date();
+  let hrStart = process.hrtime();
+
   var tree = [];
   let inputArray = [];
   var treelength = 0;
@@ -19,13 +22,9 @@ function runBinarySearchTree() {
     var tree = insert(Math.floor((Math.random()*100)+1),tree);
     iterations++
   }
+
   console.log("Unsorted: "+tree);
   console.log("Sorted: "+inOrderTraversal(tree,0,[]));
-
-  let t0 = new Date();
-  let hrStart = process.hrtime();
-
-
 
   let hrEnd = process.hrtime(hrStart);
   let t1 = new Date();

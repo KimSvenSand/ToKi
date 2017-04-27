@@ -4,12 +4,13 @@ import { expect } from 'chai';
 describe('Shellsort', function() {
   var shellsort = new Shellsort();
   var gapSequence = shellsort.getGapSequence();
-  var array = [10,5,20,15,30,25];
+  var array = [9,8,1,15,3,4,11,2,7,6];
+  var emptyArray = [];
   var expectedResult = 0;
 
   describe('shellsort', function() {
     it("should return the array sorted", function() {
-      expectedResult = [5,10,15,20,25,30];
+      expectedResult = [1,2,3,4,6,7,8,9,11,15];
 
       expect(shellsort.shellsort(array,gapSequence)).to.eql(expectedResult);
     });
@@ -20,7 +21,7 @@ describe('Shellsort', function() {
       expectedResult = [];
 
 
-      expect(shellsort.shellsort([],gapSequence)).to.eql(expectedResult);
+      expect(shellsort.shellsort(emptyArray,gapSequence)).to.eql(expectedResult);
     });
   });
 });

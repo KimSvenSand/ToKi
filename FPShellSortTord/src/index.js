@@ -12,18 +12,17 @@ global.gc();
 console.log(util.inspect(process.memoryUsage()))
 
 function runShellsort() {
+  let t0 = new Date();
+  let hrStart = process.hrtime();
+
   var gapSequence = getGapSequence(2,[]);
   var array = random(10,[]);
-  console.log(gapSequence);
+
   console.log("Unsorted:");
   console.log(array);
   console.log("Sorted:");
   console.log(shellsort(array,gapSequence));
-  let t0 = new Date();
-  let hrStart = process.hrtime();
-
-
-
+  
   let hrEnd = process.hrtime(hrStart);
   let t1 = new Date();
 

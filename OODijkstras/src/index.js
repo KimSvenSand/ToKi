@@ -12,6 +12,7 @@ console.log(util.inspect(process.memoryUsage()))
 function runDijkstrasAlgorithm() {
   let t0 = new Date();
   let hrStart = process.hrtime();
+  
   var dijk = new Dijkstras();
 
   var nodes=["node1", "node2", "node3", "node4", "node5", "node6"];

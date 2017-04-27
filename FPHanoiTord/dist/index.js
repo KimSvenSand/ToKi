@@ -18,15 +18,13 @@ global.gc();
 console.log(_util2.default.inspect(process.memoryUsage()));
 
 function runTowerOfHanoi() {
-  var nrOfDisks = 3;
-  var startPeg = (0, _Hanoi.createStartPeg)(nrOfDisks, []);
-  var beforeHanoi = [startPeg, [], []];
-  console.log(beforeHanoi);
-  var afterHanoi = (0, _Hanoi.hanoi)(nrOfDisks, startPeg, [], [], 0);
-  console.log(afterHanoi);
-
   let t0 = new Date();
   let hrStart = process.hrtime();
+
+  var nrOfDisks = 3;
+  var startPeg = (0, _Hanoi.createStartPeg)(nrOfDisks, []);
+  var afterHanoi = (0, _Hanoi.hanoi)(nrOfDisks, startPeg, [], [], 0);
+  console.log(afterHanoi);
 
   let hrEnd = process.hrtime(hrStart);
   let t1 = new Date();

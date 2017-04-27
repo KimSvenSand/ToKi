@@ -10,6 +10,9 @@ global.gc();
 console.log(util.inspect(process.memoryUsage()))
 
 function runShellsort() {
+  let t0 = new Date();
+  let hrStart = process.hrtime();
+
   var shellsort = new Shellsort();
   var gapSequence = shellsort.getGapSequence();
   console.log(gapSequence);
@@ -20,12 +23,6 @@ function runShellsort() {
   }
   console.log(array);
   console.log(shellsort.shellsort(array,gapSequence));
-
-
-  let t0 = new Date();
-  let hrStart = process.hrtime();
-
-
 
   let hrEnd = process.hrtime(hrStart);
   let t1 = new Date();

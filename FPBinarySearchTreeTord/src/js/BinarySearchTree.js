@@ -44,7 +44,7 @@ export function findNode(input,tree,place,returnValue){
   }else if(input < tree[place]){
     returnValue = findNode(input,tree,(place*2+1));
   }else{
-    returnValue = findNode(input,tree,(place*2+1));
+    returnValue = findNode(input,tree,(place*2+2));
   }
   return returnValue;
 }

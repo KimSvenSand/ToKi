@@ -10,15 +10,12 @@ global.gc();
 console.log(util.inspect(process.memoryUsage()))
 
 function runTowerOfHanoi() {
-  var hanoi = new Hanoi();
-  var nrOfPegs = 3;
-  console.log(hanoi.towerOfHanoi(nrOfPegs));
-
-
   let t0 = new Date();
   let hrStart = process.hrtime();
 
-
+  var hanoi = new Hanoi();
+  var nrOfPegs = 3;
+  console.log(hanoi.towerOfHanoi(nrOfPegs));
 
   let hrEnd = process.hrtime(hrStart);
   let t1 = new Date();

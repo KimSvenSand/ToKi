@@ -31,7 +31,7 @@ export default class BinarySearchTree {
 
   findNode(key){
     var node = this.root;
-    var returnValue = undefined;
+    var returnValue = new _BinaryNode(null);
     while(node != null && key != node.key){
       if(key < node.key){
         node = node.leftNode;
@@ -40,7 +40,7 @@ export default class BinarySearchTree {
       }
     }
     if(node != null){
-      returnValue = node.key;
+      returnValue = node;
     }
 
     return returnValue;
@@ -97,11 +97,27 @@ export default class BinarySearchTree {
   }
 }
 
-class _BinaryNode{
+export class _BinaryNode{
   constructor(key){
     this.key = key;
     this.parentNode = null;
     this.leftNode = null;
     this.rightNode = null;
+  }
+
+  toString(){
+    var parentNode = null;
+    var leftNode = null;
+    var rightNode = null;
+    if(this.parentNode != null){
+      parentNode = this.parentNode.key;
+    }
+    if(this.leftNode != null){
+      leftNode = this.leftNode.key;
+    }
+    if(this.rightNode != null){
+      rightNode = this.rightNode.key;
+    }
+    return "Key:"+this.key+"\nParentNode:"+parentNode+"\nLeftNode:"+leftNode+"\nRightNode:"+rightNode;
   }
 }

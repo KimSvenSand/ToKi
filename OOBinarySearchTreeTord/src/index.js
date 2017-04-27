@@ -1,4 +1,5 @@
 import BinarySearchTree from './js/BinarySearchTree.js';
+import _BinaryNode from './js/BinarySearchTree.js';
 import util from 'util';
 'use strict';
 
@@ -10,22 +11,19 @@ global.gc();
 console.log(util.inspect(process.memoryUsage()))
 
 function runBinarySearchTree() {
-  let treeArray = [];
+  let t0 = new Date();
+  let hrStart = process.hrtime();
+
+  let treeArray = [13,6,24,2,3,7,9,16,20,32,1];
   let BST = new BinarySearchTree(treeArray);
-  var inserted = 0;
+  /*var inserted = 0;
   while(inserted < 10){
     if(BST.insert(Math.floor((Math.random()*100)+1))){
       inserted++;
     }
 
-  }
-  //console.log(BST);
-  console.log(BST.inOrderTraversal());
-
-  let t0 = new Date();
-  let hrStart = process.hrtime();
-
-
+  }*/
+  console.log(BST.findNode(1).toString());
 
   let hrEnd = process.hrtime(hrStart);
   let t1 = new Date();
