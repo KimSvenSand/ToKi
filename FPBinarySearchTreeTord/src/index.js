@@ -1,34 +1,31 @@
-import {createTree} from './js/BinarySearchTree.js';
-import {insert} from './js/BinarySearchTree.js';
 import {inOrderTraversal} from './js/BinarySearchTree.js';
+import {insertRandomValues} from './js/BinarySearchTree.js';
+import {findNode} from './js/BinarySearchTree.js';
 import util from 'util';
 'use strict';
 
-console.info('start' + util.inspect(process.memoryUsage()));
-runBinarySearchTree();
-console.info(util.inspect(process.memoryUsage()));
+console.info("FP Tree search algorithms:");
+var nrOfElements = 1000;
+console.log("Number of elements: " + nrOfElements);
+runBinarySearchTree(nrOfElements);
 
 global.gc();
-console.log(util.inspect(process.memoryUsage()))
 
-function runBinarySearchTree() {
-  let t0 = new Date();
-  let hrStart = process.hrtime();
-
-  var tree = [];
-  let inputArray = [];
-  var treelength = 0;
-  while(treelength < 10){
-    var tree = insert(Math.floor((Math.random()*100)+1),tree);
-    iterations++
-  }
-
-  console.log("Unsorted: "+tree);
-  console.log("Sorted: "+inOrderTraversal(tree,0,[]));
+function runBinarySearchTree(nrOfElements) {
+  var hrStart = process.hrtime();
+  var startMem = process.memoryUsage().rss;
+  console.info('start:\n' + util.inspect(process.memoryUsage()));
+  let tree = insertRandomValues(nrOfElements,[]);
+  console.info('after insert:\n' + util.inspect(process.memoryUsage()));
+  inOrderTraversal(tree,0,[]);
+  console.info('after inOrderTraversal:\n' + util.inspect(process.memoryUsage()));
+  findNode(Math.floor((Math.random() * nrOfElements * 10) + 1),tree,0,0);
+  findNode(Math.floor((Math.random() * nrOfElements * 10) + 1),tree,0,0);
+  findNode(Math.floor((Math.random() * nrOfElements * 10) + 1),tree,0,0);
+  var endMem = process.memoryUsage().rss;
+  console.info('after 3x random findNode:\n' + util.inspect(process.memoryUsage()));
 
   let hrEnd = process.hrtime(hrStart);
-  let t1 = new Date();
-
-  console.info(t1 - t0 + 'ms');
-  console.info(hrEnd[1] / 1000000 + 'ms');
+  console.info('Runtime: ' + hrEnd[0] + ' s and ' + hrEnd[1] / 1000000 + ' ms');
+  console.info('Memory: ' + (endMem - startMem));
 }

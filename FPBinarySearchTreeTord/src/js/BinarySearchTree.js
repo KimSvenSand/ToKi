@@ -10,54 +10,63 @@ export function createTree(inputArray){
   return returnArray;
 }
 
-export function inputArrayInTree(inputArray,placeInInputArray,returnArray){
-    if(inputArray.length-1 >= placeInInputArray){
-      returnArray = findPlaceForInput(returnArray,0,inputArray[placeInInputArray]);
-      returnArray = inputArrayInTree(inputArray,(placeInInputArray+1),returnArray);
-    }
-  return returnArray;
+export function insertRandomValues(nrOfElements,returnArray){
+  var returnCopy = returnArray;
+  if(nrOfElements > 0){
+    returnCopy = insertRandomValues(nrOfElements-1,returnCopy);
+    returnCopy = insert(Math.floor((Math.random() * nrOfElements * 10) + 1),0, returnCopy);
+  }
+  return returnCopy;
 }
 
-export function findPlaceForInput(returnArray,place,input){
-  if(returnArray[place] == undefined){
-    returnArray[place] = input;
+export function inputArrayInTree(inputArray,placeInInputArray,returnArray){
+    var arrayCopy = returnArray.slice();
+    if(inputArray.length-1 >= placeInInputArray){
+      arrayCopy = insert(inputArray[placeInInputArray],0,arrayCopy);
+      arrayCopy = inputArrayInTree(inputArray,(placeInInputArray+1),arrayCopy);
+    }
+  return arrayCopy;
+}
+
+
+export function insert(input,place,tree){
+  var arrayCopy = tree.slice();
+  if(arrayCopy[place] == undefined){
+    arrayCopy[place] = input;
   }else{
-    if(input < returnArray[place]){
-      returnArray = findPlaceForInput(returnArray,(place * 2 +1),input);
-    }else if(input > returnArray[place]){
-      returnArray = findPlaceForInput(returnArray,(place * 2 + 2),input);
+    if(input < arrayCopy[place]){
+      arrayCopy = insert(input,(place * 2 +1),arrayCopy);
+    }else if(input > arrayCopy[place]){
+      arrayCopy = insert(input,(place * 2 + 2),arrayCopy);
     }
   }
-  return returnArray;
-}
-
-export function insert(input,tree){
-  var returnArray = findPlaceForInput(tree,0,input);
-  return returnArray;
+  return arrayCopy;
 }
 
 export function findNode(input,tree,place,returnValue){
+  var returnCopy = returnValue;
   if(tree[place] == undefined){
-    returnValue = undefined;
+    returnCopy = undefined;
   }else if(input == tree[place]){
-    returnValue = tree[place];
+    returnCopy = tree[place];
   }else if(input < tree[place]){
-    returnValue = findNode(input,tree,(place*2+1));
+    returnCopy = findNode(input,tree,(place*2+1),returnCopy);
   }else{
-    returnValue = findNode(input,tree,(place*2+2));
+    returnCopy = findNode(input,tree,(place*2+2),returnCopy);
   }
-  return returnValue;
+  return returnCopy;
 }
 
 export function inOrderTraversal(tree,place,returnArray){
+  var arrayCopy = returnArray.slice();
   if(tree[place*2+1] != undefined){
-    returnArray = inOrderTraversal(tree,(place*2+1),returnArray);
+    arrayCopy = inOrderTraversal(tree,(place*2+1),arrayCopy);
   }
   if(tree[place] != undefined){
-    returnArray.push(tree[place]);
+    arrayCopy.push(tree[place]);
   }
   if(tree[place*2+2] != undefined){
-    returnArray = inOrderTraversal(tree,(place*2+2),returnArray);
+    arrayCopy = inOrderTraversal(tree,(place*2+2),arrayCopy);
   }
-  return returnArray;
+  return arrayCopy;
 }

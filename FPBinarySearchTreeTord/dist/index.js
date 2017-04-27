@@ -10,33 +10,29 @@ function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { de
 
 'use strict';
 
-console.info('start' + _util2.default.inspect(process.memoryUsage()));
-runBinarySearchTree();
-console.info(_util2.default.inspect(process.memoryUsage()));
+console.info("FP Tree search algorithms:");
+var nrOfElements = 1000;
+console.log("Number of elements: " + nrOfElements);
+runBinarySearchTree(nrOfElements);
 
 global.gc();
-console.log(_util2.default.inspect(process.memoryUsage()));
 
-function runBinarySearchTree() {
-  let t0 = new Date();
-  let hrStart = process.hrtime();
-
-  var tree = [13, 6, 24, 2, 3, 7, 9, 16, 20, 32];
-  tree = (0, _BinarySearchTree.createTree)(tree);
-  /*let inputArray = [];
-  var treelength = 0;
-  while(treelength < 10){
-    var tree = insert(Math.floor((Math.random()*100)+1),tree);
-    iterations++
-  }*/
-
-  //console.log("Unsorted: "+tree);
-  //console.log("Sorted: "+inOrderTraversal(tree,0,[]));
+function runBinarySearchTree(nrOfElements) {
+  var hrStart = process.hrtime();
+  var startMem = process.memoryUsage().rss;
+  console.info('start:\n' + _util2.default.inspect(process.memoryUsage()));
+  let tree = (0, _BinarySearchTree.insertRandomValues)(nrOfElements, []);
+  console.info('after insert:\n' + _util2.default.inspect(process.memoryUsage()));
+  (0, _BinarySearchTree.inOrderTraversal)(tree, 0, []);
+  console.info('after inOrderTraversal:\n' + _util2.default.inspect(process.memoryUsage()));
+  (0, _BinarySearchTree.findNode)(Math.floor(Math.random() * nrOfElements * 10 + 1), tree, 0, 0);
+  (0, _BinarySearchTree.findNode)(Math.floor(Math.random() * nrOfElements * 10 + 1), tree, 0, 0);
+  (0, _BinarySearchTree.findNode)(Math.floor(Math.random() * nrOfElements * 10 + 1), tree, 0, 0);
+  var endMem = process.memoryUsage().rss;
+  console.info('after 3x random findNode:\n' + _util2.default.inspect(process.memoryUsage()));
 
   let hrEnd = process.hrtime(hrStart);
-  let t1 = new Date();
-
-  console.info(t1 - t0 + 'ms');
-  console.info(hrEnd[1] / 1000000 + 'ms');
+  console.info('Runtime: ' + hrEnd[0] + ' s and ' + hrEnd[1] / 1000000 + ' ms');
+  console.info('Memory: ' + (endMem - startMem));
 }
 //# sourceMappingURL=index.js.map
