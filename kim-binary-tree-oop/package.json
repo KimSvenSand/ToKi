@@ -5,7 +5,7 @@
   "main": "index.js",
   "scripts": {
     "test": "grunt test && mocha -R nyan",
-    "start": "grunt && node --expose-gc --trace_gc dist/index.js"
+    "start": "grunt && node --expose-gc dist/index.js"
   },
   "keywords": [],
   "author": "",

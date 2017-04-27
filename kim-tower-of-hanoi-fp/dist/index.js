@@ -10,18 +10,24 @@ function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { de
 
 'use strict';
 
-var size = 22;
-var hanoiPegs = (0, _towerOfHanoiFunctions.buildTower)(size, []).concat([[], []]);
+console.log('Tower of Hanoi OOP');
+var size = 25;
+console.log("Data size: " + size);
+let hanoiPegs = (0, _towerOfHanoiFunctions.buildTower)(size, []).concat([[], []]);
 runMeasurements(hanoiPegs);
+global.gc();
 
 function runMeasurements(hanoiPegs) {
-  var hrStart = process.hrtime();
+  let hrStart = process.hrtime();
+  let memStart = process.memoryUsage().rss;
   console.info('start:\n' + _util2.default.inspect(process.memoryUsage()));
 
   (0, _towerOfHanoiFunctions.hanoi)(hanoiPegs, 0, 2, 1);
 
   console.info('end:\n' + _util2.default.inspect(process.memoryUsage()));
+  let memEnd = process.memoryUsage().rss;
   let hrEnd = process.hrtime(hrStart);
   console.info(hrEnd[0] + 's and ' + hrEnd[1] / 1000000 + 'ms');
+  console.info('Memory: ' + (memEnd - memStart));
 }
 //# sourceMappingURL=index.js.map

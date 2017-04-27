@@ -12,13 +12,16 @@ function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { de
 
 'use strict';
 
-var size = 1000;
+console.log('Search tree algorithms OOP');
+var size = 10000;
+console.log("Data size: " + size);
 
 runMeasurements(size);
+global.gc();
 
 function runMeasurements(size) {
   var hrStart = process.hrtime();
-  var startMem = process.memoryUsage().heapUsed;
+  var startMem = process.memoryUsage().rss;
   console.info('start:\n' + _util2.default.inspect(process.memoryUsage()));
   var mTree = new _BinarySearchTree2.default(Math.floor(Math.random() * size * 10 + 1));
   mTree.initiateRandomTree(size);
@@ -28,14 +31,11 @@ function runMeasurements(size) {
   mTree.findNode(Math.random() * size * 2 + 1);
   mTree.findNode(Math.random() * size * 2 + 1);
   mTree.findNode(Math.random() * size * 2 + 1);
-  var endMem = process.memoryUsage().heapUsed;
+  var endMem = process.memoryUsage().rss;
   console.info('after 3x random findNode:\n' + _util2.default.inspect(process.memoryUsage()));
 
   let hrEnd = process.hrtime(hrStart);
-  console.info(hrEnd[0] + 's and ' + hrEnd[1] / 1000000 + 'ms');
-  console.info('Initial memory usage: ' + startMem);
-  console.info('Final memory usage: ' + endMem);
-  console.info(hrEnd[0] * 1000 + hrEnd[1] / 1000000);
-  console.info(endMem - startMem);
+  console.info('Runtime: ' + hrEnd[0] + 's and ' + hrEnd[1] / 1000000 + 'ms');
+  console.info('Memory: ' + (endMem - startMem));
 }
 //# sourceMappingURL=index.js.map

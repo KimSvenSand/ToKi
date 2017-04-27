@@ -12,21 +12,27 @@ function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { de
 
 'use strict';
 
-var size = 10000000;
+console.log('Shellsort OOP');
+var size = 6000;
+console.log("Data size: " + size);
 
 var array = createRandomArray(size);
 runMeasurements(array);
+global.gc();
 
 function runMeasurements(array) {
   var hrStart = process.hrtime();
+  var memStart = process.memoryUsage().rss;
   console.info('start:\n' + _util2.default.inspect(process.memoryUsage()));
 
   var shellsort = new _Shellsort2.default();
   shellsort.sort(array);
 
   console.info('end:\n' + _util2.default.inspect(process.memoryUsage()));
+  var memEnd = process.memoryUsage().rss;
   let hrEnd = process.hrtime(hrStart);
   console.info(hrEnd[0] + 's and ' + hrEnd[1] / 1000000 + 'ms');
+  console.log("Memory: " + (memEnd - memStart));
 }
 
 function createRandomArray(size) {

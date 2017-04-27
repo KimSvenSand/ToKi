@@ -2,13 +2,16 @@ import util from 'util';
 import { insert, findNode, inOrderTraversal } from './js/tree-functions'
 'use strict';
 
+console.log('Search tree algorithms FP');
 var size = 10000;
+console.log("Data size: " + size);
 
 runMeasurements(size);
+global.gc();
 
 function runMeasurements(size) {
   var hrStart = process.hrtime();
-  var startMem = process.memoryUsage().heapUsed;
+  var startMem = process.memoryUsage().rss;
   console.info('start:\n' + util.inspect(process.memoryUsage()));
   var tree = createRandomTree(size);
   console.info('after insert:\n' + util.inspect(process.memoryUsage()));
@@ -17,15 +20,12 @@ function runMeasurements(size) {
   findNode(getRandom(), tree);
   findNode(getRandom(), tree);
   findNode(getRandom(), tree);
-  var endMem = process.memoryUsage().heapUsed;
+  var endMem = process.memoryUsage().rss;
   console.info('after 3x random findNode:\n' + util.inspect(process.memoryUsage()));
 
   let hrEnd = process.hrtime(hrStart);
-  console.info(hrEnd[0] + 's and ' + hrEnd[1] / 1000000 + 'ms');
-  console.info('Initial memory usage: ' + startMem);
-  console.info('Final memory usage: ' + endMem);
-  console.info(hrEnd[0] * 1000 + hrEnd[1] / 1000000);
-  console.info(endMem - startMem);
+  console.info('Runtime: ' + hrEnd[0] + 's and ' + hrEnd[1] / 1000000 + 'ms');
+  console.info('Memory: ' + (endMem - startMem));
 }
 
 function createRandomTree(size, tree) {

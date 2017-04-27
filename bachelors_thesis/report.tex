@@ -56,19 +56,16 @@ Kim Svensson Sand \and Tord Eliasson
 \section{Introduction}
 Programming paradigms is a way to classify a certain way of programming [58]. Each paradigm has its own set of rules for how the code should be written. Some programming languages make it possible to write code according to one paradigm,  while others make it possible to write according to multiple paradigms. 
 
-We will compare two of the bigger programming paradigms, object-oriented programming and functional programming. To compare these we have chosen four different algorithms which we each will implement twice. One according to OOP and one according to FP. The different algorithms we will implement is tree search algorithms, shell sort, tower of hanoi and Dijkstra's algorithm. The comparison we will make between the algorithms is runtime, memory usage, time of development and lines of code. All algorithms will be written in JavaScript.
+We will compare two of the bigger programming paradigms, object-oriented programming and functional programming. To compare these we have chosen four different algorithms which we each will implement twice. Once according to OOP and once according to FP. The different algorithms we will implement is tree search algorithms, shell sort, tower of hanoi and Dijkstra's algorithm. The comparison we will make between the algorithms is runtime, memory usage, time of development and lines of code. All algorithms will be written in JavaScript.
 
 Object-oriented or imperative languages are dominating paradigm today with languages such as C, C++, Java and C\#. However, functional languages seem to be of interest in the industry for handling big data and concurrency with languages such as Scala, Erlang or Haskell \cite{drboolean, eriksen, erikarl}. Some are also arguing that a more functional approach will give you less code, more readable code, code that is easier to maintain and easier to test, and that learning it will give you better experience as a programmer \cite{drboolean, meijer}.
-
-Our research questions is:
+\subsection{Research Questions}
 Will functional versus object oriented approaches in JavaScript have an impact on performance, such as runtime and memory usage?
 Can programmers with an object oriented background decrease development time by using practises from functional programming?
 
-When programming paradigms is created there is obund
+With the rise of popularity of functional programming and the dominance of object-oriented programming, of course people is starting to ask the question,”Which paradigm is the best?”. Some studies have tried to answer this question, by comparing different programming languages, but while comparing this you also compare different languages in general, different compilers and so forth. This thesis will take the question one step further, by writing both paradigms in JavaScript, the comparison can be made without having to compare a lot of different 
 
 Many people before has asked the question, “Are functional programming better than object-oriented programming?”. But all the different papers and theses we could find around it, compared different programming languages, compilers and so forth. While trying to find something to write our thesis about, we found this really interesting, and wanted to get some concrete answers while doing these comparisons in a single programming language. Nether of us had any previous experience of functional programming going into this, so our research questions more than performance of the different paradigm, was what can we as OOP developers, gain from learning FP.
-
-When starting with our bachelor thesis we wanted to do an experiment which we could program ourselves. While looking at different ways to do programming we found out about functional programming, which is a totally new way to program for us and at the same time current since it is a good paradigm to write programs that run parallelly, which big data utilizes very much. SInce we only have learned about object-oriented programming in school, we thought this would be an interesting experiment to do. So we based our questions around ourselves and our experiences and if we can get better result by using functional programming. 
 
 Introduktion till ämnet
 Vad vi ska göra
@@ -275,6 +272,7 @@ dog.logAnimal();
 \subsection{JavaScript}
 JavaScript is prototype based with first class functions. This makes it a multi-paradigm language with support for Object-oriented, imperative and functional paradigms. How does the support of Functional programming and object-oriented programming look in JavaScript, how many of the listed concepts above is supported?
 \subsubsection{Functional programming}
+\label{sec:js-fp}
 JavaScript is not a functional language, but it is possible to write functional code with it [1]. There are also libraries that makes functional programming in JavaScript easier, such as Underscore.js [5]. However, we will use ECMA 2015, ES6, that already provide many of the functions provided by Underscore.js. This is also to use the same environment for our different implementations in this experiment.
 
 In JavaScript it is possible to treat functions as any other variable, pass them as function parameters or store them in arrays, so called first class functions [1]. There are also higher order functions such as map(), filter() and reduce() that might replace loops [2]:
@@ -286,6 +284,8 @@ In JavaScript it is possible to treat functions as any other variable, pass them
 \end{description}
 
 However there is no automatic currying or immutable data structures in JavaScript. JavaScript is also dynamically type checked. All of these can be added to JavaScript with libraries.
+
+There is a call stack limit in JavaScript that varies depending on the runtime environment. This limits the number of function calls that can be made, which also limits recursion. In ES6 there is tail call optimization that makes it possible to make certain function calls without adding to the call stack, that would allow for better recursing. However this is not implemented for most servers and browsers yet [17].
 \subsubsection{Object oriented programming}
 JavaScript has always had support for OOP. But 
 with ES6, OOP starts to look more like classical OOP languages like for example Java [30].
@@ -312,7 +312,7 @@ Guido Salvaneschi, et al. have conducted an empirical evaluation of the impact o
 
 In "Using Functional Programming within an Industrial Product Group: Perspectives and Perceptions" [49] David Scott et al. presents a case-study of using FP in the multiparadigm language OCaml in a large product development team. They found that the team's project was a success even though there were some drawbacks to using OCaml, such as lack of tool support. The engineers believed that OCaml enabled them to be more productive than if they would have used one of the mainstream languages, such as C++ or Python.
 \section{Method}
-In this experiment we will implement four different algorithms. We have chosen algorithms that are well known, so that our focus will be on the different implementations, rather than on how the algorithms work. 
+In this experiment each person will implement four different algorithms, once with FP and once with OOP. We have chosen algorithms that are well known, so that our focus will be on the different implementations, rather than on how the algorithms work. 
 \subsection{Algorithms}
 We will implement tree search algorithms, the shellsort algorithm, the tower of hanoi-algorithm and Dijkstra's algorithm. In the search tree we will implement tree traversal, which is a recursive algorithm, as is the tower of hanoi algorithm. These algorithms fit well for FP since it uses recursion. The implementation of the binary tree structure can however be implemented by using classes and objects, that is used in OOP. Shellsort uses state and iteration which is used in OOP and avoided in FP. Dijkstra's algorithm also uses state and iteration, and the graph can also be implemented using classes and objects.
 
@@ -525,7 +525,7 @@ return path[endNode]
 \end{lstlisting}
 \end{description}
 \subsection{Environment}
-We will implement the algorithms using Atom, a text editor, and compile and run our tests and our code with Node.js. To manage our dependencies we are using npm. For automation we are using Grunt.
+We will implement the algorithms using Atom, a text editor, and compile and run our tests and our code with Node.js. Tail call optimization is not available in Node.js, see \ref{sec:js-fp} manage our dependencies we are using npm. For automation we are using Grunt.
 
 Since node.js does not support ES6-modules we are using babel to transpile our ES6-modules to node-modules that are supported. We are doing this since we have prior experience with ES6 modules and not with node-modules. Since node.js support almost everything else in ES6 we will only be transpiling the modules, leaving our code in an ES6 standard.
 
@@ -571,11 +571,11 @@ For an implementation of an algorithm to be considered done the following has to
 \begin{itemize}
 \item Tests for the algorithm that are defined in appendix~\ref{appendix:test-cases} placed in (projectName)/es6-test
 \item A complete implementation of the algorithm that has passed the tests placed in (projectName)/src/js
-\item A measurement implementation that must run the algorithm and measure time and memory usage using node.js process. The implementation must have a function for creating randomized data of a certain size according to \ref{tab:measurements} 
+\item A measurement implementation that must run the algorithm and measure time and memory usage using node.js process. The implementation must have a function for creating randomized data of a certain size according to table~\ref{tab:measurements} 
 \item A timelog describing how long the implementation took. 
 \end{itemize}
 \subsection{Measurements}
-We will measure runtime, memory usage, code length and the development time of each implementation. The measurements are done on the algorithms described in this chapter and the algorithms will run on randomized data, described in \ref{tab:measurements}. We are not measuring the initiation of the randomized data, except for the tree search algorithms that include an insert-function. The algorithms are measured with three different sizes of data, described in \ref{tab:measurements} to get more accurate results.
+We will measure runtime, memory usage, code length and the development time of each implementation. The measurements are done on the algorithms described in this chapter and the algorithms will run on randomized data, described in table~\ref{tab:measurements}. We are not measuring the initiation of the randomized data, except for the tree search algorithms that include an insert-function. The algorithms are measured with three different sizes of data, described in table~\ref{tab:measurements} to get more accurate results.
 
 \begin{table}[H]
 \begin{tabular}{ | l p{10cm} | }

@@ -10,13 +10,16 @@ function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { de
 
 'use strict';
 
+console.log('Search tree algorithms FP');
 var size = 10000;
+console.log("Data size: " + size);
 
 runMeasurements(size);
+global.gc();
 
 function runMeasurements(size) {
   var hrStart = process.hrtime();
-  var startMem = process.memoryUsage().heapUsed;
+  var startMem = process.memoryUsage().rss;
   console.info('start:\n' + _util2.default.inspect(process.memoryUsage()));
   var tree = createRandomTree(size);
   console.info('after insert:\n' + _util2.default.inspect(process.memoryUsage()));
@@ -25,15 +28,12 @@ function runMeasurements(size) {
   (0, _treeFunctions.findNode)(getRandom(), tree);
   (0, _treeFunctions.findNode)(getRandom(), tree);
   (0, _treeFunctions.findNode)(getRandom(), tree);
-  var endMem = process.memoryUsage().heapUsed;
+  var endMem = process.memoryUsage().rss;
   console.info('after 3x random findNode:\n' + _util2.default.inspect(process.memoryUsage()));
 
   let hrEnd = process.hrtime(hrStart);
-  console.info(hrEnd[0] + 's and ' + hrEnd[1] / 1000000 + 'ms');
-  console.info('Initial memory usage: ' + startMem);
-  console.info('Final memory usage: ' + endMem);
-  console.info(hrEnd[0] * 1000 + hrEnd[1] / 1000000);
-  console.info(endMem - startMem);
+  console.info('Runtime: ' + hrEnd[0] + 's and ' + hrEnd[1] / 1000000 + 'ms');
+  console.info('Memory: ' + (endMem - startMem));
 }
 
 function createRandomTree(size, tree) {
