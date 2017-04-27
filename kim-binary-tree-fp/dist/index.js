@@ -10,13 +10,13 @@ function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { de
 
 'use strict';
 
-var size = 1000;
+var size = 10000;
 
 runMeasurements(size);
 
 function runMeasurements(size) {
   var hrStart = process.hrtime();
-  var startMem = process.memoryUsage().rss;
+  var startMem = process.memoryUsage().heapUsed;
   console.info('start:\n' + _util2.default.inspect(process.memoryUsage()));
   var tree = createRandomTree(size);
   console.info('after insert:\n' + _util2.default.inspect(process.memoryUsage()));
@@ -25,7 +25,7 @@ function runMeasurements(size) {
   (0, _treeFunctions.findNode)(getRandom(), tree);
   (0, _treeFunctions.findNode)(getRandom(), tree);
   (0, _treeFunctions.findNode)(getRandom(), tree);
-  var endMem = process.memoryUsage().rss;
+  var endMem = process.memoryUsage().heapUsed;
   console.info('after 3x random findNode:\n' + _util2.default.inspect(process.memoryUsage()));
 
   let hrEnd = process.hrtime(hrStart);
