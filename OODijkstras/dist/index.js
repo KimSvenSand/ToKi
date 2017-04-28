@@ -12,28 +12,43 @@ function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { de
 
 'use strict';
 
-console.info('start' + _util2.default.inspect(process.memoryUsage()));
-runDijkstrasAlgorithm();
-console.info(_util2.default.inspect(process.memoryUsage()));
+console.log("OOP Dijkstras algorithm:");
+var nrOfElements = 15;
+console.log("nrOfElements: " + nrOfElements);
+runDijkstrasAlgorithm(nrOfElements);
 
 global.gc();
-console.log(_util2.default.inspect(process.memoryUsage()));
 
-function runDijkstrasAlgorithm() {
-  let t0 = new Date();
-  let hrStart = process.hrtime();
+function runDijkstrasAlgorithm(nrOfElements) {
+  var hrStart = process.hrtime();
+  var memStart = process.memoryUsage().rss;
+  console.info('start:\n' + _util2.default.inspect(process.memoryUsage()));
+
   var dijk = new _Dijkstras2.default();
 
-  var nodes = ["node1", "node2", "node3", "node4", "node5", "node6"];
-  var edges = ["node1-node2=7", "node1-node4=8", "node1-node3=2", "node2-node4=6", "node3-node4=3", "node3-node5=4", "node4-node6=1", "node4-node5=5", "node5-node6=2"];
+  var nodes = [];
+  var edges = [];
+  for (var i = 1; i <= nrOfElements; i++) {
+    nodes.push("node" + i);
+    if (i > 1) {
+      edges.push("node" + i + "-node" + (i - 1) + "=" + Math.floor(Math.random() * 10 + 1));
+      if (i > 2) {
+        edges.push("node" + i + "-node" + (i - 2) + "=" + Math.floor(Math.random() * 10 + 1));
+      }
+    }
+  }
+  console.log(nodes);
+  console.log(edges);
+  dijk.addNodes(nodes);
+  dijk.addEdges(edges);
   var startNode = "node1";
-  var endNode = "node4";
-  console.log(dijk.dijkstras(nodes, edges, startNode, endNode));
+  var endNode = "node" + nrOfElements;
+  console.log(dijk.runDijkstrasAlgorithm(startNode, endNode));
 
+  console.info('end:\n' + _util2.default.inspect(process.memoryUsage()));
+  var memEnd = process.memoryUsage().rss;
   let hrEnd = process.hrtime(hrStart);
-  let t1 = new Date();
-
-  console.info(t1 - t0 + 'ms');
-  console.info(hrEnd[1] / 1000000 + 'ms');
+  console.info(hrEnd[0] + 's and ' + hrEnd[1] / 1000000 + 'ms');
+  console.log("Memory: " + (memEnd - memStart));
 }
 //# sourceMappingURL=index.js.map
