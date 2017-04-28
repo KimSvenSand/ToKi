@@ -83,3 +83,24 @@ function addWithCurrying(a, b) {
 var curryAdd = addWithCurrying(4);
 console.log(curryAdd(6));
 console.log(addWithCurrying(4, 6));
+
+//JavaScript Object handling
+var array = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10];
+var obj = {
+  text: 'Some text'
+}
+
+var arrayRef = array;
+var objRef = obj;
+
+// Gets references to original array and object.
+console.log(arrayRef); // [ 1, 2, 3, 4, 5, 6, 7, 8, 9, 10 ]
+console.log(objRef); // { text: 'Some text' }
+
+// Change stuff
+arrayRef.pop();
+objRef.text = 'Some other text';
+
+// Mutating new variables mutates original objects.
+console.log(array); // [ 1, 2, 3, 4, 5, 6, 7, 8, 9 ]
+console.log(obj); // { text: 'Some other text' }
