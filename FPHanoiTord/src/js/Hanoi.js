@@ -1,31 +1,25 @@
 'use strict';
 
 export function hanoi(disk,start,dest,aux,steps){
-  if(disk == 1){
-    steps++;
-    dest.push(start.pop());
-  }else if(disk != 0){
-    var a = hanoi(disk-1, start, aux, dest,steps);
-    start = a[0];
-    dest = a[1];
-    aux = a[2];
-    steps = a[3];
-    steps++;
-    dest.push(start.pop());
-    var b = hanoi(disk-1, aux, dest, start,steps);
-    aux = b[0];
-    start = b[1];
-    dest = b[2];
-    steps = b[3];
+  var diskCopy=disk,startCopy=start.slice(),destCopy=dest.slice(),auxCopy=aux.slice(),stepsCopy=steps;
+  if(diskCopy == 1){
+    stepsCopy++;
+    destCopy.push(startCopy.pop());
+  }else if(diskCopy != 0){
+    var [startCopy,destCopy,auxCopy,stepsCopy] = hanoi(diskCopy-1, startCopy, auxCopy, destCopy,stepsCopy);
+    stepsCopy++;
+    destCopy.push(startCopy.pop());
+    var [auxCopy,startCopy,destCopy,stepsCopy] = hanoi(diskCopy-1, auxCopy, destCopy, startCopy,stepsCopy);
   }
-  return [start,aux,dest,steps];
+  return [startCopy,auxCopy,destCopy,stepsCopy];
 }
 
 
-export function createStartPeg(nrOfPegs,array){
-  if(nrOfPegs > 0){
-    array.push(nrOfPegs);
-    createStartPeg(nrOfPegs-1, array);
+export function createStartPeg(nrOfDisks,peg){
+  var pegCopy = peg.slice();
+  if(nrOfDisks > 0){
+    pegCopy.push(nrOfDisks);
+    pegCopy = createStartPeg(nrOfDisks-1, pegCopy);
   }
-  return array;
+  return pegCopy;
 }

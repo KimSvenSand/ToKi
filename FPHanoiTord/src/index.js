@@ -3,25 +3,23 @@ import {createStartPeg} from './js/Hanoi.js';
 import util from 'util';
 'use strict';
 
-console.info('start' + util.inspect(process.memoryUsage()));
-runTowerOfHanoi();
-console.info(util.inspect(process.memoryUsage()));
+console.log("FP Tower of Hanoi algorithm:");
+var nrOfElements = 10;
+runTowerOfHanoi(nrOfElements);
 
 global.gc();
-console.log(util.inspect(process.memoryUsage()))
 
-function runTowerOfHanoi() {
-  let t0 = new Date();
-  let hrStart = process.hrtime();
+function runTowerOfHanoi(nrOfElements) {
+  var hrStart = process.hrtime();
+  var memStart = process.memoryUsage().rss;
+  console.info('start:\n' + util.inspect(process.memoryUsage()));
 
-  var nrOfDisks = 3;
-  var startPeg = createStartPeg(nrOfDisks,[]);
-  var afterHanoi = hanoi(nrOfDisks,startPeg,[],[],0);
-  console.log(afterHanoi);
+  var startPeg = createStartPeg(nrOfElements,[]);
+  hanoi(nrOfElements,startPeg,[],[],0);
 
+  console.info('end:\n' + util.inspect(process.memoryUsage()));
+  var memEnd = process.memoryUsage().rss;
   let hrEnd = process.hrtime(hrStart);
-  let t1 = new Date();
-
-  console.info(t1 - t0 + 'ms');
-  console.info(hrEnd[1] / 1000000 + 'ms');
+  console.info(hrEnd[0] + 's and ' + hrEnd[1] / 1000000 + 'ms');
+  console.log("Memory: " + (memEnd - memStart));
 }
