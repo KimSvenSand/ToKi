@@ -12,12 +12,13 @@ function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { de
 
 'use strict';
 
+global.gc();
 console.log('Search tree algorithms OOP');
 var size = 10000;
 console.log("Data size: " + size);
 
 runMeasurements(size);
-global.gc();
+// global.gc();
 
 function runMeasurements(size) {
   var hrStart = process.hrtime();

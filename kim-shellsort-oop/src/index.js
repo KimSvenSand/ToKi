@@ -21,7 +21,7 @@ function runMeasurements(array) {
   console.info('end:\n' + util.inspect(process.memoryUsage()));
   var memEnd = process.memoryUsage().rss;
   let hrEnd = process.hrtime(hrStart);
-  console.info(hrEnd[0] + 's and ' + hrEnd[1] / 1000000 + 'ms');
+  console.info('Runtime: ' + hrEnd[0] + 's and ' + hrEnd[1] / 1000000 + 'ms');
   console.log("Memory: " + (memEnd - memStart));
 }
 

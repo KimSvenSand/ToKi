@@ -21,7 +21,7 @@ function runMeasurements(graph, dijkstras) {
   console.info('end:\n' + util.inspect(process.memoryUsage()));
   let memEnd = process.memoryUsage().rss;
   let hrEnd = process.hrtime(hrStart);
-  console.info(hrEnd[0] + 's and ' + hrEnd[1] / 1000000 + 'ms');
+  console.info('Runtime: ' + hrEnd[0] + 's and ' + hrEnd[1] / 1000000 + 'ms');
   console.info('Memory: ' + (memEnd - memStart));
 }
 
