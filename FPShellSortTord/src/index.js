@@ -1,31 +1,28 @@
 import {getGapSequence} from './js/Shellsort.js';
-import {shellsort} from './js/Shellsort.js';
+import {shellsortContainer} from './js/Shellsort.js';
 import {random} from './js/Shellsort.js';
 import util from 'util';
 'use strict';
 
-console.info('start' + util.inspect(process.memoryUsage()));
-runShellsort();
-console.info(util.inspect(process.memoryUsage()));
+console.log("FP Shellsort algorithm:");
+var nrOfElements = 1000;
+console.log("Number of elements: " + nrOfElements);
+runShellsort(nrOfElements);
 
 global.gc();
-console.log(util.inspect(process.memoryUsage()))
 
-function runShellsort() {
-  let t0 = new Date();
-  let hrStart = process.hrtime();
+function runShellsort(nrOfElements) {
+  var hrStart = process.hrtime();
+  var memStart = process.memoryUsage().rss;
+  console.info('start:\n' + util.inspect(process.memoryUsage()));
 
-  var gapSequence = getGapSequence(2,[]);
-  var array = random(10,[]);
+  var gapSequence = getGapSequence(10,[]);
+  var array = random(nrOfElements,[]);
+  var sortedArray = shellsortContainer(array,gapSequence);
 
-  console.log("Unsorted:");
-  console.log(array);
-  console.log("Sorted:");
-  console.log(shellsort(array,gapSequence));
-  
+  console.info('end:\n' + util.inspect(process.memoryUsage()));
+  var memEnd = process.memoryUsage().rss;
   let hrEnd = process.hrtime(hrStart);
-  let t1 = new Date();
-
-  console.info(t1 - t0 + 'ms');
-  console.info(hrEnd[1] / 1000000 + 'ms');
+  console.info(hrEnd[0] + 's and ' + hrEnd[1] / 1000000 + 'ms');
+  console.log("Memory: " + (memEnd - memStart));
 }

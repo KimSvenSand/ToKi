@@ -5,78 +5,87 @@ Object.defineProperty(exports, "__esModule", {
 });
 exports.getGapSequence = getGapSequence;
 exports.random = random;
-exports.shellsort = shellsort;
+exports.shellsortContainer = shellsortContainer;
 exports.findBiggestGap = findBiggestGap;
-exports.countCurrentGap = countCurrentGap;
-exports.placeGap = placeGap;
+exports.shellsort = shellsort;
+exports.useCurrentGap = useCurrentGap;
 exports.replaceValues = replaceValues;
 function getGapSequence(length, gapSequence) {
+  var sequenceCopy = gapSequence.slice();
   if (length >= 0) {
     if (length == 0) {
       gapSequence.push(0);
     } else {
-      gapSequence = getGapSequence(length - 1, gapSequence);
+      sequenceCopy = getGapSequence(length - 1, sequenceCopy);
     }
   }
 
-  gapSequence.push(9 * (Math.pow(4, length) - Math.pow(2, length)) + 1);
-  gapSequence.push(Math.pow(2, length + 2) * (Math.pow(2, length + 2) - 3) + 1);
+  sequenceCopy.push(9 * (Math.pow(4, length) - Math.pow(2, length)) + 1);
+  sequenceCopy.push(Math.pow(2, length + 2) * (Math.pow(2, length + 2) - 3) + 1);
 
-  return gapSequence;
+  return sequenceCopy;
 }
 
 function random(length, array) {
+  var arrayCopy = array.slice();
   if (length >= 0) {
-    array.push(Math.floor(Math.random() * 100 + 1));
-    array = random(length - 1, array);
+    arrayCopy.push(Math.floor(Math.random() * 100 + 1));
+    arrayCopy = random(length - 1, array);
   }
-  return array;
+  return arrayCopy;
 }
 
-function shellsort(array, gapSequence) {
-  var currentGapIndex = findBiggestGap(array, gapSequence, 0);
-  var sortedArray = countCurrentGap(currentGapIndex, gapSequence, 0, 0, array);
+function shellsortContainer(inputArray, gapSequence) {
+  var currentGapIndex = findBiggestGap(inputArray.length, gapSequence, 0);
+  var sortedArray = shellsort(currentGapIndex, gapSequence, 0, 0, inputArray);
   return sortedArray;
 }
 
-function findBiggestGap(array, gapSequence, currentGapIndex) {
-  if (gapSequence[currentGapIndex] > array.length / 2) {
-    currentGapIndex = currentGapIndex - 1;
-  } else if (gapSequence[currentGapIndex] < array.length / 2) {
-    currentGapIndex = findBiggestGap(array, gapSequence, currentGapIndex + 1);
+function findBiggestGap(inputArrayLength, gapSequence, currentGapIndex) {
+  var index = currentGapIndex;
+  if (gapSequence[index] > inputArrayLength / 2) {
+    index = index - 1;
+  } else if (gapSequence[index] < inputArrayLength / 2) {
+    index = findBiggestGap(inputArrayLength, gapSequence, index + 1);
   }
-  return currentGapIndex;
+  return index;
 }
 
-function countCurrentGap(currentGapIndex, gapSequence, currentValue, currentIndex, array) {
+function shellsort(currentGapIndex, gapSequence, currentValue, currentIndex, inputArray) {
+  var arrayCopy = inputArray.slice();
   if (gapSequence[currentGapIndex] > 0) {
-    array = placeGap(gapSequence[currentGapIndex], 0, gapSequence[currentGapIndex], array);
-    countCurrentGap(currentGapIndex - 1, gapSequence, currentValue, currentIndex, array);
+    arrayCopy = useCurrentGap(gapSequence[currentGapIndex], 0, gapSequence[currentGapIndex], arrayCopy);
+    arrayCopy = shellsort(currentGapIndex - 1, gapSequence, currentValue, currentIndex, arrayCopy);
   }
-  return array;
+  return arrayCopy;
 }
 
-function placeGap(currentGap, currentValue, currentIndex, array) {
-  if (currentIndex < array.length) {
-    currentValue = array[currentIndex];
-    var arr = replaceValues(array, currentIndex, currentGap, currentValue);
-    array = arr[0];
-    currentIndex = arr[1];
-    array[currentIndex] = currentValue;
+function useCurrentGap(currentGap, currentValue, currentIndex, inputArray) {
+  var arrayCopy = inputArray.slice();
+  var indexCopy = currentIndex;
+  var valueCopy = currentValue;
+  if (indexCopy < arrayCopy.length) {
+    valueCopy = arrayCopy[indexCopy];
+    var arr = replaceValues(arrayCopy, indexCopy, currentGap, valueCopy);
+    arrayCopy = arr[0];
+    indexCopy = arr[1];
+    arrayCopy[indexCopy] = valueCopy;
 
-    array = placeGap(currentGap, currentValue, currentIndex + 1, array);
+    arrayCopy = useCurrentGap(currentGap, valueCopy, currentIndex + 1, arrayCopy);
   }
-  return array;
+  return arrayCopy;
 }
 
-function replaceValues(array, currentIndex, currentGap, currentValue) {
-  if (currentIndex - currentGap >= 0 && array[currentIndex - currentGap] > currentValue) {
-    array[currentIndex] = array[currentIndex - currentGap];
-    currentIndex = currentIndex - currentGap;
-    var arr = replaceValues(array, currentIndex, currentGap, currentValue);
-    array = arr[0];
-    currentIndex = arr[1];
+function replaceValues(inputArray, currentIndex, currentGap, currentValue) {
+  var arrayCopy = inputArray.slice();
+  var indexCopy = currentIndex;
+  if (indexCopy - currentGap >= 0 && arrayCopy[indexCopy - currentGap] > currentValue) {
+    arrayCopy[currentIndex] = arrayCopy[currentIndex - currentGap];
+    indexCopy = indexCopy - currentGap;
+    var arr = replaceValues(arrayCopy, indexCopy, currentGap, currentValue);
+    arrayCopy = arr[0];
+    indexCopy = arr[1];
   }
-  return [array, currentIndex];
+  return [arrayCopy, indexCopy];
 }
 //# sourceMappingURL=Shellsort.js.map

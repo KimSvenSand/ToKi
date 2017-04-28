@@ -15,7 +15,7 @@ describe('Shellsort', function () {
       expectedResult = [1, 2, 3, 4, 6, 7, 8, 9, 11, 15];
       ;
 
-      (0, _chai.expect)((0, _Shellsort.shellsort)(array, gapSequence)).to.eql(expectedResult);
+      (0, _chai.expect)((0, _Shellsort.shellsortContainer)(array, gapSequence)).to.eql(expectedResult);
     });
   });
 
@@ -23,7 +23,7 @@ describe('Shellsort', function () {
     it("should return an empty array", function () {
       expectedResult = [];
 
-      (0, _chai.expect)((0, _Shellsort.shellsort)(emptyArray, gapSequence)).to.eql(expectedResult);
+      (0, _chai.expect)((0, _Shellsort.shellsortContainer)(emptyArray, gapSequence)).to.eql(expectedResult);
     });
   });
 });

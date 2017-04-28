@@ -1,5 +1,5 @@
 import {getGapSequence} from '../dist/js/Shellsort';
-import {shellsort} from '../dist/js/Shellsort';
+import {shellsortContainer} from '../dist/js/Shellsort';
 import { expect } from 'chai';
 
 describe('Shellsort', function() {
@@ -13,7 +13,7 @@ describe('Shellsort', function() {
       expectedResult = [1,2,3,4,6,7,8,9,11,15];
 ;
 
-      expect(shellsort(array,gapSequence)).to.eql(expectedResult);
+      expect(shellsortContainer(array,gapSequence)).to.eql(expectedResult);
     });
   });
 
@@ -22,7 +22,7 @@ describe('Shellsort', function() {
       expectedResult = [];
 
 
-      expect(shellsort(emptyArray,gapSequence)).to.eql(expectedResult);
+      expect(shellsortContainer(emptyArray,gapSequence)).to.eql(expectedResult);
     });
   });
 });
