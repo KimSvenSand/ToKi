@@ -2,8 +2,8 @@ import { dijkstras, getNeighborEdges, getNeighborNodes } from './js/dijkstras-fu
 import util from 'util';
 'use strict';
 
-console.log('Dijkstras OOP');
-let size = 15;
+console.log('Dijkstras FP');
+let size = 20;
 console.log("Data size: " + size);
 let graph = createGraph(size);
 runMeasurements(graph)
