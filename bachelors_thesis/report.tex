@@ -56,11 +56,11 @@ Kim Svensson Sand \and Tord Eliasson
 \end{itemize}
 
 \section{Introduction}
-Programming paradigms is a way to classify a certain way of programming [58]. Each paradigm has its own set of rules for how the code should be written. Some programming languages make it possible to write code according to one paradigm,  while others make it possible to write according to multiple paradigms. 
+Programming paradigms is a way to classify a certain way of programming \cite{web:programming-paradigms}. Each paradigm has its own set of rules for how the code should be written. Some programming languages make it possible to write code according to one paradigm,  while others make it possible to write according to multiple paradigms. 
 
 In the 1950's and 60's multiple high-level languages were developed, that today's programming languages are based upon \cite{gabmar}. These were imperative languages such as Fortran and Algol, functional languages such as Lisp and object-oriented languages such as Simula. Originally Lisp had performance issues and has not been used a lot commercially, but versions of it are still used today. However it is mostly used an academic context. In the 70's C was introduced and quickly established itself thanks to it's ability to access low-level functionality, compact syntax and it's good compiler. In the 80's the object oriented language C++ was developed. It was based on C and and took a lot of inspiration from Simula. Java, that is based on C++ was introduced in the 90's. Since imperative languages gained the upper hand in the 60's and 70's new languages were based on those and continued being the most used. 
 
-Object-oriented or imperative languages are dominating today with languages such as C, C++, Java and C\#. However, functional languages seem to be of interest in the industry again for handling big data and concurrency with languages such as Scala, Erlang or Haskell \cite{drboolean, eriksen, erikarl}. There is a performance difference where functional languages tend to be slower, but there are also positive aspects that could compensate for those, such as memory usage and less code \cite{fogus} [15].  Some are also arguing that a more functional approach will give you more readable code, code that is easier to maintain and easier to test, and that learning it will give you better experience as a programmer \cite{drboolean, meijer}. 
+Object-oriented or imperative languages are dominating today with languages such as C, C++, Java and C\#. However, functional languages seem to be of interest in the industry again for handling big data and concurrency with languages such as Scala, Erlang or Haskell \cite{drboolean, eriksen, erikarl}. There is a performance difference where functional languages tend to be slower, but there are also positive aspects that could compensate for those, such as memory usage and less code \cite{fogus, alomgi}.  Some are also arguing that a more functional approach will give you more readable code, code that is easier to maintain and easier to test, and that learning it will give you better experience as a programmer \cite{drboolean, meijer}. 
 
 We will compare two programming paradigms, object-oriented programming and functional programming. To compare these we have chosen four different algorithms which we each will implement twice. Once according to the object-oriented paradigm and once according to the functional paradigm. The different algorithms we will implement are tree search algorithms, shell sort algorithm, tower of hanoi algorithm and Dijkstra's algorithm. The comparisons we will make between the algorithms are runtime, memory usage, time of development and lines of code. All algorithms will be written in JavaScript.
 \subsection{Research Questions}
@@ -209,14 +209,14 @@ addWithCurrying(4, 6); //Also outputs 10
 \item [Immutable data structures] - In functional programming mutations, that are side effects, are avoided \cite{fogus}. Hidden side effects can result in a chains of unpredicted behaviour in large systems. Instead of mutating the data itself a local copy is mutated and returned as a result, as seen in the pure functions example.
 \end{description}
 \subsection{Object-oriented programming}
-Object-oriented programming is a programming paradigm which is built around "objects". These objects may contain data, in form of fields, often referred as attributes and code in form of procedures, often referred to as methods [26].
+Object-oriented programming is a programming paradigm which is built around "objects". These objects may contain data, in form of fields, often referred as attributes and code in form of procedures, often referred to as methods \cite{kindler}.
 
 These objects are created by the programmer to represent something with the help of its attributes and methods. What kind of variables and functions an object should contain is defined in a class, which works like a blueprint for the object. For example, a class can represent an employee. An employee has the attributes assignment and salary. The employee also has a method for doing work. Then the employee has to work somewhere, so we create another object for a company where our employee can work. The company has the attributes income and number of employees. It also has methods to hire employees and fire employees. Since there are more employees who works at this company, we can add more employees by creating new objects of the information in employee class.
 
 By building objects together like this, you can build programs by the object oriented paradigm.  
 
 \begin{description}
-\item [Class] - A class is a model for a set of objects, which the object oriented paradigm is built around[35]. The class establishes what the object will contain, for example variables and functions, and signatures and visibility of these. To create a object of any kind, a class must be present. 
+\item [Class] - A class is a model for a set of objects, which the object oriented paradigm is built around \cite{gabmar}. The class establishes what the object will contain, for example variables and functions, and signatures and visibility of these. To create a object of any kind, a class must be present. 
 
 \begin{lstlisting}[language=Java]
 //Creates a class Animal with the properties name and age and a function for logging the properties to the screen
@@ -239,7 +239,7 @@ animal.logAnimal();
 
 \item [Object] - An object is a capsule that contains the variables and functions established in the class. While objects created from the same class contains the same variables and functions, since the information it contains is handled specifically for every object, the information in the class can vary much. All data and functions can be accessible from outside the object. 
 
-\item [Inheritance] - When an object acquires all properties and functionality of another object. [57] it is called inheritance. This provides code reusability. 
+\item [Inheritance] - When an object acquires all properties and functionality of another object \cite{skansholm}. it is called inheritance. This provides code reusability. 
 
 \begin{lstlisting}[language=Java, breaklines=true]
 //Based upon the Animal class with an added property race
@@ -263,17 +263,17 @@ dog.logAnimal();
 //Race: Shitzu
 \end{lstlisting}
 
-\item [Encapsulation] - Encapsulation can be used to refer to two different things [35, 57]. A mechanism to restrict direct access to some object components and the language construct that facilitates the bundling of data with methods. The access part is done by making the different parts of an object public or private and the bundling is made with objects.
+\item [Encapsulation] - Encapsulation can be used to refer to two different things \cite{gabmar, skansholm}. A mechanism to restrict direct access to some object components and the language construct that facilitates the bundling of data with methods. The access part is done by making the different parts of an object public or private and the bundling is made with objects.
 
-\item [Polymorphism] - When a task is used in different ways it is called polymorphism. [35, 57]This is achieved with the help of overloading and overriding.
+\item [Polymorphism] - When a task is used in different ways it is called polymorphism \cite{gabmar, skansholm}. This is achieved with the help of overloading and overriding.
 
-\item[Overloading] - Refers to creating a function with the same name as another function, often very similar, with either different types of variables in the parameters or different number of parameters[57].
+\item[Overloading] - Refers to creating a function with the same name as another function, often very similar, with either different types of variables in the parameters or different number of parameters \cite{skansholm}.
 
-\item[Overriding] - Refers to overwrite a function written in a superclass to make it do something else than first intended, without changing the superclass. [57]
+\item[Overriding] - Refers to overwrite a function written in a superclass to make it do something else than first intended, without changing the superclass \cite{skansholm}.
 \end{description}
 \subsection{JavaScript}
-JavaScript is a prototype based language with first class functions that is dynamically type checked. This makes it a multi-paradigm language with basic support for object-oriented, imperative and functional paradigms. There are multiple libraries to tweak JavaScript with certain functions or better support for certain paradigms, for example Undescore.js, for functonal programming, or flow, for static type checking. There are also a lot of languages available that are transpiled into JavaScript, for example TypeScript or CoffeeScript. 
-JavaScript can be run in most browsers and also in servers and is implemented to follow the ECMA standards [17]. It has a garbage collection system for handling memory [59]. The garbage collection works so that objects or variables that are unreachable are removed from memory. 
+JavaScript is a prototype based language with first class functions that is dynamically type checked. This makes it a multi-paradigm language with basic support for object-oriented, imperative and functional paradigms. There are multiple libraries to tweak JavaScript with certain functions or better support for certain paradigms, for example Undescore.js \cite{underscorejs}, for functonal programming, or flow \cite{flow}, for static type checking. There are also a lot of languages available that are transpiled into JavaScript, for example TypeScript \cite{typescript}. 
+JavaScript can be run in most browsers and also in servers and is implemented to follow the ECMA standards \cite{ecma6table}. It has a garbage collection system for handling memory \cite{mozillamem}. The garbage collection works so that objects or variables that are unreachable are removed from memory. 
 
 Objects in JavaScript are treated as references. When an object is initiated to a variable it is created and placed in memory and the variable is given a reference to it. This means that if another variable is assigned this object it gets a copy of the reference to it, rather than a copy of the object itself. Arrays are objects in JavaScript and will be treated the same way.
 
@@ -301,44 +301,44 @@ console.log(obj); // { text: 'Some other text' }
 \end{lstlisting}
 \subsubsection{Functional programming}
 \label{sec:js-fp}
-JavaScript is not a functional language, but it is possible to write functional code with it [1]. There are also libraries that makes functional programming in JavaScript easier, such as Underscore.js [5]. However, we will use ECMA 2015, ES6, that already provide many of the functions provided by Underscore.js. This is also to use the same environment for our different implementations in this experiment.
+JavaScript is not a functional language, but it is possible to write functional code with it \cite{drboolean}. There are also libraries that makes functional programming in JavaScript easier, such as Underscore.js \cite{underscore, fogus}. However, we will use ECMA 2015, ES6, that already provide many of the functions provided by Underscore.js. This is also to use the same environment for our different implementations in this experiment.
 
-In JavaScript it is possible to treat functions as any other variable, pass them as function parameters or store them in arrays, so called first class functions [1]. There are also higher order functions such as map(), filter() and reduce() that might replace loops [2]:
+In JavaScript it is possible to treat functions as any other variable, pass them as function parameters or store them in arrays, so called first class functions \cite{drboolean}. There are also higher order functions such as map(), filter() and reduce() that might replace loops \cite{grady}:
 
 \begin{description}
-\item [map()] - Calls a provided function on every element in an array and returns an array with the outputs [27].
+\item [map()] - Calls a provided function on every element in an array and returns an array with the outputs \cite{jsref}.
 \item [filter()] - Returns a new array with all the elements that passes a test in a provided function. 
 \item [reduce()] - Reduces a array to a single value.
 \end{description}
 
 However there is no automatic currying or immutable data structures in JavaScript. JavaScript is also dynamically type checked. All of these can be added to JavaScript with libraries.
 
-There is a call stack limit in JavaScript that varies depending on the runtime environment. This limits the number of function calls that can be made, which also limits recursion. In ES6 there is tail call optimization that makes it possible to make certain function calls without adding to the call stack, that would allow for better recursion. However this is currently not implemented for most servers and browsers [17].
+There is a call stack limit in JavaScript that varies depending on the runtime environment. This limits the number of function calls that can be made, which also limits recursion. In ES6 there is tail call optimization that makes it possible to make certain function calls without adding to the call stack, that would allow for better recursion. However this is currently not implemented for most servers and browsers \cite{ecma6table}.
 \subsubsection{Object oriented programming}
 JavaScript has always had support for OOP. But 
-with ES6, OOP starts to look more like classical OOP languages like for example Java [30].
+with ES6, OOP starts to look more like classical OOP languages like for example Java \cite{ecmacompare}.
 
 JavaScript do not fully support encapsulation, since you can't make variables and functions private or public. Otherwise there is full support for OOP in JavaScript.
 
 As a  workaround to this, many programmers add an underscore to the variable or function before the name of it. This underscore symbolizes that it should be handled as a private instead of a public.
 \subsection{Related work}
-In "Curse of the excluded middle" [3] Erik Meijer argues with multiple examples that the industry should not focus on a combination between functional and objected oriented methods to counter handling big data with concurrency and parallelism. He concludes that it is not good enough to avoid side effects in imperative or object oriented languages. It is also not good enough to try to ignore side effects in pure functional languages. Instead he thinks that people should either accept side effects or think more seriously about using the functional paradigm.
+In "Curse of the excluded middle" \cite{meijer} Erik Meijer argues with multiple examples that the industry should not focus on a combination between functional and objected oriented methods to counter handling big data with concurrency and parallelism. He concludes that it is not good enough to avoid side effects in imperative or object oriented languages. It is also not good enough to try to ignore side effects in pure functional languages. Instead he thinks that people should either accept side effects or think more seriously about using the functional paradigm.
 
-In "Functional at scale" [4] by Marius Eriksen he is explaining why Twitter uses methods from functional programming to handle concurrent events that arises in large distributed systems in cloud environments. In functional programming it is possible build complex parts out of simple building blocks, thus making systems more modular. He concludes that the functional paradigm has multiple tools for handling the complexity present in modern software.
+In "Functional at scale" \cite{eriksen} by Marius Eriksen he is explaining why Twitter uses methods from functional programming to handle concurrent events that arises in large distributed systems in cloud environments. In functional programming it is possible build complex parts out of simple building blocks, thus making systems more modular. He concludes that the functional paradigm has multiple tools for handling the complexity present in modern software.
 
-Eriksson and \"{A}rleryd are looking at how to use functional practises, such as immutable data structures, pure functions and currying, when developing front end applications by taking inspiration from Elm in their master's thesis [11]. They have researched each practise in Elm to see if it is possible to use these practises in JavaScript together with tools and libraries. Their conclusion was that it is possible to replicate functional practises from Elm in JavaScript, but that they prefer working with Elm. In JavaScript multiple libraries had to be used to use the same practises. They also concluded that even though functional programming is not widely used within the industry, functional practises can still be used in all projects.
+Eriksson and \"{A}rleryd are looking at how to use functional practises, such as immutable data structures, pure functions and currying, when developing front end applications by taking inspiration from Elm in their master's thesis \cite{erikarl}. They have researched each practise in Elm to see if it is possible to use these practises in JavaScript together with tools and libraries. Their conclusion was that it is possible to replicate functional practises from Elm in JavaScript, but that they prefer working with Elm. In JavaScript multiple libraries had to be used to use the same practises. They also concluded that even though functional programming is not widely used within the industry, functional practises can still be used in all projects.
 
-In "Improving Testability and Reuse by Transitioning to Functional Programming" [12], Benton and Radziwill state that functional programming is better suited for test driven development (TDD) and concludes that a shift toward the functional paradigm benefits reuse and testability of cloud-based applications.
+In "Improving Testability and Reuse by Transitioning to Functional Programming" \cite{benrad}, Benton and Radziwill state that functional programming is better suited for test driven development (TDD) and concludes that a shift toward the functional paradigm benefits reuse and testability of cloud-based applications.
 
-Alic, Omanovic and Giedrimas has made a comparative analysis of functional and object-oriented programming languages[15]. They have compared four languages, C\#, F\#, Java and Haskell based on performance, runtime and memory usage. Their conclusion is that Java is the fastest while Haskell uses much less memory, and that programming paradigms should be combined to increase execution efficiency. 
+Alic, Omanovic and Giedrimas has made a comparative analysis of functional and object-oriented programming languages \cite{alomgi}. They have compared four languages, C\#, F\#, Java and Haskell based on performance, runtime and memory usage. Their conclusion is that Java is the fastest while Haskell uses much less memory, and that programming paradigms should be combined to increase execution efficiency. 
 
-Dobre and Xhafa writes in "Parallel Programming Paradigms and Frameworks in Big Data Era" that we now are in a big data era [47]. They also review different frameworks, programming paradigms and more in a big data perspective. Around paradigms they state, "functional programming is actually considered today to be the most prominent programming paradigm, as it allows actually more flexibility in defining big data distributed processing workflows."
+Dobre and Xhafa writes in "Parallel Programming Paradigms and Frameworks in Big Data Era" that we now are in a big data era \cite{dobre}. They also review different frameworks, programming paradigms and more in a big data perspective. Around paradigms they state, "functional programming is actually considered today to be the most prominent programming paradigm, as it allows actually more flexibility in defining big data distributed processing workflows."
 
-In "Comparing programming paradigms: an evaluation of functional and object-oriented programs" R. Harrison, et al. compares the quality of code in functional and object oriented programming [51]. To compare these, they use C++ and SML. While their discussion states that they would probably use OOP, since C++ is a better language, the standard list functions were of great help, the debugging was better and reusability was much higher in SML.
+In "Comparing programming paradigms: an evaluation of functional and object-oriented programs" R. Harrison, et al. compares the quality of code in functional and object oriented programming \cite{hasmadole}. To compare these, they use C++ and SML. While their discussion states that they would probably use OOP, since C++ is a better language, the standard list functions were of great help, the debugging was better and reusability was much higher in SML.
 
-Guido Salvaneschi, et al. have conducted an empirical evaluation of the impact of Reactive Programming (RP), with functional programming concepts, on program comprehension [48]. Their experiment involved 127 subjects and the results suggests that RP is better for program comprehension when compared with OOP. They conclude that with RP the subjects produced more correct code without the need of more time, and also that the comprehension of RP programs is less tied to programming skills. 
+Guido Salvaneschi, et al. have conducted an empirical evaluation of the impact of Reactive Programming (RP), with functional programming concepts, on program comprehension \cite{saproamname}. Their experiment involved 127 subjects and the results suggests that RP is better for program comprehension when compared with OOP. They conclude that with RP the subjects produced more correct code without the need of more time, and also that the comprehension of RP programs is less tied to programming skills. 
 
-In "Using Functional Programming within an Industrial Product Group: Perspectives and Perceptions" [49] David Scott et al. presents a case-study of using FP in the multiparadigm language OCaml in a large product development team. They found that the team's project was a success even though there were some drawbacks to using OCaml, such as lack of tool support. The engineers believed that OCaml enabled them to be more productive than if they would have used one of the mainstream languages, such as C++ or Python.
+In "Using Functional Programming within an Industrial Product Group: Perspectives and Perceptions" \cite{scomad} David Scott et al. presents a case-study of using FP in the multiparadigm language OCaml in a large product development team. They found that the team's project was a success even though there were some drawbacks to using OCaml, such as lack of tool support. The engineers believed that OCaml enabled them to be more productive than if they would have used one of the mainstream languages, such as C++ or Python.
 \section{Method}
 In this experiment each person will implement four different algorithms, once with FP and once with OOP. We have chosen algorithms that are well known, so that our focus will be on the different implementations, rather than on how the algorithms work. 
 \subsection{Algorithms}
@@ -346,7 +346,7 @@ We will implement tree search algorithms, the shellsort algorithm, the tower of 
 
 We chose algorithms that use both recursion and iteration to not give advantage to any paradigm. When implementing these algorithms and data structures we can also make use of OOP methods, such as classes and objects. The algorithms' purpose are also different to avoid for example implementing four different sorting algorithms. 
 \subsubsection{Tree search algorithms}
-A binary tree is a tree consisting of nodes, where a node can have a maximum of two ￼children [38]. These children can be described as the left and the right subtree and the parent is the root. The property that differs a binary search tree from a standard binary tree, is the order of the nodes. In a binary tree the order can be undecided, but in a search tree the nodes are stored in an order based on some property. For example in our binary search tree the left subtree of a root will contain smaller numbers than the root, and the right subtree will contain larger numbers, see example in figure~\ref{fig:binary-tree-example}. Using tree traversal it is possible to find certain nodes or get a list of sorted objects. Our binary tree will contain random numbers and the functions:
+A binary tree is a tree consisting of nodes, where a node can have a maximum of two ￼children \cite{weiss}. These children can be described as the left and the right subtree and the parent is the root. The property that differs a binary search tree from a standard binary tree, is the order of the nodes. In a binary tree the order can be undecided, but in a search tree the nodes are stored in an order based on some property. For example in our binary search tree the left subtree of a root will contain smaller numbers than the root, and the right subtree will contain larger numbers, see example in figure~\ref{fig:binary-tree-example}. Using tree traversal it is possible to find certain nodes or get a list of sorted objects. Our binary tree will contain random numbers and the functions:
 \begin{description}
 \item [findNode(comparable, rootNode)] - Finds a specific key in the tree.
 \item [inOrderTraversal(root)] - Returns an array of all numbers in the tree, sorted smallest to biggest.
@@ -420,7 +420,7 @@ end if
 \end{lstlisting}
 \end{description}
 \subsubsection{Shellsort algorithm}
-The shellsort algorithm is named after its creator Donald Shell [30]. It was one of the first algorithms to break the quadratic time barrier. The algorithm sorts by sorting items using insertion sort with a gap. For each run the gap is decreased until the gap is 1 and the items are sorted. How the gap is decreased is decided with a gap sequence. Different gap sequences gives shellsort a different worst-case running time.
+The shellsort algorithm is named after its creator Donald Shell \cite{weiss}. It was one of the first algorithms to break the quadratic time barrier. The algorithm sorts by sorting items using insertion sort with a gap. For each run the gap is decreased until the gap is 1 and the items are sorted. How the gap is decreased is decided with a gap sequence. Different gap sequences gives shellsort a different worst-case running time.
  
 We will use one of Sedgewick's gap sequences that has one of the fastest worst-case running times \(O(n^3/4)\). 
 
@@ -465,7 +465,7 @@ return sortedArray
 \end{lstlisting}
 \end{description}
 \subsubsection{The Tower of Hanoi algorithm}
-The Tower of Hanoi is a game invented by mathematician Édouard Lucas in 1883 [39]. The game consists of three pegs and a number of disks stacked in decreasing order on one of the pegs, see figure~\ref{fig:tower-of-hanoi-example}. The goal is to move the tower from one peg to another by moving one disk at a the time to one of the other pegs. A disk can not be placed on a peg on top a smaller disk. 
+The Tower of Hanoi is a game invented by mathematician Édouard Lucas in 1883 \cite{hanoi}. The game consists of three pegs and a number of disks stacked in decreasing order on one of the pegs, see figure~\ref{fig:tower-of-hanoi-example}. The goal is to move the tower from one peg to another by moving one disk at a the time to one of the other pegs. A disk can not be placed on a peg on top a smaller disk. 
 
 \begin{figure}[H]
 \includegraphics[width=\textwidth]{tower-of-hanoi-example}
@@ -495,7 +495,7 @@ end if
 \end{lstlisting}
 \end{description}
 \subsubsection{Dijkstra's algorithm}
-Dijkstra's algorithm is an algorithm for finding the shortest path in a graph consisting of a number of nodes connected by edges [30], where the weight of the edges is known, see figure~\ref{fig:dijkstras-algorithm-example1}. The algorithm will find the shortest path from the start node to the end node in a graph. It is initiated by:
+Dijkstra's algorithm is an algorithm for finding the shortest path in a graph consisting of a number of nodes connected by edges \cite{weiss}, where the weight of the edges is known, see figure~\ref{fig:dijkstras-algorithm-example1}. The algorithm will find the shortest path from the start node to the end node in a graph. It is initiated by:
 \begin{enumerate}
 \item setting the distance to the start node to 0.
 \item setting the distance to all other nodes to infinity.
@@ -553,11 +553,11 @@ return path[endNode]
 \end{lstlisting}
 \end{description}
 \subsection{Environment}
-We will implement the algorithms using Atom, a text editor, and compile and run our tests and our code with Node.js. Tail call optimization is not available in Node.js, see \ref{sec:js-fp}. To manage our dependencies we are using npm. For automation we are using Grunt.
+We will implement the algorithms using Atom \cite{atom}, a text editor, and compile and run our tests and our code with Node.js \cite{nodejs}. Tail call optimization is not available in Node.js, see \ref{sec:js-fp}. To manage our dependencies we are using npm \cite{npm}. For automation we are using Grunt \cite{grunt}.
 
 Since node.js does not support ES6-modules we are using babel to transpile our ES6-modules to node-modules that are supported. We are doing this since we have prior experience with ES6 modules and not with node-modules. Since node.js support almost everything else in ES6 we will only be transpiling the modules, leaving our code in an ES6 standard.
 
-To measure memory and run time we are using node.js process, that is a global and therefore always available within node.js applications [50]. We are using the following functions:
+To measure memory and run time we are using node.js process, that is a global and therefore always available within node.js applications \cite{nodejs}. We are using the following functions:
 \begin{description}
 \item [process.hrtime(time)] - Returns the current high resolution time in a [seconds, nanoseconds] tuple Array. If the optional time-parameter, an earlier hrtime, is used, it will return the difference between that time and the current time. 
 \item [process.memoryUsage()] - Returns an object describing the memory usage of the Node.js process measured in bytes.
@@ -567,7 +567,7 @@ Our code will be tested through code reviews and unit testing.
 \subsubsection{Code reviews}
 We will review each other's implementations and our implementations will also be reviewed by a third party. The reviews should help us to find bugs and also to confirm that we have used FP or OOP methods according to our guidelines, see \ref{sec:paradigm-guidelines}.
 \subsubsection{Unit testing}
-Unit testing will be done using the JavaScript libraries Mocha [45] for writing tests, Chai [46] for evaluating expressions, and Karma [44] for automated tests.
+Unit testing will be done using the JavaScript libraries Mocha \cite{mocha} for writing tests, Chai \cite{chai} for evaluating expressions, and Karma \cite{karma} for automated tests.
 
 Our implementations will have to pass the tests in appendix~\ref{appendix:test-cases} to be accepted as done.
 \subsection{Implementation}
@@ -667,8 +667,8 @@ In this experiment we have implemented the algorithms ourselves and compared our
 
 We also did these implementations in JavaScript. It would be interesting to see this kind of comparison in another language that better support full functional or full OOP approaches. Perhaps comparing other paradigms and combined paradigms as well.
 
-\bibliographystyle{ieeetr}
-\bibliography{references}
+\bibliographystyle{IEEEtran}
+\bibliography{IEEEabrv,references}
 \appendix
 \section{Appendix}
 \label{appendix:test-cases}
