@@ -12,25 +12,22 @@ function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { de
 
 'use strict';
 
-console.info('start' + _util2.default.inspect(process.memoryUsage()));
-runTowerOfHanoi();
-console.info(_util2.default.inspect(process.memoryUsage()));
+console.log("OOP Tower of Hanoi algorithm:");
+var nrOfElements = 10;
+runTowerOfHanoi(nrOfElements);
 
 global.gc();
-console.log(_util2.default.inspect(process.memoryUsage()));
 
-function runTowerOfHanoi() {
-  let t0 = new Date();
-  let hrStart = process.hrtime();
-
+function runTowerOfHanoi(nrOfElements) {
+  var hrStart = process.hrtime();
+  var memStart = process.memoryUsage().rss;
+  console.info('start:\n' + _util2.default.inspect(process.memoryUsage()));
   var hanoi = new _Hanoi2.default();
-  var nrOfPegs = 3;
-  console.log(hanoi.towerOfHanoi(nrOfPegs));
-
+  hanoi.towerOfHanoi(nrOfElements);
+  console.info('end:\n' + _util2.default.inspect(process.memoryUsage()));
+  var memEnd = process.memoryUsage().rss;
   let hrEnd = process.hrtime(hrStart);
-  let t1 = new Date();
-
-  console.info(t1 - t0 + 'ms');
-  console.info(hrEnd[1] / 1000000 + 'ms');
+  console.info(hrEnd[0] + 's and ' + hrEnd[1] / 1000000 + 'ms');
+  console.log("Memory: " + (memEnd - memStart));
 }
 //# sourceMappingURL=index.js.map

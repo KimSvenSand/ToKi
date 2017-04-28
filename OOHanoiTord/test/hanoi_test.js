@@ -10,11 +10,12 @@ function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { de
 
 describe('Tower of Hanoi', function () {
   var hanoi = new _Hanoi2.default();
-  var nrOfPegs = 8;
+  var nrOfPegs = 0;
   var expectedResult = 0;
 
   describe('Tower of Hanoi', function () {
     it("should return pegs and nrOfSteps", function () {
+      nrOfPegs = 8;
       expectedResult = [[], [], [8, 7, 6, 5, 4, 3, 2, 1], 255];
 
       (0, _chai.expect)(hanoi.towerOfHanoi(nrOfPegs)).to.eql(expectedResult);
@@ -24,6 +25,7 @@ describe('Tower of Hanoi', function () {
   describe('Empty Tower of Hanoi', function () {
     it("should return empty pegs", function () {
       hanoi = new _Hanoi2.default();
+      nrOfPegs = 8;
       expectedResult = [[], [], [], 0];
 
       (0, _chai.expect)(hanoi.towerOfHanoi(0)).to.eql(expectedResult);

@@ -1,9 +1,9 @@
 'use strict';
-
+import Peg from './peg.js';
 export default class Hanoi {
   constructor(){
     this.moves = [];
-    this.pegs = [[],[],[]];
+    this.pegs = [new Peg(),new Peg(),new Peg()];
   }
   towerOfHanoi(numberOfDisks){
   // direction of rotation of the smallest disk
@@ -13,55 +13,52 @@ export default class Hanoi {
   }else{
     dir = -1;
   }
-  //CHANGE moves and Pegs to global variables;
-  var pegs = [[], [], []];
-  var pegMin = 0;
+  var currentPeg = 0;
+  var previousPeg = 0;
 
-  for (var i = 0; i < numberOfDisks; i++) {
-    this.pegs[0].push(numberOfDisks - i);
-  }
+  this.pegs[0].buildTower(numberOfDisks);
+
 
   var numberOfMoves = Math.pow(2,numberOfDisks) - 1;
 
-  // To avoid using % operator we precompute next and prev tables
   var next = [1, 2, 0];
   var prev = [2, 0, 1];
 
   var moveSmallest = true;
 
-  for (i = 0; i < numberOfMoves; i++) {
+  for (var i = 0; i < numberOfMoves; i++) {
+      //Moves smallest disk to make place for other disks to move
       if (moveSmallest) {
-        var oldPegMin = pegMin;
-        // in JS -1 % 3 === -1, we add 3 to get positive result
-        pegMin = (oldPegMin + dir + 3) % 3;
-        this.moveDisk(oldPegMin, pegMin, this.pegs, this.moves);
+        previousPeg = currentPeg;
+        currentPeg = (previousPeg + dir + 3) % 3;
+        this.moveDisk(previousPeg, currentPeg, this.pegs, this.moves);
       }
+      //Moves other disks
       else {
-        if (this.topDiskSize(next[pegMin]) > this.topDiskSize(prev[pegMin])) {
-          this.moveDisk(prev[pegMin], next[pegMin]);
+        if (this.pegs[next[currentPeg]].topDiskSize() > this.pegs[prev[currentPeg]].topDiskSize()) {
+          this.moveDisk(prev[currentPeg], next[currentPeg]);
         }
         else {
-          this.moveDisk(next[pegMin], prev[pegMin]);
+          this.moveDisk(next[currentPeg], prev[currentPeg]);
         }
     }
     moveSmallest = !moveSmallest;
   }
-  //console.log("Number of moves: "+numberOfMoves);
-  this.pegs.push(numberOfMoves);
-  return this.pegs;
- }
-
- topDiskSize(pegIndex) {
-   if (this.pegs[pegIndex].length === 0){
-     return Number.MAX_VALUE;
-   }
-   var peg = this.pegs[pegIndex]
-   return peg[peg.length-1];
+  var endResult = [];
+  for (var i = 0; i < this.pegs.length; i++) {
+    endResult.push(this.pegs[i].toString());
+  }
+  endResult.push(numberOfMoves);
+  return endResult;
  }
 
  moveDisk(from, to) {
-   // 1-FROM ROD, 2-USING ROD, 3-TO ROD
    this.moves.push([from+1 +" -> "+ to+1]);
-   this.pegs[to].push(this.pegs[from].pop());
+   this.pegs[to].addDisk(this.pegs[from].removeTopDisk());
+ }
+
+ resetHanoi(){
+   this.moves = [];
+   this.pegs = [new Peg(),new Peg(),new Peg()];
  }
 }
