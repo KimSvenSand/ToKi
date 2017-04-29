@@ -2,9 +2,7 @@
 
 export function dijkstras(graph,edges,startNode,endNode){
   if(startNode != endNode){
-    var pathAndDist = createPathAndDist(graph.length,[],[]);
-    var path = pathAndDist[0];
-    var dist = pathAndDist[1];
+    var [path,dist] = createPathAndDist(graph.length,[],[]);
 
     dist[graph.indexOf(startNode)] = 0;
     path[graph.indexOf(startNode)] = "";
@@ -20,75 +18,62 @@ export function dijkstras(graph,edges,startNode,endNode){
 }
 
 export function createPathAndDist(length,path,dist){
+  var pathCopy = path.slice(),distCopy = dist.slice();
   if(length > 1){
-    var arr = createPathAndDist(length-1,path,dist);
-    path = arr[0];
-    dist = arr[1];
+    var [pathCopy, distCopy] = createPathAndDist(length-1,pathCopy,distCopy);
   }
-  path.push("");
-  dist.push(Number.MAX_SAFE_INTEGER);
-  return [path,dist];
+  pathCopy.push("");
+  distCopy.push(Number.MAX_SAFE_INTEGER);
+  return [pathCopy,distCopy];
 
 }
 
 export function unvisitedNotEmpty(graph, edges,startNode,endNode,path,dist,unvisitedNodes,currentNode,currentValue){
-  if(unvisitedNodes.length > 0 && unvisitedNodes.indexOf(endNode) != -1){
-    var arr = findCurrentNode(graph,graph.length,unvisitedNodes,dist,currentNode,currentValue);
-    currentNode = arr[0];
-    unvisitedNodes = removeVisitedItem(graph,unvisitedNodes,unvisitedNodes.length-1,currentNode,[]);
-    var arr = assignPathAndDist(graph,edges,edges.length-1,path,dist,currentNode);
-    path = arr[0];
-    dist = arr[1];
+  var pathCopy = path.slice(),distCopy = dist.slice(),unvisitedCopy = unvisitedNodes.slice(),nodeCopy = currentNode;
+  if(unvisitedCopy.length > 0 && unvisitedCopy.indexOf(endNode) != -1){
+    var [nodeCopy,value] = findCurrentNode(graph,graph.length,unvisitedCopy,distCopy,nodeCopy,currentValue);
 
-    var arr = unvisitedNotEmpty(graph,edges,startNode,endNode,path,dist,unvisitedNodes,currentNode,currentValue);
-    path = arr[0];
-    dist = arr[1];
+    unvisitedCopy = unvisitedCopy.filter(function(node){
+      return node != graph[nodeCopy];
+    });
+    var [pathCopy,distCopy] = assignPathAndDist(graph,edges,edges.length-1,pathCopy,distCopy,nodeCopy);
+
+    var [pathCopy,distCopy] = unvisitedNotEmpty(graph,edges,startNode,endNode,pathCopy,distCopy,unvisitedCopy,nodeCopy,currentValue);
   }
-  return [path,dist];
+  return [pathCopy,distCopy];
 
 }
 
 export function findCurrentNode(graph,graphLength,unvisitedNodes,dist,currentNode,currentValue){
+  var nodeCopy = currentNode, valueCopy = currentValue;
   if(graphLength > 0){
-    var arr = findCurrentNode(graph,graphLength-1,unvisitedNodes,dist,currentNode,currentValue);
-    currentNode = arr[0];
-    currentValue = arr[1];
+    var [nodeCopy,valueCopy] = findCurrentNode(graph,graphLength-1,unvisitedNodes,dist,nodeCopy,valueCopy);
   }
 
-  if(dist[graphLength] < currentValue && unvisitedNodes.indexOf(graph[graphLength]) != -1){
-    currentNode = graphLength;
-    currentValue = dist[graphLength];
+  if(dist[graphLength] < valueCopy && unvisitedNodes.indexOf(graph[graphLength]) != -1){
+    nodeCopy = graphLength;
+    valueCopy = dist[graphLength];
   }
-  return [currentNode,currentValue];
+  return [nodeCopy,valueCopy];
 }
 
 export function assignPathAndDist(graph,edges,edgeLength,path,dist,currentNode){
+  var pathCopy = path.slice(), distCopy = dist.slice();
   if(edgeLength > 0){
-    var arr = assignPathAndDist(graph,edges,edgeLength-1,path,dist,currentNode);
-    path = arr[0];
-    dist = arr[1];
+    var [pathCopy,distCopy] = assignPathAndDist(graph,edges,edgeLength-1,pathCopy,distCopy,currentNode);
   }
+
   var currentFromNode = edges[edgeLength].slice(0,edges[edgeLength].indexOf("-"));
   var currentToNode = edges[edgeLength].slice(edges[edgeLength].indexOf("-")+1,edges[edgeLength].indexOf("="));
   var currentEdgeLength = edges[edgeLength].slice(edges[edgeLength].indexOf("=")+1,edges[edgeLength].length);
 
-  if(currentFromNode == graph[currentNode] && dist[graph.indexOf(currentToNode)] > dist[currentNode] + parseInt(currentEdgeLength)){
-    dist[graph.indexOf(currentToNode)] = parseInt(dist[currentNode]) + parseInt(currentEdgeLength);
-    path[graph.indexOf(currentToNode)] = path[currentNode] +","+ currentFromNode+"-"+currentToNode+"="+currentEdgeLength;
+  if(currentFromNode == graph[currentNode] && distCopy[graph.indexOf(currentToNode)] > dist[currentNode] + parseInt(currentEdgeLength)){
+    distCopy[graph.indexOf(currentToNode)] = parseInt(distCopy[currentNode]) + parseInt(currentEdgeLength);
+    pathCopy[graph.indexOf(currentToNode)] = pathCopy[currentNode] +","+ currentFromNode+"-"+currentToNode+"="+currentEdgeLength;
   }else if(currentToNode == graph[currentNode] && dist[graph.indexOf(currentFromNode)] > dist[currentNode] + parseInt(currentEdgeLength)){
-    dist[graph.indexOf(currentFromNode)] = parseInt(dist[currentNode]) + parseInt(currentEdgeLength);
-    path[graph.indexOf(currentToNode)] = path[currentNode] +","+ currentToNode+"-"+currentFromNode+"="+currentEdgeLength;
+    distCopy[graph.indexOf(currentFromNode)] = parseInt(distCopy[currentNode]) + parseInt(currentEdgeLength);
+    pathCopy[graph.indexOf(currentToNode)] = pathCopy[currentNode] +","+ currentToNode+"-"+currentFromNode+"="+currentEdgeLength;
   }
 
-  return [path,dist];
-}
-
-export function removeVisitedItem(graph,unvisitedNodes,unvisitedLength,currentNode,newArray){
-  if(unvisitedLength > 0){
-    newArray = removeVisitedItem(graph,unvisitedNodes,unvisitedLength-1,currentNode,newArray);
-  }
-  if(unvisitedNodes[unvisitedLength] != graph[currentNode]){
-    newArray.push(unvisitedNodes[unvisitedLength]);
-  }
-  return newArray;
+  return [pathCopy,distCopy];
 }
