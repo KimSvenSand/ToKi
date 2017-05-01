@@ -7,10 +7,7 @@ console.log("OOP Dijkstras algorithm:");
 var nrOfElements = 20;
 console.log("nrOfElements: "+ nrOfElements);
 runDijkstrasAlgorithm(nrOfElements);
-
-
 global.gc();
-
 
 function runDijkstrasAlgorithm(nrOfElements) {
   var hrStart = process.hrtime();
