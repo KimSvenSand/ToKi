@@ -11,7 +11,7 @@ function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { de
 'use strict';
 
 console.info("FP Tree search algorithms:");
-var nrOfElements = 1000;
+var nrOfElements = 10000;
 console.log("Number of elements: " + nrOfElements);
 runBinarySearchTree(nrOfElements);
 

@@ -13,7 +13,7 @@ function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { de
 'use strict';
 
 console.log("OOP Dijkstras algorithm:");
-var nrOfElements = 15;
+var nrOfElements = 20;
 console.log("nrOfElements: " + nrOfElements);
 runDijkstrasAlgorithm(nrOfElements);
 
@@ -37,13 +37,11 @@ function runDijkstrasAlgorithm(nrOfElements) {
       }
     }
   }
-  console.log(nodes);
-  console.log(edges);
   dijk.addNodes(nodes);
   dijk.addEdges(edges);
   var startNode = "node1";
   var endNode = "node" + nrOfElements;
-  console.log(dijk.runDijkstrasAlgorithm(startNode, endNode));
+  dijk.runDijkstrasAlgorithm(startNode, endNode);
 
   console.info('end:\n' + _util2.default.inspect(process.memoryUsage()));
   var memEnd = process.memoryUsage().rss;

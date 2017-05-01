@@ -13,7 +13,8 @@ function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { de
 'use strict';
 
 console.log("OOP Tower of Hanoi algorithm:");
-var nrOfElements = 10;
+var nrOfElements = 25;
+console.log("nrOfElements: " + nrOfElements);
 runTowerOfHanoi(nrOfElements);
 
 global.gc();

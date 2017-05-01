@@ -12,7 +12,7 @@ function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { de
 
 class Hanoi {
   constructor() {
-    this.moves = [];
+    //this.moves = [];
     this.pegs = [new _peg2.default(), new _peg2.default(), new _peg2.default()];
   }
   towerOfHanoi(numberOfDisks) {
@@ -61,7 +61,7 @@ class Hanoi {
   }
 
   moveDisk(from, to) {
-    this.moves.push([from + 1 + " -> " + to + 1]);
+    //this.moves.push([from+1 +" -> "+ to+1]);
     this.pegs[to].addDisk(this.pegs[from].removeTopDisk());
   }
 

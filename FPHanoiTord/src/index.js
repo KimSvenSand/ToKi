@@ -4,7 +4,8 @@ import util from 'util';
 'use strict';
 
 console.log("FP Tower of Hanoi algorithm:");
-var nrOfElements = 10;
+var nrOfElements = 25;
+console.log("nrOfElements: "+nrOfElements);
 runTowerOfHanoi(nrOfElements);
 
 global.gc();

@@ -3,7 +3,8 @@ import util from 'util';
 'use strict';
 
 console.log("OOP Shellsort algorithm:");
-var nrOfElements = 100;
+var nrOfElements = 1000;
+console.log("nrOfElements: " + nrOfElements);
 runShellsort(nrOfElements);
 
 global.gc();

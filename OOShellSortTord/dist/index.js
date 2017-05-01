@@ -13,7 +13,8 @@ function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { de
 'use strict';
 
 console.log("OOP Shellsort algorithm:");
-var nrOfElements = 100;
+var nrOfElements = 6000;
+console.log("nrOfElements: " + nrOfElements);
 runShellsort(nrOfElements);
 
 global.gc();

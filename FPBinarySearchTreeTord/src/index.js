@@ -5,7 +5,7 @@ import util from 'util';
 'use strict';
 
 console.info("FP Tree search algorithms:");
-var nrOfElements = 1000;
+var nrOfElements = 10000;
 console.log("Number of elements: " + nrOfElements);
 runBinarySearchTree(nrOfElements);
 

@@ -5,7 +5,7 @@ import util from 'util';
 'use strict';
 
 console.log("FP Shellsort algorithm:");
-var nrOfElements = 1000;
+var nrOfElements = 6000;
 console.log("Number of elements: " + nrOfElements);
 runShellsort(nrOfElements);
 

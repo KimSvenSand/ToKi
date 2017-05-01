@@ -2,8 +2,8 @@ import {dijkstras} from './js/Dijkstras.js';
 import util from 'util';
 'use strict';
 
-console.log("OOP Dijkstras algorithm:");
-var nrOfElements = 5;
+console.log("FP Dijkstras algorithm:");
+var nrOfElements = 20;
 console.log("nrOfElements: "+ nrOfElements);
 runDijkstrasAlgorithm(nrOfElements);
 

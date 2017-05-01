@@ -10,8 +10,8 @@ function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { de
 
 'use strict';
 
-console.log("OOP Dijkstras algorithm:");
-var nrOfElements = 5;
+console.log("FP Dijkstras algorithm:");
+var nrOfElements = 20;
 console.log("nrOfElements: " + nrOfElements);
 runDijkstrasAlgorithm(nrOfElements);
 
@@ -22,12 +22,9 @@ function runDijkstrasAlgorithm(nrOfElements) {
   var memStart = process.memoryUsage().rss;
   console.info('start:\n' + _util2.default.inspect(process.memoryUsage()));
   var [nodes, edges] = makeGraph([], [], nrOfElements);
-  console.log(nodes);
-  console.log("");
-  console.log(edges);
   var startNode = "node1";
   var endNode = "node" + nrOfElements;
-  console.log((0, _Dijkstras.dijkstras)(nodes, edges, startNode, endNode));
+  (0, _Dijkstras.dijkstras)(nodes, edges, startNode, endNode);
 
   console.info('end:\n' + _util2.default.inspect(process.memoryUsage()));
   var memEnd = process.memoryUsage().rss;
