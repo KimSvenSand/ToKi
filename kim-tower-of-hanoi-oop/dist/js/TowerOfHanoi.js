@@ -92,6 +92,7 @@ class TowerOfHanoi {
       }
     }
     this._currentPeg = destIndex;
+    this._current.stack = [];
   }
 }
 exports.default = TowerOfHanoi;

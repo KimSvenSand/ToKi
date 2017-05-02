@@ -3,7 +3,7 @@ import util from 'util';
 'use strict';
 
 console.log('Tower of Hanoi OOP');
-var size = 25;
+var size = 10;
 console.log("Data size: " + size);
 var hanoi = new TowerOfHanoi(size);
 runMeasurements(hanoi);
