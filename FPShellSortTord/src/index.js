@@ -19,7 +19,6 @@ function runShellsort(nrOfElements) {
   var gapSequence = getGapSequence(10,[]);
   var array = random(nrOfElements,[]);
   var sortedArray = shellsortContainer(array,gapSequence);
-  console.log(sortedArray);
   console.info('end:\n' + util.inspect(process.memoryUsage()));
   var memEnd = process.memoryUsage().rss;
   let hrEnd = process.hrtime(hrStart);
