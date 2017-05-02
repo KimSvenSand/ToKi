@@ -3,17 +3,16 @@ import util from 'util';
 'use strict';
 
 console.log('Dijkstras FP');
-let size = 20;
+let size = 15;
 console.log("Data size: " + size);
 let graph = createGraph(size);
-runMeasurements(graph)
+runMeasurements(graph, size);
 global.gc();
 
 function runMeasurements(graph, size) {
   let hrStart = process.hrtime();
   let memStart = process.memoryUsage().rss;
   console.info('start:\n' + util.inspect(process.memoryUsage()));
-
   let result = dijkstras(graph.nodes, graph.edges, 'node1', 'node' + size);
 
   console.info('end:\n' + util.inspect(process.memoryUsage()));
