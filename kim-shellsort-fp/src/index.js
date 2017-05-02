@@ -3,7 +3,7 @@ import util from 'util';
 'use strict';
 
 console.log('Shellsort FP');
-var size = 6000;
+var size = 10;
 console.log("Data size: " + size);
 runMeasurements(createRandomArray(size));
 global.gc();

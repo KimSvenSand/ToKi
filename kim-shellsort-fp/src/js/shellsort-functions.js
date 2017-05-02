@@ -4,9 +4,9 @@ function shellsort(array, gapIndex) {
   var gapSequence = createGapSequence(array.length);
   var copyArray = array.slice();
 
-  if (!gapIndex) {
-    return shellsort(copyArray, gapSequence[gapSequence.length - 1]);
-  } else if (!gapSequence[gapIndex]) {
+  if (gapIndex === undefined) {
+    return shellsort(copyArray, 0);
+  } else if (gapSequence[gapIndex] === undefined) {
     return copyArray;
   } else {
     return shellsort(insertionSort(copyArray, gapSequence[gapIndex]), gapIndex + 1);
@@ -16,7 +16,7 @@ function shellsort(array, gapIndex) {
 function insertionSort(array, gap, i) {
   var copyArray = array.slice();
 
-  if (!i) {
+  if (i === undefined) {
     return insertionSort(copyArray, gap, gap);
   }
   else if (i >= array.length) {

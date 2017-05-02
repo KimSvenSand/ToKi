@@ -7,26 +7,24 @@ function shellsort(array, gapIndex) {
   var gapSequence = createGapSequence(array.length);
   var copyArray = array.slice();
 
-  if (!gapIndex) {
-    return shellsort(copyArray, gapSequence[gapSequence.length - 1]);
-  } else if (!gapSequence[gapIndex]) {
+  if (gapIndex === undefined) {
+    return shellsort(copyArray, 0);
+  } else if (gapSequence[gapIndex] === undefined) {
     return copyArray;
   } else {
-    var test = insertionSort(copyArray, gapSequence[gapIndex]);
-    return shellsort(test, gapIndex + 1);
+    return shellsort(insertionSort(copyArray, gapSequence[gapIndex]), gapIndex + 1);
   }
 }
 
 function insertionSort(array, gap, i) {
   var copyArray = array.slice();
 
-  if (!i) {
+  if (i === undefined) {
     return insertionSort(copyArray, gap, gap);
   } else if (i >= array.length) {
     return copyArray;
   } else {
-    let test = sortSection(copyArray, gap, i);
-    return insertionSort(test, gap, i + 1);
+    return insertionSort(sortSection(copyArray, gap, i), gap, i + 1);
   }
 }
 
@@ -36,8 +34,7 @@ function sortSection(array, gap, i) {
   if (i - gap < 0 || copyArray[i - gap] <= copyArray[i]) {
     return copyArray;
   } else {
-    let test = switchElements(copyArray, i, i - gap);
-    return sortSection(test, gap, i - gap);
+    return sortSection(switchElements(copyArray, i, i - gap), gap, i - gap);
   }
 }
 
@@ -54,8 +51,7 @@ function createGapSequence(n, sequence) {
   } else if (sequence[sequence.length - 1] >= n / 2) {
     return sequence.reverse();
   } else {
-    let test = sequence.concat(sedgewick(sequence.length));
-    return createGapSequence(n, test);
+    return createGapSequence(n, sequence.concat(sedgewick(sequence.length)));
   }
 }
 

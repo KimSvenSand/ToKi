@@ -11,7 +11,7 @@ function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { de
 'use strict';
 
 console.log('Shellsort FP');
-var size = 6000;
+var size = 10;
 console.log("Data size: " + size);
 runMeasurements(createRandomArray(size));
 global.gc();
@@ -21,7 +21,7 @@ function runMeasurements(array) {
   var memStart = process.memoryUsage().rss;
   console.info('start:\n' + _util2.default.inspect(process.memoryUsage()));
 
-  (0, _shellsortFunctions.shellsort)(array);
+  console.log((0, _shellsortFunctions.shellsort)(array));
 
   console.info('end:\n' + _util2.default.inspect(process.memoryUsage()));
   var memEnd = process.memoryUsage().rss;
