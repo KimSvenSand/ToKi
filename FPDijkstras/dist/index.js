@@ -24,7 +24,7 @@ function runDijkstrasAlgorithm(nrOfElements) {
   var [nodes, edges] = makeGraph([], [], nrOfElements);
   var startNode = "node1";
   var endNode = "node" + nrOfElements;
-  (0, _Dijkstras.dijkstras)(nodes, edges, startNode, endNode);
+  console.log((0, _Dijkstras.dijkstras)(nodes, edges, startNode, endNode));
 
   console.info('end:\n' + _util2.default.inspect(process.memoryUsage()));
   var memEnd = process.memoryUsage().rss;

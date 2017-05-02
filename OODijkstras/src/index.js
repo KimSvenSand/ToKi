@@ -31,7 +31,7 @@ function runDijkstrasAlgorithm(nrOfElements) {
   dijk.addEdges(edges);
   var startNode = "node1";
   var endNode = "node"+nrOfElements;
-  dijk.runDijkstrasAlgorithm(startNode,endNode);
+  console.log(dijk.runDijkstrasAlgorithm(startNode,endNode));
 
 
   console.info('end:\n' + util.inspect(process.memoryUsage()));
