@@ -5,7 +5,7 @@ import util from 'util';
 'use strict';
 
 console.log("FP Shellsort algorithm:");
-var nrOfElements = 6000;
+var nrOfElements = 100;
 console.log("Number of elements: " + nrOfElements);
 runShellsort(nrOfElements);
 
@@ -19,7 +19,6 @@ function runShellsort(nrOfElements) {
   var gapSequence = getGapSequence(10,[]);
   var array = random(nrOfElements,[]);
   var sortedArray = shellsortContainer(array,gapSequence);
-
   console.info('end:\n' + util.inspect(process.memoryUsage()));
   var memEnd = process.memoryUsage().rss;
   let hrEnd = process.hrtime(hrStart);
