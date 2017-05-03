@@ -13,12 +13,12 @@ function dijkstras(graph, edges, startNode, endNode) {
     var [path, dist] = createPathAndDist(graph.length, [], []);
 
     dist[graph.indexOf(startNode)] = 0;
-    path[graph.indexOf(startNode)] = "";
 
     var unvisitedNodes = graph.slice();
     var currentNode = 0;
     var currentValue = Number.MAX_SAFE_INTEGER;
     var pathAndDist = unvisitedNotEmpty(graph, edges, startNode, endNode, path, dist, unvisitedNodes, currentNode, currentValue);
+    return [endNode, pathAndDist[0][graph.indexOf(endNode)], pathAndDist[1][graph.indexOf(endNode)]];
     return pathAndDist[1][graph.indexOf(endNode)];
   } else {
     return 0;
@@ -43,7 +43,6 @@ function unvisitedNotEmpty(graph, edges, startNode, endNode, path, dist, unvisit
       nodeCopy = currentNode;
   if (unvisitedCopy.length > 0 && unvisitedCopy.indexOf(endNode) != -1) {
     var [nodeCopy, value] = findCurrentNode(graph, graph.length, unvisitedCopy, distCopy, nodeCopy, currentValue);
-
     unvisitedCopy = unvisitedCopy.filter(function (node) {
       return node != graph[nodeCopy];
     });
@@ -81,10 +80,18 @@ function assignPathAndDist(graph, edges, edgeLength, path, dist, currentNode) {
 
   if (currentFromNode == graph[currentNode] && distCopy[graph.indexOf(currentToNode)] > dist[currentNode] + parseInt(currentEdgeLength)) {
     distCopy[graph.indexOf(currentToNode)] = parseInt(distCopy[currentNode]) + parseInt(currentEdgeLength);
-    pathCopy[graph.indexOf(currentToNode)] = pathCopy[currentNode] + "," + currentFromNode + "-" + currentToNode + "=" + currentEdgeLength;
+    if (pathCopy[graph.indexOf(currentFromNode)] == "") {
+      pathCopy[graph.indexOf(currentToNode)] = currentFromNode + "-" + currentToNode;
+    } else {
+      pathCopy[graph.indexOf(currentToNode)] = pathCopy[graph.indexOf(currentFromNode)] + "-" + currentToNode;
+    }
   } else if (currentToNode == graph[currentNode] && dist[graph.indexOf(currentFromNode)] > dist[currentNode] + parseInt(currentEdgeLength)) {
     distCopy[graph.indexOf(currentFromNode)] = parseInt(distCopy[currentNode]) + parseInt(currentEdgeLength);
-    pathCopy[graph.indexOf(currentToNode)] = pathCopy[currentNode] + "," + currentToNode + "-" + currentFromNode + "=" + currentEdgeLength;
+    if (pathCopy[graph.indexOf(currentToNode)] == "") {
+      pathCopy[graph.indexOf(currentFromNode)] = currentToNode + "-" + currentFromNode;
+    } else {
+      pathCopy[graph.indexOf(currentFromNode)] = pathCopy[graph.indexOf(currentToNode)] + "-" + currentFromNode;
+    }
   }
 
   return [pathCopy, distCopy];
