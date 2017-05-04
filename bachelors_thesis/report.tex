@@ -41,12 +41,11 @@ Kim Svensson Sand \and Tord Eliasson
 \tableofcontents
 \newpage
 \pagenumbering{arabic}
-\section{Abstract}
-\subsection{Keywords}
-\section{List of figures}
-\section{List of tables}
-\section{List of symbols}
-\section{Abbreviations}
+\section*{Abstract}
+\subsection*{Keywords}
+\listoffigures
+\listoftables
+\section*{Abbreviations}
 \begin{itemize}[leftmargin=*]
 \item [ ] ES6 = ECMAScript 2015
 \item [ ] FP = Functional Programming
@@ -238,7 +237,7 @@ animal.logAnimal();
 //Age: 9
 \end{lstlisting}
 
-\item [Object] - An object is a capsule that contains the variables and functions established in the class. While objects created from the same class contains the same variables and functions, since the information it contains is handled specifically for every object, the information in the class can vary much. All data and functions can be accessible from outside the object. 
+\item [Object] - An object is a capsule that contains the variables and functions established in the class\cite{}. While objects created from the same class contains the same variables and functions, since the information it contains is handled specifically for every object, the information in the class can vary much. All data and functions can be accessible from outside the object. 
 
 \item [Inheritance] - When an object acquires all properties and functionality of another object \cite{skansholm}. it is called inheritance. This provides code reusability. 
 
@@ -788,6 +787,7 @@ We also did these implementations in JavaScript. It would be interesting to see 
 \section{Appendix}
 \label{appendix:test-cases}
 \subsection{Test cases}
+\begin{table}[H]
 \begin{tabular}{ | l p{10cm} | }
 \hline
 ID & T1 \\
@@ -817,7 +817,11 @@ Expected values & FP: None, OOP: See figure~\ref{fig:output-tree-33} \\
 Expected output & FP: See figure~\ref{fig:output-tree-33}, OOP: true \\
 \hline
 \end{tabular}
+\caption{Binary search tree algorithms insert tests}
+\label{tab:insert-tests}
+\end{table}
 
+\begin{table}[H]
 \begin{tabular}{ | l p{10cm} | }
 \hline
 ID & T2 \\
@@ -852,7 +856,11 @@ Expected values & None \\
 Expected output & node(20) \\
 \hline
 \end{tabular}
+\caption{Binary search tree algorithms findNode tests}
+\label{tab:find-node-tests}
+\end{table}
 
+\begin{table}[H]
 \begin{tabular}{ | l p{10cm} | }
 \hline
 ID & T3 \\
@@ -873,7 +881,11 @@ Expected values & None \\
 Expected output & [] \\
 \hline
 \end{tabular}
+\caption{Binary search tree algorithms inOrderTraversal tests}
+\label{tab:traversal-tests}
+\end{table}
 
+\begin{table}[H]
 \begin{tabular}{ | l p{10cm} | }
 \hline
 ID & T4 \\
@@ -893,7 +905,11 @@ Expected values & None \\
 Expected output & [ 9, 8, 1, 15, 3, 4, 11, 2, 7, 6] \\
 \hline
 \end{tabular}
+\caption{Shellsort tests}
+\label{tab:shellsort-tests}
+\end{table}
 
+\begin{table}[H]
 \begin{tabular}{ | l p{10cm} | }
 \hline
 ID & T5 \\
@@ -913,7 +929,11 @@ Expected values & FP: none, OOP: nrOfMoves=0 \\
 Expected output & peg1 empty, peg2 empty, peg3 empty \\
 \hline
 \end{tabular}
+\caption{Tower of Hanoi algorithm tests}
+\label{tab:tower-of-hanoi-tests}
+\end{table}
 
+\begin{table}[H]
 \begin{tabular}{ | l p{10cm} | }
 \hline
 ID & T6 \\
@@ -948,6 +968,9 @@ Expected values & None \\
 Expected output & empty path \\
 \hline
 \end{tabular}
+\caption{Dijkstra's algorithm tests}
+\label{tab:dijkstras-tests}
+\end{table}
 \subsection{Test case images}
 \begin{figure}[H]
 \includegraphics[width=\textwidth]{input-tree}
