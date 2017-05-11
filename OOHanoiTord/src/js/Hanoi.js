@@ -2,7 +2,6 @@
 import Peg from './peg.js';
 export default class Hanoi {
   constructor(){
-    this.moves = [];
     this.pegs = [new Peg(),new Peg(),new Peg()];
   }
   towerOfHanoi(numberOfDisks){
@@ -31,7 +30,7 @@ export default class Hanoi {
       if (moveSmallest) {
         previousPeg = currentPeg;
         currentPeg = (previousPeg + dir + 3) % 3;
-        this.moveDisk(previousPeg, currentPeg, this.pegs, this.moves);
+        this.moveDisk(previousPeg, currentPeg);
       }
       //Moves other disks
       else {
@@ -53,12 +52,10 @@ export default class Hanoi {
  }
 
  moveDisk(from, to) {
-   this.moves.push([from+1 +" -> "+ to+1]);
    this.pegs[to].addDisk(this.pegs[from].removeTopDisk());
  }
 
  resetHanoi(){
-   this.moves = [];
    this.pegs = [new Peg(),new Peg(),new Peg()];
  }
 }
