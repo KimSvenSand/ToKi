@@ -30,7 +30,7 @@ function random(length, array) {
   var arrayCopy = array.slice();
   if (length >= 0) {
     arrayCopy.push(Math.floor(Math.random() * 100 + 1));
-    arrayCopy = random(length - 1, array);
+    arrayCopy = random(length - 1, arrayCopy);
   }
   return arrayCopy;
 }

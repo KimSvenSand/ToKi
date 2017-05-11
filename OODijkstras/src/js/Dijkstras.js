@@ -31,7 +31,7 @@ export default class Dijkstras {
           currentConnection = this.graph.findNodeByName(connectingEdges[i].getConnection());
           if(currentConnection != undefined && parseInt(currentConnection.getDist()) > parseInt(parseInt(currentNode.getDist()) + parseInt(connectingEdges[i].getWeight()))){
             currentConnection.setDist(parseInt(parseInt(currentNode.getDist()) + parseInt(connectingEdges[i].getWeight())));
-            if(currentConnection.getPath() == ""){
+            if(currentNode.getPath() == ""){
               currentConnection.setPath(currentNode.getName());
             }else{
               currentConnection.setPath(currentNode.getPath() + "-" + currentNode.getName());

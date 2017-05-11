@@ -11,7 +11,7 @@ function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { de
 'use strict';
 
 console.log("FP Shellsort algorithm:");
-var nrOfElements = 6000;
+var nrOfElements = 100;
 console.log("Number of elements: " + nrOfElements);
 runShellsort(nrOfElements);
 
@@ -25,7 +25,7 @@ function runShellsort(nrOfElements) {
   var gapSequence = (0, _Shellsort.getGapSequence)(10, []);
   var array = (0, _Shellsort.random)(nrOfElements, []);
   var sortedArray = (0, _Shellsort.shellsortContainer)(array, gapSequence);
-
+  console.log(sortedArray);
   console.info('end:\n' + _util2.default.inspect(process.memoryUsage()));
   var memEnd = process.memoryUsage().rss;
   let hrEnd = process.hrtime(hrStart);

@@ -16,7 +16,6 @@ console.log("OOP Dijkstras algorithm:");
 var nrOfElements = 20;
 console.log("nrOfElements: " + nrOfElements);
 runDijkstrasAlgorithm(nrOfElements);
-
 global.gc();
 
 function runDijkstrasAlgorithm(nrOfElements) {
@@ -41,7 +40,7 @@ function runDijkstrasAlgorithm(nrOfElements) {
   dijk.addEdges(edges);
   var startNode = "node1";
   var endNode = "node" + nrOfElements;
-  dijk.runDijkstrasAlgorithm(startNode, endNode);
+  console.log(dijk.runDijkstrasAlgorithm(startNode, endNode));
 
   console.info('end:\n' + _util2.default.inspect(process.memoryUsage()));
   var memEnd = process.memoryUsage().rss;
