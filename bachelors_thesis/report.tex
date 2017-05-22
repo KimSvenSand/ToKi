@@ -23,7 +23,8 @@
 	tabsize=2,
 	keepspaces=true,
 	showspaces=false,
-	showstringspaces=false
+	showstringspaces=false,
+	frame=single
 }
 
 \hypersetup{
@@ -37,7 +38,7 @@
 \begin{titlepage}
 	\centering
 	\includegraphics[width=0.3\textwidth]{bth-logo} \par
-	{\LARGE A comparison between functional and object-oriented programming paradigms in JavaScript \par}
+	{\LARGE A comparison of functional and object-oriented programming paradigms in JavaScript \par}
 	\vspace{1cm}
 {\large Kim Svensson Sand and Tord Eliasson \par}
 {\large \today \par}
@@ -50,11 +51,11 @@
 \pagenumbering{gobble}
 \newpage
 \section*{Abstract}
-There are multiple programming paradigms that has their own set rules for how code should be written \cite{programming-paradigms}. Programming languages utilize one or multiple of these paradigms. In this thesis we will compare object-oriented programming, that is the most used today with languages such as C++ and Java, and functional programming. Functional programming was introduced in the 1950's but suffered from performance issues and has not been used much except for in the academic world \cite{gabmar}. However, for its ability to handle concurrency and big data, functional programming is of interest in the industry again with languages such as Scala \cite{meijer, eriksen}. In functional programming side effects, any interaction outside of the function, are avoided as well as changing and saving state. 
+There are multiple programming paradigms that have their own set rules for how code should be written. Programming languages utilize one or multiple of these paradigms. In this thesis, we will compare object-oriented programming, that is the most used today with languages such as C++ and Java, and functional programming. Functional programming was introduced in the 1950's but suffered from performance issues, and has not been used much except for in the academic world. However, for its ability to handle concurrency and big data, functional programming is of interest in the industry again with languages such as Scala. In functional programming side effects, any interaction outside of the function, are avoided as well as changing and saving state. 
 
-To compare these paradigms we have chosen four different algorithms which both of us have implemented twice, once according to object-oriented programming and once according to functional programming in JavaScript. JavaScript is a multiparadigm language that supports both functional and object-oriented programming. For all implementations we have measured development time, lines of code, execution time and memory usage. Our results were that object-oriented programming gave us better performance, but functional programming resulted in less code and a shorter development time. 
+To compare these paradigms we have chosen four different algorithms, which both of us have implemented twice, once according to object-oriented programming and once according to functional programming. All algorithms were implemented JavaScript. JavaScript is a multiparadigm language that supports both functional and object-oriented programming. For all implementations, we have measured development time, lines of code, execution time and memory usage. Our results show that object-oriented programming gave us better performance, but functional programming resulted in less code and a shorter development time. 
 \subsection*{Keywords}
-Functional programming, Object-oriented programming, Programming paradigms, JavaScript
+Functional programming, Object-oriented programming, Comparison, Programming paradigms, JavaScript
 
 \newpage
 \tableofcontents
@@ -77,11 +78,11 @@ Functional programming, Object-oriented programming, Programming paradigms, Java
 \section{Introduction}
 Programming paradigms is a way to classify a certain way of programming \cite{programming-paradigms}. Each paradigm has its own set of rules for how the code should be written. Some programming languages make it possible to write code according to one paradigm,  while others make it possible to write according to multiple paradigms. 
 
-In the 1950's and 60's multiple high-level languages were developed, that today's programming languages are based upon \cite{gabmar}. These were imperative languages such as Fortran and Algol, functional languages such as Lisp and object-oriented languages such as Simula. Originally Lisp had performance issues and has not been used a lot commercially, but versions of it are still used today. However it is mostly used an academic context. In the 70's C was introduced and quickly established itself thanks to its ability to access low-level functionality, its compact syntax and its good compiler. In the 80's the object-oriented language C++ was developed. It was based on C and and took a lot of inspiration from Simula. Java, that is based on C++ was introduced in the 90's. Since imperative languages gained the upper hand in the 60's and 70's new languages were based on those and continued being the most used. 
+In the 1950's and 60's, multiple high-level languages were developed that today's programming languages are based upon \cite{gabmar}. These were imperative languages such as Fortran and Algol, functional languages such as Lisp and object-oriented languages such as Simula. Originally Lisp had performance issues and has not been used a lot commercially, but versions of it are still used today. However, it is mostly used an academic context. In the 70's, C was introduced and quickly established itself thanks to its ability to access low-level functionality, its compact syntax and its effective compiler. In the 80's, the object-oriented language C++ was developed. It was based on C and and took a lot of inspiration from Simula. Java, that is based on C++ was introduced in the 90's. Since imperative languages gained the upper hand in the 60's and 70's, new languages were based on those and continued being the most used. 
 
-Object-oriented or imperative languages are dominating today with languages such as C, C++, Java and C\#. However, functional languages seem to be of interest in the industry again for handling big data and concurrency with languages such as Scala, Erlang and Haskell \cite{drboolean, eriksen, erikarl}. Since functional programming tries to avoid state, it becomes less complex to run asynchronous and therefore easier to run concurrently. There is a performance difference where functional languages tend to be slower, but there are also positive aspects that could compensate for those, such as memory usage and less code \cite{fogus, alomgi}.  Some are also arguing that a more functional approach will give you more readable code, code that is easier to maintain and easier to test, and that learning it will give you a better experience as a programmer \cite{drboolean, meijer}. 
+Object-oriented or imperative languages are dominating today, with languages such as C, C++, Java and C\#. However, functional languages seem to be of interest in the industry again for handling big data and concurrency, with languages such as Scala, Erlang and Haskell \cite{drboolean, eriksen, erikarl}. Since functional programming tries to avoid state, it becomes less complex to run asynchronous and therefore easier to run concurrently. There is a performance difference, where functional languages tend to be slower, but there are also positive aspects that could compensate for those, such as memory usage and less code \cite{fogus, alomgi}.  Some are also arguing that a more functional approach will give you more readable code, code that is easier to maintain and easier to test, and that learning it will give you a better experience as a programmer \cite{drboolean, meijer}. 
 
-We will compare two programming paradigms, object-oriented programming and functional programming. To compare these we have chosen four different algorithms which both of us will implement twice, once according to the object-oriented paradigm and once according to the functional paradigm. The different algorithms we will implement are binary search tree algorithms, the Shellsort algorithm, the Tower of Hanoi algorithm and Dijkstra's algorithm. The comparisons we will make between the algorithms are execution time, memory usage, development time and lines of code. All algorithms will be written in JavaScript.
+We will compare two programming paradigms, object-oriented programming and functional programming. To compare these, we have chosen four different algorithms which both of us will implement twice, once according to the object-oriented paradigm and once according to the functional paradigm. The different algorithms we will implement are binary search tree algorithms, the Shellsort algorithm, the Tower of Hanoi algorithm and Dijkstra's algorithm. The comparisons we will make between the algorithms are execution time, memory usage, development time and lines of code. All algorithms will be written in JavaScript.
 \subsection{Research Questions}
 In this thesis we will address the following research questions:
 \begin{itemize}
@@ -89,9 +90,9 @@ In this thesis we will address the following research questions:
 \item Can programmers with an object-oriented background decrease development time by using practises from functional programming?
 \end{itemize}
 
-When comparing the different paradigms it would be interesting to see how the execution time and memory usage differs. Because we are writing both paradigms in the same language, we are able to compare just the paradigms, without having to compare languages and compilers.
+When comparing the different paradigms, it would be interesting to see how the execution time and memory usage differs. Because we are writing both paradigms in the same language, we are able to compare just the paradigms, without having to compare languages and compilers.
 
-We both have studied at Blekinge Institute of Technology, where we learned object-oriented programming, OOP. Therefore it would be interesting to see how our programming will change by learning functional programming, FP. This can give teachers an indication about introducing functional programming to give students a chance to use different paradigms depending on their needs, instead of always using OOP.
+We both have studied at Blekinge Institute of Technology, where we learned object-oriented programming, OOP. Therefore, it would be interesting to see how our programming will change by learning functional programming, FP. This can give teachers an indication about introducing functional programming, to give students a chance to use different paradigms depending on their needs, instead of always using OOP.
 \section{Background and Related work}
 Here we will describe the functional programming paradigm and also the object -oriented programming paradigm. We will also describe JavaScript and its support for functional and object-oriented methods. The related works described are articles that further explain the positive aspects of functional programming or studies similar to this one.
 \subsection{Functional programming}
@@ -298,7 +299,7 @@ dog.logAnimal();
 \end{description}
 \subsection{JavaScript}
 \label{sec:javascript}
-JavaScript is a language with first class functions that is dynamically type checked. It is a multi-paradigm language with basic support for object-oriented, imperative and functional paradigm principles. There are multiple libraries to tweak JavaScript with certain functions or better support for certain paradigms, for example Underscore.js \cite{underscorejs}, for functional programming, or flow \cite{flow}, for static type checking. There are also a lot of languages available that are transpiled into JavaScript, for example TypeScript \cite{typescript}. 
+JavaScript is a language with first class functions that is dynamically type checked. It is a multi-paradigm language with basic support for object-oriented, imperative and functional paradigm principles. There are multiple libraries to tweak JavaScript with certain functions or better support for certain paradigms, for example Underscore.js \cite{underscorejs}, for functional programming, or Flow \cite{flow}, for static type checking. There are also a lot of languages available that are transpiled into JavaScript, for example TypeScript \cite{typescript}. 
 
 JavaScript can be run in most browsers and also in servers and is implemented to follow the ECMA standards \cite{ecma6table}. It has a garbage collection system for handling memory \cite{mozillamem}. The garbage collection removes objects or variables from memory that are unreachable by the program. 
 
@@ -343,7 +344,7 @@ However there is no automatic currying or immutable data structures in JavaScrip
 There is a call stack limit in JavaScript that varies depending on the runtime environment. This limits the number of function calls that can be made, which also limits recursion. In ES6 there is tail call optimization, that makes it possible to make certain function calls without adding to the call stack, that would allow for better recursion. However this is currently not implemented for most servers and browsers \cite{ecma6table}.
 \subsubsection{Object-oriented programming}
 JavaScript has always had support for OOP. But 
-with ES6, OOP starts to look more like classical OOP languages such as Java \cite{ecmacompare}.
+with ES6, OOP in JavaScript starts to look more like classical OOP languages such as Java \cite{ecmacompare}.
 
 JavaScript do not fully support encapsulation, since you can't make variables and functions private or public. Otherwise there is full support for OOP in JavaScript. As a workaround many programmers add an underscore to the variable or function name. This, however, does not actually make anything private. It just gives a hint to the programmer that it should be treated as such.
 \subsection{Related work}
@@ -357,11 +358,11 @@ In "Improving Testability and Reuse by Transitioning to Functional Programming" 
 
 Alic, Omanovic and Giedrimas have made a comparative analysis of functional and object-oriented programming languages \cite{alomgi}. They have compared four languages, C\#, F\#, Java and Haskell based on execution time and memory usage. Their conclusion is that Java is the fastest while Haskell uses much less memory, and that programming paradigms should be combined to increase execution efficiency. 
 
-Dobre and Xhafa writes in "Parallel Programming Paradigms and Frameworks in Big Data Era" that we now are in a big data era \cite{dobre}. They also review different frameworks and programming paradigms in a big data perspective. Regarding paradigms they state: ‘functional programming is actually considered today to be the most prominent programming paradigm, as it allows actually more flexibility in defining big data distributed processing workflows’ \cite{dobre}.
+Dobre and Xhafa writes in "Parallel Programming Paradigms and Frameworks in Big Data Era" that we now are in a big data era \cite{dobre}. They also review different frameworks and programming paradigms in a big data perspective. Regarding paradigms they state: "functional programming (FP)  is actually considered today to be the most prominent programming paradigm, as it allows actually more flexibility in defining big data distributed processing workflows" \cite{dobre}.
 
 In "Comparing programming paradigms: an evaluation of functional and object-oriented programs", R. Harrison et al. compares the quality of code in functional and object-oriented programming \cite{hasmadole}. To compare these, they use C++ and SML. While they state in their discussion that they would probably use OOP, since C++ is a better language, the standard list functions were of great help, the debugging was better and reusability was much higher in SML.
 
-Guido Salvaneschi et al. have conducted an empirical evaluation of the impact of Reactive Programming (RP), with functional programming concepts, on program comprehension \cite{saproamname}. Their experiment involved 127 subjects and the results suggests that RP is better for program comprehension when compared with OOP. They conclude that with RP the subjects produced more correct code without the need of more time, and also that the comprehension of RP programs is less tied to programming skills. 
+Guido Salvaneschi et al. have conducted an empirical evaluation of the impact of Reactive Programming (RP), with functional programming concepts, on program comprehension \cite{saproamname}. Their experiment involved 127 subjects and the results suggest that RP is better for program comprehension when compared with OOP. They conclude that with RP the subjects produced more correct code without the need of more time, and also that the comprehension of RP programs is less tied to programming skills. 
 
 In "Using Functional Programming within an Industrial Product Group: Perspectives and Perceptions" \cite{scomad}, David Scott et al. presents a case-study of using FP in the multiparadigm language OCaml in a large product development team. They found that the team's project was a success even though there were some drawbacks to using OCaml, such as lack of tool support. The engineers believed that OCaml enabled them to be more productive than if they would have used one of the mainstream languages, such as C++ or Python.
 \section{Method}
@@ -586,7 +587,7 @@ return path[endNode]
 \subsection{Environment}
 We will implement the algorithms using Atom \cite{atom}, a text editor, and compile and run our tests and our code with Node.js \cite{nodejs}. Tail call optimization is not available in Node.js, see \ref{sec:js-fp}. To manage our dependencies we are using npm \cite{npm} and for automation we are using Grunt \cite{grunt}. We have been using github for managing and reviewing our code, see \url{https://github.com/KimSvenSand/ToKi}.
 
-Since Node.js does not support ES6-modules we are using babel \cite{babel} to transpile our ES6-modules to node-modules that are supported. We are doing this since we have prior experience with ES6 modules and not with node-modules. Since Node.js supports almost everything else in ES6 we will only be transpiling the modules, leaving our code in an ES6 standard.
+Since Node.js does not support ES6-modules we are using Babel \cite{babel} to transpile our ES6-modules to node-modules that are supported. We are doing this since we have prior experience with ES6 modules and not with node-modules. Since Node.js supports almost everything else in ES6 we will only be transpiling the modules, leaving our code in an ES6 standard.
 
 To measure memory and run time we are using Node.js' process, that is a global variable and therefore always available within Node.js applications \cite{nodejs}. We are using the following functions:
 \begin{description}
@@ -632,9 +633,10 @@ For an implementation of an algorithm to be considered done the following has to
 \item A timelog describing how long the implementation took. 
 \end{itemize}
 \subsection{Measurements and indata}
-We will measure execution time, memory usage, code length and the development time of each implementation. The measurements are done on the algorithms described in this chapter and the algorithms will run on randomized data, described in table~\ref{tab:measurements}. We are not measuring the initiation of the randomized data, except for the binary search tree algorithms that include an insert-function. The algorithms are measured with three different sizes of data, described in table~\ref{tab:measurements}, to get more accurate results. We have chosen measurement sizes such as to avoid exceeding the call stack limit for our functional implementations, that use recursion.
+We will measure execution time, memory usage, code length and the development time of each implementation. The measurements are done on the algorithms described earlier in this chapter and the algorithms will run on randomized data, described in table~\ref{tab:measurements}. We are not measuring the initiation of the randomized data, except for the binary search tree algorithms that include an insert-function. The algorithms are measured with three different sizes of data, described in table~\ref{tab:measurements}, to get more accurate results. We have chosen measurement sizes such as to avoid exceeding the call stack limit for our functional implementations, that use recursion.
 
 \begin{table}[H]
+\caption{Table describing measurements to be implemented}
 \begin{tabular}{ | l p{10cm} | }
 \hline
 Algorithm & Binary search tree algorithms \\
@@ -658,7 +660,6 @@ Measurement data & A graph with n nodes where each node is connected to the last
 Measurement sizes & n = 10, n = 15 and n = 20. \\
 \hline
 \end{tabular}
-\caption{Table describing measurements to be implemented}
 \label{tab:measurements}
 \end{table}
 \subsection{Guidelines for implementations and reviews}
@@ -702,7 +703,7 @@ The total results for the development time were:
 
 In figure~\ref{fig:development-time-graph} we can see that both of us spent less time on the functional implementations in total. We both had to spend more time on the OOP solution when implementing the recursive algorithms and vice versa. This is true except for Dijkstra's algorithm where Tord spent about as much time on both of the implementations. 
 
-Tord had to redo both of his Dijkstra's algorithm implementation, the functional shellsort algorithm and the object-oriented Tower of Hanoi after the initial results were registered. He spent a lot of time finding and fixing the bug for his functional Dijkstra's algorithm, which explains the deviation from the expected pattern.
+Tord had to redo both of his Dijkstra's algorithm implementation, the functional Shellsort algorithm and the object-oriented Tower of Hanoi after the initial results were registered. He spent a lot of time finding and fixing the bug for his functional Dijkstra's algorithm, which explains the deviation from the expected pattern.
 
 We can see that there was a large difference in development time between Kim's functional and object-oriented Tower of Hanoi algorithm. We can also see that she spent a lot more time than Tord did on his Tower of Hanoi implementations. This was because she struggled a lot with the iterative Tower of Hanoi algorithm and chose to use data structures where the algorithm had to be altered from the pseudocode in section~\ref{sec:hanoi}. Another difference between Kim's and Tord's implementations was that Tord got stuck and searched for help online regarding the iterative Tower of Hanoi algorithm.
 
@@ -728,7 +729,7 @@ For both Kim and Tord the functional implementations had less code in total and 
 
 We can see for Kim's Tower of Hanoi algorithm that there is a large difference in code length between the OOP and the FP implementations. This is because of her choice to using classes to represent the Tower of Hanoi game, pegs and discs rather than just using arrays.
 
-We expected that the functional implementations would produce less code than the object-oriented implementations. The functional implementations did, for all algorithms except for shellsort, have less code because we did not implement classes. This gave us less code, but we both think that this does not increase readability. Classes add a layer of abstraction that we both found useful for writing our own code and understanding each other's.
+We expected that the functional implementations would produce less code than the object-oriented implementations. The functional implementations did, for all algorithms except for Shellsort, have less code because we did not implement classes. This gave us less code, but we both think that this does not increase readability. Classes add a layer of abstraction that we both found useful for writing our own code and understanding each other's.
 
 \begin{figure}[H]
 \centering
@@ -744,7 +745,7 @@ Kim's functional implementation is faster than her object-oriented, since her in
 
 The reason that Tord’s functional algorithm is so much slower is that he used arrays instead of native objects. The problem with arrays is not the array itself but how it is used for the algorithm. The child nodes are placed in the array at \(n * 2 + 1\) or \(n * 2 + 2\), where n is the parent's index. This made the array much bigger than necessary. 
 
-Overall our results suggest that it is possible to write good algorithms in both paradigms, but OOP has the upper hand since it is using a lot less memory than FP.
+Overall our results suggest that it is possible to write good algorithms in both paradigms, but OOP has the upper hand since it is using significantly less memory than FP.
 
 \begin{figure}[H]
 \centering
@@ -833,11 +834,11 @@ She used JavaScript's Object.keys() function, see \cite{jsref}, to get an array 
 \end{figure}
 
 \section{Discussion}
-Most of the implementations are faster when implemented in their expected way. For example the binary search tree algorithms are faster recursively and the Shellsort algorithm is faster iteratively. The development time results also follow this pattern. We spent more time when implementing, for example, Shellsort recursively or the Tower of Hanoi iteratively. 
+Most of the implementations are faster when implemented in their expected way. For example, the binary search tree algorithms have a faster execution time when implemented recursively and the Shellsort algorithm has faster execution time when implemented iteratively. The development time results also follow this pattern. We spent more time when implementing, for example, Shellsort recursively or the Tower of Hanoi iteratively. 
 
 We expected the development time to be shorter for the object-oriented implementations, since we both have had prior experience with it and since we have nearly no prior experience with functional programming. The results show that this was not necessarily so. Neither of the paradigms seem significantly faster to implement, however the functional paradigm might have a slight upper hand since we both had no prior experience with it. 
 
-For the execution time results we did expect the object-oriented implementations to be faster than the functional implementations, based on this study comparing functional and object-oriented languages \cite{hasmadole} and our research about JavaScript, see section~\ref{sec:javascript}. Overall the functional implementations performed worse than the object-oriented implementations. We both implemented very slow implementations when using functional approaches, compared to when we implemented slow implementations according to OOP.
+For the execution time results, we did expect the object-oriented implementations to be faster than the functional implementations, based on this study comparing functional and object-oriented languages \cite{hasmadole} and our research about JavaScript, see section~\ref{sec:javascript}. Overall the functional implementations performed worse than the object-oriented implementations. We both implemented very slow implementations when using functional approaches, compared to when we implemented slow implementations according to OOP.
 
 Since we only had two different test groups with one person in each, it was difficult to analyze our results when algorithms were hard to compare. For example when an algorithm was much slower than all the others. This might not be because of the paradigm itself, but rather because the programmer has made a mistake. However, it can still give us some results as to if it is easier to make mistakes in one paradigm, but that would only be valid for that particular language. We think that it would be possible to draw more conclusions if there were more test subjects taking part in this experiment.
 
@@ -845,9 +846,9 @@ Our results suggest that the paradigm methods themselves, such as using classes 
 
 Overall we both appreciated trying out functional programming, but we don't think that we will use pure functional programming or functional languages in the future if we don't have to. We will, however, use a lot of the approaches that we have been using in this experiment. In our experience we found that we had less bugs when avoiding side effects and the functions were modular and easy to combine. We also liked using classes since there was a layer of abstraction on top of JavaScript's native types. We think that combining the two paradigms and using recursion or iteration when it fits best would benefit both the performance, development time and code readability. 
 \section{Conclusion}
-As we expected our object-oriented implementations performed better than our functional implementations while our functional implementations had a shorter development time and less code. This was even though we did not have any earlier experience with functional programming.  
+As we expected, our object-oriented implementations performed better than our functional implementations, while our functional implementations had a shorter development time and less code. This was the case, even though we did not have any earlier experience with functional programming.  
 
-Based on our results different paradigms are good for different things and one is not clearly better than the other. According to our research most languages perform well, and there are also a lot of multiparadigm languages out there. Our conclusion is that it is best to use a combination of the paradigms if possible. Especially since functional programming and object-oriented programming are not opposites. We think that object-oriented programmers would benefit from using methods from FP, even if they work in a more object-oriented language. To us it makes sense that a lot of the object-oriented languages, that are based on the imperative paradigm, are starting to implement support for functional approaches.
+Based on our results, different paradigms are good for different things and one is not clearly better than the other. According to our research most languages perform well, and there are also a lot of multiparadigm languages out there. Our conclusion is that it is best to use a combination of the paradigms if possible. Especially since functional programming and object-oriented programming are not opposites. We think that object-oriented programmers would benefit from using methods from FP, even if they work in a more object-oriented language. To us it makes sense that a lot of the object-oriented languages, that are based on the imperative paradigm, are starting to implement support for functional approaches.
 
 \section{Future Work}
 In this experiment we have implemented the algorithms ourselves and compared our own work. It would be interesting to see a similar experiment with multiple test subjects that are not involved in the thesis work. 
@@ -861,8 +862,11 @@ We also did these implementations in JavaScript. It would be interesting to see 
 \appendix
 \section{Appendix}
 \label{appendix:test-cases}
+In the following appendices, you will find our test cases and images describing the test data.
 \subsection{Test cases}
+All the images referenced in this appendix can be found in appendix~\ref{test-case-images}
 \begin{table}[H]
+\caption{Binary search tree algorithms insert tests}
 \begin{tabular}{ | l p{10cm} | }
 \hline
 ID & T1 \\
@@ -892,11 +896,11 @@ Expected values & FP: None, OOP: See figure~\ref{fig:output-tree-33} \\
 Expected output & FP: See figure~\ref{fig:output-tree-33}, OOP: true \\
 \hline
 \end{tabular}
-\caption{Binary search tree algorithms insert tests}
 \label{tab:insert-tests}
 \end{table}
 
 \begin{table}[H]
+\caption{Binary search tree algorithms findNode tests}
 \begin{tabular}{ | l p{10cm} | }
 \hline
 ID & T2 \\
@@ -931,11 +935,11 @@ Expected values & None \\
 Expected output & node(20) \\
 \hline
 \end{tabular}
-\caption{Binary search tree algorithms findNode tests}
 \label{tab:find-node-tests}
 \end{table}
 
 \begin{table}[H]
+\caption{Binary search tree algorithms inOrderTraversal tests}
 \begin{tabular}{ | l p{10cm} | }
 \hline
 ID & T3 \\
@@ -956,11 +960,11 @@ Expected values & None \\
 Expected output & [] \\
 \hline
 \end{tabular}
-\caption{Binary search tree algorithms inOrderTraversal tests}
 \label{tab:traversal-tests}
 \end{table}
 
 \begin{table}[H]
+\caption{Shellsort algorithm tests}
 \begin{tabular}{ | l p{10cm} | }
 \hline
 ID & T4 \\
@@ -980,11 +984,11 @@ Expected values & None \\
 Expected output & [ 9, 8, 1, 15, 3, 4, 11, 2, 7, 6] \\
 \hline
 \end{tabular}
-\caption{Shellsort algorithm tests}
 \label{tab:shellsort-tests}
 \end{table}
 
 \begin{table}[H]
+\caption{Tower of Hanoi algorithm tests}
 \begin{tabular}{ | l p{10cm} | }
 \hline
 ID & T5 \\
@@ -1004,11 +1008,11 @@ Expected values & FP: none, OOP: nrOfMoves=0 \\
 Expected output & peg1 empty, peg2 empty, peg3 empty \\
 \hline
 \end{tabular}
-\caption{Tower of Hanoi algorithm tests}
 \label{tab:tower-of-hanoi-tests}
 \end{table}
 
 \begin{table}[H]
+\caption{Dijkstra's algorithm tests}
 \begin{tabular}{ | l p{10cm} | }
 \hline
 ID & T6 \\
@@ -1043,10 +1047,10 @@ Expected values & None \\
 Expected output & empty path \\
 \hline
 \end{tabular}
-\caption{Dijkstra's algorithm tests}
 \label{tab:dijkstras-tests}
 \end{table}
 \subsection{Test case images}
+\label{test-case-images}
 \begin{figure}[H]
 \centering
 \includegraphics[width=0.9\textwidth]{input-tree}
