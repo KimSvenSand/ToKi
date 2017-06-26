@@ -36,18 +36,39 @@
  
 \begin{document}
 \begin{titlepage}
+	\begin{flushleft}
+	URI: urn:nbn:se:bth-14717
+	\end{flushleft}
 	\centering
+\begin{figure}[H]
+\centering
 	\includegraphics[width=0.3\textwidth]{bth-logo} \par
+\end{figure}
 	{\LARGE A comparison of functional and object-oriented programming paradigms in JavaScript \par}
 	\vspace{1cm}
 {\large Kim Svensson Sand and Tord Eliasson \par}
 {\large \today \par}
 	\vfill
-
 	{\normalsize Faculty of Computing \par}
 	{\normalsize Blekinge Institute of Technology \par}
 	{\normalsize SE-371 79 Karlskrona Sweden \par}
 \end{titlepage}
+\newpage
+This thesis is submitted to the Faculty of Computing at Blekinge Institute of Technology in partial fulfillment of the requirements for the degree of Bachelor in Software Engineering. 
+\vfill
+{\large Contact \par}
+Authors: \\
+Kim Svensson Sand - kim.svensson.sand@gmail.com \\
+Tord Eliassion - tord.eliasson@hotmail.se \\
+\\
+University Advisor: \\
+H{\aa}kan Grahn \\
+Professor of Computer Engineering \\
+hakan.grahn@bth.se \\
+\\
+Blekinge Institute of Technology \\
+Internet : www.bth.se \\
+Phone : +46 455 38 50 00 \\ 
 \pagenumbering{gobble}
 \newpage
 \section*{Abstract}
@@ -720,7 +741,7 @@ In figure~\ref{fig:development-time-graph} we can see that both of us spent less
  
 Tord had to redo both of his Dijkstra's algorithm implementations, the functional Shellsort algorithm and the object-oriented Tower of Hanoi after the initial results were registered. He spent a lot of time finding and fixing the bug for his functional Dijkstra's algorithm, which explains the deviation from the expected pattern.
  
-We can see that there was a 60\% difference in development time between Kim's functional and object-oriented Tower of Hanoi algorithm. We can also see that she spent a lot more time than Tord did on his Tower of Hanoi implementations. This was because she struggled a lot with the iterative Tower of Hanoi algorithm and chose to use data structures where the algorithm had to be altered from the pseudocode in section~\ref{sec:hanoi}. Another difference between Kim's and Tord's implementations was that Tord got stuck and searched for help online regarding the iterative Tower of Hanoi algorithm.
+We can see that there was a 60% difference in development time between Kim's functional and object-oriented Tower of Hanoi algorithm. We can also see that she spent a lot more time than Tord did on his Tower of Hanoi implementations. This was because she struggled a lot with the iterative Tower of Hanoi algorithm and chose to use data structures where the algorithm had to be altered from the pseudocode in section~\ref{sec:hanoi}. Another difference between Kim's and Tord's implementations was that Tord got stuck and searched for help online regarding the iterative Tower of Hanoi algorithm.
  
 We hoped that we would see a clear advantage for FP, but the results differ between each algorithm. In total we spent less time on the functional implementations, but for some algorithms we both spent significantly less time on the object-oriented implementations. The results suggest that the major difference in development time is depending on the algorithm itself and how it is implemented, rather than on the paradigm that is used. However, both of us have had prior experience working with OOP and close to no experience working with FP. This means that FP has a larger advantage than what is apparent in our results. 
  
